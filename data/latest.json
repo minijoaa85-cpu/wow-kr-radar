@@ -1,36 +1,8 @@
 {
-  "generated_at": "2026-11-19T00:13:05.274777+09:00",
+  "generated_at": "2026-11-19T00:14:07.233437+09:00",
   "status": "live",
   "week": "2026-W47",
   "items": [
-    {
-      "id": "99a8abe17662aad2",
-      "title_ko": "WoW: Forever Hotfixes - November 17, 2026 - MMO-Champion",
-      "title_original": "WoW: Forever Hotfixes - November 17, 2026 - MMO-Champion",
-      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
-      "source": "MMO-Champion",
-      "region": "global",
-      "category": "공식·핫픽스",
-      "published_at": "2026-11-18T03:57:01+00:00",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1VNHVEbG4yeW5DRmp1SEEwMnh1Z3BvWkZMRk9GQkNSdkRSRERJaUsyZU5GUFlsS3RST0NzZG1sem5lWUFqUXVkTzBGQ2wxa0M5WnRTRGpGSFNTSmlsTzdla2I5bTVaaG9YUzEtWVZTVFZwTm1a?oc=5",
-      "verified": false,
-      "translated": false,
-      "sample": false
-    },
-    {
-      "id": "76182e611d59e1e7",
-      "title_ko": "Forever Hotfixes - November 17, 2026 - Blizzard",
-      "title_original": "Forever Hotfixes - November 17, 2026 - Blizzard",
-      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
-      "source": "Blizzard",
-      "region": "global",
-      "category": "공식·핫픽스",
-      "published_at": "2026-11-18T03:23:49+00:00",
-      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPWHNCMEpLZ1hzRUppc0FhMUxvVVBlaVhWS1VxdFQ1YzlNTlF2YWZDUUtXNXg1bFlQQlk2R3ZjbnE3cDBDZi1oX1J4LUx3Ym1Tc281eG0wcWJ1emtjempQTUlkeWM2QURhT3lFTElnUVZUODB2cE43R25fREg5STZQa2VYOUtnbDdRR3NIX25rS184UGR3b0U4b2Z3?oc=5",
-      "verified": false,
-      "translated": false,
-      "sample": false
-    },
     {
       "id": "c9a03abbad0c877d",
       "title_ko": "Echoes of the Worldcore - Patch 12.1.7 Releases on December 1 - Wowhead",
@@ -55,48 +27,6 @@
       "category": "로드맵",
       "published_at": "2026-11-17T18:01:45+00:00",
       "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNeGpHdzNpNEZyMUwyUzd6OTAwOS1zUURrWGNCSUtBZU92TWpQUTNoZ1Y2dnkxZnRwWHBRbTgxUUxNZEZXQU5pXzdjbzNBWkFfdndVNGh5Z3hGdU1wS3h6YldRZGVVZ1hXU2hOcEZrblRHZC1weFVyeFJkMVhWVjA3WVBWQk5yRmR1VkxJ?oc=5",
-      "verified": false,
-      "translated": false,
-      "sample": false
-    },
-    {
-      "id": "407aac88c0c5d8a8",
-      "title_ko": "EasyDungeon (이지던전)",
-      "title_original": "EasyDungeon (이지던전) - 와우 인벤",
-      "summary_ko": "원문 링크에서 자세한 내용을 확인하세요.",
-      "source": "Inven",
-      "region": "KR",
-      "category": "국내 소식",
-      "published_at": "2026-11-17T08:00:00+00:00",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBIYVhPUnI0Z2p6bVhuYmZTUUlfU1FsTmt1Uy1CUFl2cEZNa3I0ZWFSLW1ydHFoTGt0eFdBRnluMXVPb19aNXNVc2ZEblhmZUM3VUxubG5uakcxZXBjWW44V01MR09ZSGNxSFE2djQyZW4?oc=5",
-      "verified": false,
-      "translated": true,
-      "sample": false
-    },
-    {
-      "id": "5b958f986365aac8",
-      "title_ko": "WoW: Forever Hotfixes - November 16, 2026 - MMO-Champion",
-      "title_original": "WoW: Forever Hotfixes - November 16, 2026 - MMO-Champion",
-      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
-      "source": "MMO-Champion",
-      "region": "global",
-      "category": "공식·핫픽스",
-      "published_at": "2026-11-17T02:22:00+00:00",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNYUE5X1ZNVVYwWURSdExRSzVzWDZGSVQwdlhVeHg4OFNncVAtRVRDNk9NVFBHUDVYMW15Wm1YM0VfTVBvd2FrdVhBdmRGRW5qVmFmTFcwRVFmMmRoSkJHZGR1bDRIeUtZWkZUZGluc2NGclB4TDBJcUI3OWdST09MTmZ2UFh6TGM?oc=5",
-      "verified": false,
-      "translated": false,
-      "sample": false
-    },
-    {
-      "id": "9bb8409a82255742",
-      "title_ko": "World of Warcraft: Forever — Patches & Speculation Thread - MMO-Champion",
-      "title_original": "World of Warcraft: Forever — Patches & Speculation Thread - MMO-Champion",
-      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
-      "source": "MMO-Champion",
-      "region": "global",
-      "category": "로드맵",
-      "published_at": "2026-11-14T14:10:14+00:00",
-      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQQWNMVXpaX25qOWNuQWMyUGNEc3UtZnRuLWI3QmVxYWJKWlVta1ktSFlsT3ZHOGZqTXlTNWFXUFJVVVFGdERLVlBEVEhKODlKOGtjbmtjZTY0S0RZaWtRVHJWMDRzQ2NoWmpxdE8zZFRaMU1BbzRvdTh0aG1mZktZT2ZQQ09vVFZvbWpzVWRSUnJ1a1MwQ0RmRF9Ya0VxVzQ?oc=5",
       "verified": false,
       "translated": false,
       "sample": false
@@ -144,20 +74,6 @@
       "sample": false
     },
     {
-      "id": "145d089d51ed0197",
-      "title_ko": "월드 오브 워크래프트: 포에버 공식 팟캐스트 7화 핵심 요약 및 번역 (세계관·향후 콘텐츠·서버 밸런스)",
-      "title_original": "월드 오브 워크래프트: 포에버 공식 팟캐스트 7화 핵심 요약 및 번역 (세계관·향후 콘텐츠·서버 밸런스) - 인벤",
-      "summary_ko": "원문 링크에서 자세한 내용을 확인하세요.",
-      "source": "Inven",
-      "region": "KR",
-      "category": "국내 소식",
-      "published_at": "2026-11-13T01:36:05+00:00",
-      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBfZmF6OGRvanp0ZHRxOGFscHFYc21iRzA5MEpERlh5cHJmNFVnLURFTW5mVm0wMkVqaGVrOWNvTV8wbmdqS2dxTUYwelMybnVtZmp0QXQ4VQ?oc=5",
-      "verified": false,
-      "translated": true,
-      "sample": false
-    },
-    {
       "id": "aa1a73cf687cc6e1",
       "title_ko": "New Brutal Armor Transmog Sets Datamined in Patch 12.1.7 - Wowhead",
       "title_original": "New Brutal Armor Transmog Sets Datamined in Patch 12.1.7 - Wowhead",
@@ -186,20 +102,6 @@
       "sample": false
     },
     {
-      "id": "6c90c1cde711693a",
-      "title_ko": "WoW: Forever Hotfixes - November 11, 2026 - MMO-Champion",
-      "title_original": "WoW: Forever Hotfixes - November 11, 2026 - MMO-Champion",
-      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
-      "source": "MMO-Champion",
-      "region": "global",
-      "category": "공식·핫픽스",
-      "published_at": "2026-11-12T00:49:00+00:00",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQMVA5eVFkRllMSExCR012Z040bGt5bEhQUmJRb1dvY3diSXJUSHB2VjhSS00zSXRkUERabkpYOGJORXVweGpQazA4S2FGeTJsdy0ydU9FVHl1QlZjYnEwWUdXRExaZnZvNkxQWHMtWXVEWlhXb3FmUzhoWFl5RDRkbG5rUWxjS3c?oc=5",
-      "verified": false,
-      "translated": false,
-      "sample": false
-    },
-    {
       "id": "84c8ec8b80d200cc",
       "title_ko": "Dual Spec Costs 50 Gold at Level 40 - Unlock Secondary Talent Tree - Wowhead",
       "title_original": "Dual Spec Costs 50 Gold at Level 40 - Unlock Secondary Talent Tree - Wowhead",
@@ -209,34 +111,6 @@
       "category": "직업·밸런스",
       "published_at": "2026-11-11T18:29:47+00:00",
       "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOU3RNVDB5Z0NkMEIzcFJFa2lFUW00Rmp1a2ozR291cnBiSzcwRDI4TUlFUDdzLWp4M1RORXJXWlczYVJ3SVQ3cDZYVTZzNEdRUTM1VzFoZGtRRGw3MGtUamN4ajJZekZ0N3N1OUVJSVhXYVRBUVNheGJvb2R5UjRSdzJQNTRxemVMWHRqR1hjTDN6eGZWelVPcDhmcmZUY0NZaGc?oc=5",
-      "verified": false,
-      "translated": false,
-      "sample": false
-    },
-    {
-      "id": "06510ef372d64946",
-      "title_ko": "Explore the Drowned City: New Dungeon in WoW: Forever - Wowhead",
-      "title_original": "Explore the Drowned City: New Dungeon in WoW: Forever - Wowhead",
-      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
-      "source": "Wowhead",
-      "region": "global",
-      "category": "쐐기·레이드",
-      "published_at": "2026-11-11T16:00:00+00:00",
-      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOZlp0WnV0d1JoeHZjT3ROeU45V01GamFiR0RoU1d2RWlJcGZFSlVkQlR6Q3FGNTllV21uRnljSDBacERPNUs5Q2t4eHl5S2NVOTFKbkhibmhpbEVfenpSaW1YTHNwSk52US0yNkJyR2RDSDdfZ1FRVzVBaDNraEJvbU9WYlB4aEV1Y29YMmFjRUY?oc=5",
-      "verified": false,
-      "translated": false,
-      "sample": false
-    },
-    {
-      "id": "58bf223fb44edf47",
-      "title_ko": "Enhancement Shaman Class Weapon Hotfixed on WoW: Forever - Wowhead",
-      "title_original": "Enhancement Shaman Class Weapon Hotfixed on WoW: Forever - Wowhead",
-      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
-      "source": "Wowhead",
-      "region": "global",
-      "category": "공식·핫픽스",
-      "published_at": "2026-11-10T19:12:35+00:00",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPNnN2V2VlMXcxUC1FcEF3NVNJZTBVdDZKNFJCRF9XdE5JUEZxaFNZLWZnek5RV2pvaDNpa1hjcjFTeFhmVjZUNm4wLUZHRnhjWGpXaVJtS3RxOWdKTTlnY09neEE1YUUwU0E0SnVXVDBPWU9FbmpWd2tFdnQ3QTlCQWhFNUJpUy00SFc0OC1oUmd4aXNvYXc?oc=5",
       "verified": false,
       "translated": false,
       "sample": false
