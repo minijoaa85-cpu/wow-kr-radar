@@ -43,7 +43,127 @@ def is_retail_news(title, src):
  return src in ('Blizzard','Reddit') and any(k in t for k in ('wow','warcraft','와우'))
 
 def normalize_title(title):
- return re.sub(r'\\s+-\\s+(?:Wowhead|인벤|와우 인벤|MMO-Champion|World of Warcraft)$','',title,flags=re.I).strip()
+ return re.sub(r'\s+-\s+(?:Wowhead|인벤|와우 인벤|MMO-Champion|World of Warcraft),'',title,flags=re.I).strip()
+
+def clean(s):
+ return re.sub(r'\s+', ' ', re.sub('<[^>]+>', ' ', s or '')).strip()
+
+def cat(title):
+ t=title.lower()
+ if any(x in t for x in ('hotfix','hotfixes','블루포스트','blue post','패치 노트','patch notes','개발자 공지')):return '공식·핫픽스'
+ if any(x in t for x in ('roadmap','로드맵','release date','launch date','12.2','12.1.7','출시일','시즌 시작일')):return '로드맵'
+ if any(x in t for x in ('class tuning','class changes','class balance','spec tuning','talent','nerf','buff','balance','직업 변경','직업 조정','특성 변경','버프','너프','밸런스')):return '직업·밸런스'
+ if any(x in t for x in ('dungeon','raid','mythic','m+','warcraft logs','쐐기','레이드','공격대','던전','season 3','시즌 3')):return '쐐기·레이드'
+ if any(x in t for x in ('ptr','eclipse','patch','시즌','확장팩')):return '로드맵'
+ return '커뮤니티'
+
+def get_text(el, name):
+ ch=el.find(name)
+ return clean(''.join(ch.itertext()) if ch is not None else '')
+
+def parse_date(s):
+ if not s:return NOW.isoformat()
+ from email.utils import parsedate_to_datetime
+ try:return parsedate_to_datetime(s).astimezone(dt.timezone.utc).isoformat()
+ except (TypeError,ValueError):
+  try:return dt.datetime.fromisoformat(s.replace('Z','+00:00')).astimezone(dt.timezone.utc).isoformat()
+  except ValueError:return NOW.isoformat()
+
+def feed_items(xml):
+ root=ElementTree.fromstring(xml)
+ entries=root.findall('.//item')
+ if entries:
+  for e in entries:
+   yield {'title':get_text(e,'title'),'url':get_text(e,'link'),'published_at':parse_date(get_text(e,'pubDate')),'description':get_text(e,'description')}
+ else:
+  ns={'a':'http://www.w3.org/2005/Atom'}
+  for e in root.findall('.//a:entry',ns):
+   link=e.find('a:link',ns)
+   yield {'title':get_text(e,'{http://www.w3.org/2005/Atom}title'),'url':link.get('href','') if link is not None else '', 'published_at':parse_date(get_text(e,'{http://www.w3.org/2005/Atom}updated')),'description':get_text(e,'{http://www.w3.org/2005/Atom}summary')}
+
+def translate(items):
+ """Optional compact Korean summaries. No API key -> titles preserved and status explicit."""
+ key=os.getenv('OPENAI_API_KEY','').strip()
+ if not key:return False
+ model=os.getenv('OPENAI_MODEL','gpt-4.1-mini')
+ for idx in range(0,len(items),8):
+  batch=items[idx:idx+8]
+  try:
+   payload={'model':model,'temperature':0,'response_format':{'type':'json_object'},'messages':[
+    {'role':'system','content':'You translate World of Warcraft RETAIL news headlines into natural Korean and create precise one-sentence Korean summaries. Do not hallucinate facts, dates, balance changes, or details not explicitly in title and snippet. Keep game terminology standard in Korean. Return JSON {"results":[{"title_ko":"...","summary_ko":"..."},...]}, preserving input order and exact count.'},
+    {'role':'user','content':json.dumps([{'title':x['title_original'],'snippet':x['original_snippet'][:300]} for x in batch],ensure_ascii=False)}]}
+   resp=requests.post('https://api.openai.com/v1/chat/completions',headers={'Authorization':'Bearer '+key},json=payload,timeout=70)
+   resp.raise_for_status()
+   out=json.loads(resp.json()['choices'][0]['message']['content'])['results']
+   if len(out)!=len(batch):raise ValueError('Translation response count mismatch')
+   for item,tr in zip(batch,out):
+    item['title_ko']=clean(tr.get('title_ko')) or item['title_original']
+    item['summary_ko']=clean(tr.get('summary_ko')) or '원문에서 자세한 내용을 확인하세요.'
+    item['translated']=True
+  except (requests.RequestException,KeyError,ValueError,json.JSONDecodeError) as ex:
+   print('Translation unavailable for batch:',str(ex)[:200]);continue
+ return any(x.get('translated') for x in items)
+
+def main():
+ DATA.mkdir(exist_ok=True);HIST.mkdir(exist_ok=True)
+ items=[];errors=[];success=0
+ seen=set()
+ for src,region,url in FEEDS:
+  try:
+   r=requests.get(url,headers={'User-Agent':USER_AGENT,'Accept':'application/rss+xml,application/atom+xml,application/xml'},timeout=25)
+   r.raise_for_status(); count=0
+   for entry in feed_items(r.content):
+    title=entry['title'];low=title.lower()
+    if not title or not entry['url']:continue
+    if not is_retail_news(title, src):continue
+    try:
+     posted=dt.datetime.fromisoformat(entry['published_at'])
+     if NOW.astimezone(dt.timezone.utc)-posted>dt.timedelta(days=MAX_AGE_DAYS):continue
+    except ValueError:continue
+    # Google News titles carry a source suffix. The link remains the source-discovery link.
+    normalized=normalize_title(title)
+    key=re.sub(r'[^a-z0-9가-힣]','',normalized.lower())[:110]
+    if key in seen:continue
+    seen.add(key)
+    id_=hashlib.sha256((src+entry['url']).encode()).hexdigest()[:16]
+    item={'id':id_,'title_ko':normalized if region=='KR' else title,'title_original':title,'summary_ko':'원문 링크에서 자세한 내용을 확인하세요.' if region=='KR' else '해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)', 'original_snippet':entry['description'][:500],'source':src,'region':region,'category':('국내 소식' if region=='KR' else cat(title)),'published_at':entry['published_at'],'url':entry['url'],'verified':False,'translated':region=='KR','sample':False}
+    items.append(item);count+=1
+    if count>=30:break
+   success+=1
+   print(src,'read:',count)
+  except (requests.RequestException,ElementTree.ParseError,ValueError) as exc:
+   errors.append({'source':src,'error':str(exc)[:180]});print('Feed failure:',src,exc)
+  time.sleep(0.35)
+ # Do not destroy saved latest with a temporary all-feed outage.
+ if success==0:
+  print('All feeds failed. Existing snapshots unchanged.');return 1
+ items.sort(key=lambda x:x['published_at'],reverse=True)
+ items=items[:120]
+ translated=translate([x for x in items if x['region']!='KR'])
+ for x in items:x.pop('original_snippet',None)
+ latest={'generated_at':NOW.isoformat(),'status':'live' if items else 'empty','week':WEEK,'items':items,'collection':{'attempted':len(FEEDS),'success':success,'errors':errors,'translated':translated}}
+ (DATA/'latest.json').write_text(json.dumps(latest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+ # Merge instead of overwrite: manual reruns may add headlines during the same week.
+ p=HIST/(WEEK+'.json')
+ if p.exists():
+  old=json.loads(p.read_text(encoding='utf-8'))
+  prior={x['id']:x for x in old.get('items',[])}
+  for x in items:prior[x['id']]=x
+  old['items']=sorted((v for v in prior.values() if is_retail_news(v.get('title_original',''), v.get('source',''))),key=lambda x:x['published_at'],reverse=True)
+  old['updated_at']=NOW.isoformat();hist=old
+ else:hist={**latest,'created_at':NOW.isoformat(),'updated_at':NOW.isoformat()}
+ p.write_text(json.dumps(hist,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+ ix=HIST/'index.json'
+ try:weeks=json.loads(ix.read_text(encoding='utf-8')).get('weeks',[])
+ except (ValueError,FileNotFoundError):weeks=[]
+ weeks=[x for x in weeks if x.get('week')!=WEEK]
+ weeks.append({'week':WEEK,'date':NOW.date().isoformat(),'count':len(hist['items'])})
+ weeks.sort(key=lambda x:x['week'],reverse=True)
+ ix.write_text(json.dumps({'weeks':weeks},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+ print('Saved',len(items),'articles and',len(weeks),'weekly archives');return 0
+
+if __name__=='__main__':raise SystemExit(main())
+,'',title,flags=re.I).strip()
 
 def clean(s):
  return re.sub(r'\s+', ' ', re.sub('<[^>]+>', ' ', s or '')).strip()
