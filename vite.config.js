@@ -1,2 +1,2 @@
 import { defineConfig } from 'vite';
-export default defineConfig({ base: './', build: { outDir: 'dist', copyPublicDir: false } });
+export default defineConfig({ base: './', build: { outDir: 'dist', copyPublicDir: true } });
