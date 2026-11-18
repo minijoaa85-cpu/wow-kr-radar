@@ -27,8 +27,23 @@ FEEDS = [
  ('Reddit', 'global', 'https://www.reddit.com/r/CompetitiveWoW/new/.rss'),
  ('Reddit', 'global', 'https://www.reddit.com/r/wow/new/.rss'),
 ]
-KEYWORDS = ('wow','warcraft','midnight','eclipse','raid','mythic','dungeon','hotfix','ptr','class','season','와우','한밤','쐐기','공격대','블리자드','도적','사냥꾼','마법사','성기사','주술사')
-BLOCK = ('classic','cataclysm','mists of pandaria classic','hardcore','season of discovery','wow forever')
+KEYWORDS = ('wow','warcraft','midnight','eclipse','raid','mythic','dungeon','hotfix','ptr','class','season','와우','한밤','쐐기','공격대','블리자드','직업','특성','레이드','패치','신화','던전')
+BLOCK = ('wow classic','classic wow','classic era','classic servers','classic realms','classic season','classic anniversary','cataclysm classic','mists of pandaria classic','burning crusade classic','wrath classic','hardcore realm','hardcore servers','season of discovery','wow forever','와우 포에버','와우포에버','포에버 서버','포에버 pvp','포에버 fix','포에버_fix','포에저','클래식 서버','클래식 시즌','클래식 하드코어','클래식 전문','디스커버리의 시즌','불타는 성전 클래식','판다리아의 안개 클래식')
+EXCLUDE = ('invenraidframes3_forever','곰세툴팁','server board','서버 게시판','정보 게시판','latest news comments','news and guides - wowhead')
+SIGNALS = ('midnight','eclipse','worldsoul','12.1','12.2','retail','live servers','the war within','war within','mythic+','m+','mythic dungeon','raid','dungeon','hotfix','class changes','class tuning','talent','patch','ptr','season 3','한밤','격냥','쐐기','공격대','레이드','본섭','소매','패치','핫픽스','밸런스','특성','직업','신화','던전','시즌 3','시간의 길')
+NAVIGATION = ('홈페이지','게시판','포럼','뉴스와 가이드','news and guides','latest news comments','server forum')
+MAX_AGE_DAYS = 15
+
+def is_retail_news(title, src):
+ t=title.casefold()
+ if any(k in t for k in BLOCK+EXCLUDE+NAVIGATION): return False
+ if src=='Inven' and ('[잡담]' in t or '[질문]' in t or '[포에버]' in t): return False
+ if any(k in t for k in SIGNALS): return True
+ # General discussion is allowed only when it is clearly about the retail game.
+ return src in ('Blizzard','Reddit') and any(k in t for k in ('wow','warcraft','와우'))
+
+def normalize_title(title):
+ return re.sub(r'\\s+-\\s+(?:Wowhead|인벤|와우 인벤|MMO-Champion|World of Warcraft)$','',title,flags=re.I).strip()
 
 def clean(s):
  return re.sub(r'\s+', ' ', re.sub('<[^>]+>', ' ', s or '')).strip()
@@ -100,15 +115,18 @@ def main():
    for entry in feed_items(r.content):
     title=entry['title'];low=title.lower()
     if not title or not entry['url']:continue
-    if any(k in low for k in BLOCK):continue
-    if not any(k in low for k in KEYWORDS):continue
+    if not is_retail_news(title, src):continue
+    try:
+     posted=dt.datetime.fromisoformat(entry['published_at'])
+     if NOW.astimezone(dt.timezone.utc)-posted>dt.timedelta(days=MAX_AGE_DAYS):continue
+    except ValueError:continue
     # Google News titles carry a source suffix. The link remains the source-discovery link.
-    normalized=re.sub(r'\s+-\s+[^-]{2,55}$','',title).strip()
+    normalized=normalize_title(title)
     key=re.sub(r'[^a-z0-9가-힣]','',normalized.lower())[:110]
     if key in seen:continue
     seen.add(key)
     id_=hashlib.sha256((src+entry['url']).encode()).hexdigest()[:16]
-    item={'id':id_,'title_ko':normalized if region=='KR' else title,'title_original':title,'summary_ko':'원문 링크에서 자세한 내용을 확인하세요.' if region=='KR' else '해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)', 'original_snippet':entry['description'][:500],'source':src,'region':region,'category':('국내 소식' if region=='KR' else cat(title)),'published_at':entry['published_at'],'url':entry['url'],'verified':src=='Blizzard','translated':region=='KR','sample':False}
+    item={'id':id_,'title_ko':normalized if region=='KR' else title,'title_original':title,'summary_ko':'원문 링크에서 자세한 내용을 확인하세요.' if region=='KR' else '해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)', 'original_snippet':entry['description'][:500],'source':src,'region':region,'category':('국내 소식' if region=='KR' else cat(title)),'published_at':entry['published_at'],'url':entry['url'],'verified':False,'translated':region=='KR','sample':False}
     items.append(item);count+=1
     if count>=30:break
    success+=1
@@ -131,7 +149,7 @@ def main():
   old=json.loads(p.read_text(encoding='utf-8'))
   prior={x['id']:x for x in old.get('items',[])}
   for x in items:prior[x['id']]=x
-  old['items']=sorted(prior.values(),key=lambda x:x['published_at'],reverse=True)
+  old['items']=sorted((v for v in prior.values() if is_retail_news(v.get('title_original',''), v.get('source',''))),key=lambda x:x['published_at'],reverse=True)
   old['updated_at']=NOW.isoformat();hist=old
  else:hist={**latest,'created_at':NOW.isoformat(),'updated_at':NOW.isoformat()}
  p.write_text(json.dumps(hist,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
@@ -139,7 +157,7 @@ def main():
  try:weeks=json.loads(ix.read_text(encoding='utf-8')).get('weeks',[])
  except (ValueError,FileNotFoundError):weeks=[]
  weeks=[x for x in weeks if x.get('week')!=WEEK]
- weeks.append({'week':WEEK,'date':NOW.date().isoformat(),'count':len(hist['items'])})
+ weeks.append({'week':WEEK,'date':NOW.date().isoformat(),'count':len(hist['items']),'added':len([x for x in items if x['id'] not in {y['id'] for y in (old.get('items',[]) if 'old' in locals() else [])}])})
  weeks.sort(key=lambda x:x['week'],reverse=True)
  ix.write_text(json.dumps({'weeks':weeks},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
  print('Saved',len(items),'articles and',len(weeks),'weekly archives');return 0
