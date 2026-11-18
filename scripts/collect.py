@@ -51,9 +51,9 @@ def clean(s):
 def cat(title):
  t=title.lower()
  if any(x in t for x in ('hotfix','hotfixes','블루포스트','blue post','패치 노트','patch notes','개발자 공지')):return '공식·핫픽스'
- if any(x in t for x in ('season 3','시즌 3','roadmap','로드맵','release date','launch date','12.2','12.1.7','출시일')):return '로드맵'
- if any(x in t for x in ('class','spec','hunter','mage','druid','priest','talent','nerf','buff','balance','직업','특성','버프','너프','밸런스')):return '직업·밸런스'
- if any(x in t for x in ('dungeon','raid','mythic','m+','warcraft logs','쐐기','레이드','공격대','던전')):return '쐐기·레이드'
+ if any(x in t for x in ('roadmap','로드맵','release date','launch date','12.2','12.1.7','출시일','시즌 시작일')):return '로드맵'
+ if any(x in t for x in ('class tuning','class changes','class balance','spec tuning','talent','nerf','buff','balance','직업 변경','직업 조정','특성 변경','버프','너프','밸런스')):return '직업·밸런스'
+ if any(x in t for x in ('dungeon','raid','mythic','m+','warcraft logs','쐐기','레이드','공격대','던전','season 3','시즌 3')):return '쐐기·레이드'
  if any(x in t for x in ('ptr','eclipse','patch','시즌','확장팩')):return '로드맵'
  return '커뮤니티'
 
@@ -157,7 +157,7 @@ def main():
  try:weeks=json.loads(ix.read_text(encoding='utf-8')).get('weeks',[])
  except (ValueError,FileNotFoundError):weeks=[]
  weeks=[x for x in weeks if x.get('week')!=WEEK]
- weeks.append({'week':WEEK,'date':NOW.date().isoformat(),'count':len(hist['items']),'added':len([x for x in items if x['id'] not in {y['id'] for y in (old.get('items',[]) if 'old' in locals() else [])}])})
+ weeks.append({'week':WEEK,'date':NOW.date().isoformat(),'count':len(hist['items'])})
  weeks.sort(key=lambda x:x['week'],reverse=True)
  ix.write_text(json.dumps({'weeks':weeks},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
  print('Saved',len(items),'articles and',len(weeks),'weekly archives');return 0
