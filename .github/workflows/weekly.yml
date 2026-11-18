@@ -31,3 +31,4 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "data: weekly WoW retail news snapshot"
             git push
+          fi
