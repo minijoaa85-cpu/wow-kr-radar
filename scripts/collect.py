@@ -43,7 +43,7 @@ def is_retail_news(title, src):
  return src in ('Blizzard','Reddit') and any(k in t for k in ('wow','warcraft','와우'))
 
 def normalize_title(title):
- return re.sub(r'\s+-\s+(?:Wowhead|인벤|와우 인벤|MMO-Champion|World of Warcraft),'',title,flags=re.I).strip()
+ return re.sub(r'\s+-\s+(?:Wowhead|인벤|와우 인벤|MMO-Champion|World of Warcraft)$', '', title, flags=re.I).strip()
 
 def clean(s):
  return re.sub(r'\s+', ' ', re.sub('<[^>]+>', ' ', s or '')).strip()
