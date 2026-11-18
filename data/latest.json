@@ -1,0 +1,8 @@
+{
+ "generated_at":"2026-11-18T07:44:00+09:00", "status":"starter_sample", "week":"2026-W47", "items":[
+  {"id":"blizz-roadmap-2026","title_ko":"블리즈컨 2026: 한밤 후속 업데이트 및 로드맵 공개","title_original":"World of Warcraft at BlizzCon 2026 News Round-Up","summary_ko":"블리자드의 공식 발표 자료에서 향후 콘텐츠 방향과 업데이트 일정을 확인할 수 있습니다.","source":"Blizzard","region":"global","category":"로드맵","published_at":"2026-09-13T00:00:00Z","url":"https://worldofwarcraft.blizzard.com/en-us/news/24301145/world-of-warcraft-at-blizzcon-2026-news-round-up","verified":true,"sample":true},
+  {"id":"inven-retail","title_ko":"와우 인벤: 국내 본섭 소식 및 커뮤니티","title_original":"월드 오브 워크래프트 인벤","summary_ko":"국내 플레이어 관점의 주요 소식, 공략, 토론을 확인할 수 있습니다. 자동 뉴스 검색 후 개별 기사로 전환됩니다.","source":"Inven","region":"KR","category":"국내 소식","published_at":"2026-11-18T00:00:00+09:00","url":"https://www.inven.co.kr/webzine/news/?site=wow","verified":true,"sample":true},
+  {"id":"wowhead-retail","title_ko":"와우헤드: 본섭 패치 및 직업 분석 뉴스","title_original":"World of Warcraft Retail News","summary_ko":"본섭과 PTR의 데이터마이닝, 직업 변경 및 레이드 뉴스를 다루는 전문 매체입니다.","source":"Wowhead","region":"global","category":"직업·밸런스","published_at":"2026-11-18T00:00:00+09:00","url":"https://www.wowhead.com/wow/retail/news","verified":true,"sample":true},
+  {"id":"reddit-competitive","title_ko":"CompetitiveWoW: 쐐기 및 레이드 메타 토론","title_original":"r/CompetitiveWoW","summary_ko":"해외 고난도 콘텐츠 이용자들의 쐐기, 레이드, 밸런스 토론을 확인할 수 있습니다.","source":"Reddit","region":"global","category":"쐐기·레이드","published_at":"2026-11-18T00:00:00+09:00","url":"https://www.reddit.com/r/CompetitiveWoW/","verified":false,"sample":true}
+ ],"collection":{"attempted":0,"success":0,"errors":[]}
+}
