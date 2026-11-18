@@ -28,7 +28,7 @@ FEEDS = [
  ('Reddit', 'global', 'https://www.reddit.com/r/wow/new/.rss'),
 ]
 KEYWORDS = ('wow','warcraft','midnight','eclipse','raid','mythic','dungeon','hotfix','ptr','class','season','와우','한밤','쐐기','공격대','블리자드','직업','특성','레이드','패치','신화','던전')
-BLOCK = ('wow classic','classic wow','classic era','classic servers','classic realms','classic season','classic anniversary','cataclysm classic','mists of pandaria classic','burning crusade classic','wrath classic','hardcore realm','hardcore servers','season of discovery','wow forever','와우 포에버','와우포에버','포에버 서버','포에버 pvp','포에버 fix','포에버_fix','포에저','클래식 서버','클래식 시즌','클래식 하드코어','클래식 전문','디스커버리의 시즌','불타는 성전 클래식','판다리아의 안개 클래식')
+BLOCK = ('forever','포에버','포에저','wow classic','classic wow','classic era','classic servers','classic realms','classic season','classic anniversary','cataclysm classic','mists of pandaria classic','burning crusade classic','wrath classic','hardcore realm','hardcore servers','season of discovery','wow forever','와우 포에버','와우포에버','포에버 서버','포에버 pvp','포에버 fix','포에버_fix','포에저','클래식 서버','클래식 시즌','클래식 하드코어','클래식 전문','디스커버리의 시즌','불타는 성전 클래식','판다리아의 안개 클래식')
 EXCLUDE = ('invenraidframes3_forever','곰세툴팁','server board','서버 게시판','정보 게시판','latest news comments','news and guides - wowhead')
 SIGNALS = ('midnight','eclipse','worldsoul','12.1','12.2','retail','live servers','the war within','war within','mythic+','m+','mythic dungeon','raid','dungeon','hotfix','class changes','class tuning','talent','patch','ptr','season 3','한밤','격냥','쐐기','공격대','레이드','본섭','소매','패치','핫픽스','밸런스','특성','직업','신화','던전','시즌 3','시간의 길')
 NAVIGATION = ('홈페이지','게시판','포럼','뉴스와 가이드','news and guides','latest news comments','server forum')
@@ -38,6 +38,7 @@ def is_retail_news(title, src):
  t=title.casefold()
  if any(k in t for k in BLOCK+EXCLUDE+NAVIGATION): return False
  if src=='Inven' and ('[잡담]' in t or '[질문]' in t or '[포에버]' in t): return False
+ if src=='Inven' and not any(k in t for k in ('한밤','본섭','쐐기','공격대','레이드','패치','핫픽스','밸런스','12.1','12.2','시즌 3','midnight','eclipse')): return False
  if any(k in t for k in SIGNALS): return True
  # General discussion is allowed only when it is clearly about the retail game.
  return src in ('Blizzard','Reddit') and any(k in t for k in ('wow','warcraft','와우'))
