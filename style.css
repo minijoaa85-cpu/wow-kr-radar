@@ -51,3 +51,38 @@
 .health-item strong.failed{color:#f8ad8e}
 .feed-health p{color:#849bb0;font-size:11px;line-height:1.9}
 @media(max-width:700px){.health-grid{grid-template-columns:1fr}}
+
+
+/* v0.3.1: PSI Radar-style secondary utility navigation */
+@media(min-width:1201px){
+ .shell{grid-template-columns:252px minmax(0,1fr) 192px}
+ .utility-sidebar{position:sticky;top:0;height:100vh;align-self:start;display:flex;flex-direction:column;background:#0c1422;border-left:1px solid #1f3043;padding:32px 12px 18px;z-index:2}
+ .utility-heading{padding:4px 11px 17px;border-bottom:1px solid #24364a;margin-bottom:15px}
+ .utility-heading strong{display:block;margin:8px 0;color:#e6edf5;font-size:15px}
+ .utility-eyebrow{font-size:9px;color:#d7ae67;letter-spacing:1.6px;font-weight:800}
+ .utility-heading p,.utility-foot{font-size:10px;color:#72869e;line-height:1.8}
+ .utility-foot{margin-top:auto;padding:14px 11px;border-top:1px solid #24364a}
+ .utility-item{padding:13px 10px;font-size:12px;gap:9px}
+ .utility-item .nav-icon{font-size:16px;width:17px}
+ main{padding-left:32px;padding-right:32px}
+}
+@media(min-width:701px) and (max-width:1200px){
+ .shell{grid-template-columns:210px minmax(0,1fr)}
+ .utility-sidebar{grid-column:2;grid-row:1;position:sticky;top:0;z-index:4;align-self:start;background:#0f1b2b;border-bottom:1px solid #2a3d53;padding:9px 22px}
+ .utility-sidebar .utility-heading,.utility-sidebar .utility-foot{display:none}
+ .utility-sidebar #option-nav{display:flex;justify-content:flex-end;gap:5px;flex-wrap:wrap}
+ .utility-sidebar .utility-item{width:auto;margin:0;padding:9px 12px;font-size:11px}
+ .utility-sidebar .utility-item .nav-icon{font-size:15px}
+ .shell>main{grid-column:2;grid-row:1;padding-top:94px}
+}
+@media(max-width:700px){
+ .utility-sidebar{position:relative;display:block;background:#0e192a;border-bottom:1px solid #2a3d53;padding:9px 14px}
+ .utility-sidebar .utility-heading,.utility-sidebar .utility-foot{display:none}
+ .utility-sidebar #option-nav{display:flex;gap:7px;overflow-x:auto;padding-bottom:2px}
+ .utility-sidebar .utility-item{flex:0 0 auto;width:auto;margin:0;padding:10px 12px;font-size:11px;white-space:nowrap}
+ .utility-sidebar .utility-item .nav-icon{display:inline-block;font-size:15px;width:16px}
+ .shell{display:flex;flex-direction:column}
+ .shell>.sidebar{order:0}
+ .shell>.utility-sidebar{order:1}
+ .shell>main{order:2}
+}
