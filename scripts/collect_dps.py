@@ -125,7 +125,7 @@ def collect(session=requests, backfill_limit=None):
         season_soup=BeautifulSoup(season_page.text,'html.parser')
         for el in season_soup(['script','style','noscript']):el.decompose()
         season_text=' '.join(season_soup.stripped_strings)
-        old_week_ids={int(n) for n in re.findall(r'(?<!\\d)(10\\d{2})\\s+Blood\\b',season_text,re.I)}
+        old_week_ids={int(n) for n in re.findall(r'(?<!\d)(10\d{2})\s+Blood\b',season_text,re.I)}
         periods=sorted({**dict(periods),**{p:'mid1' for p in old_week_ids if 1000<=p<min(dict(periods))}}.items())
     except (requests.RequestException,ValueError):
         pass
