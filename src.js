@@ -148,10 +148,17 @@ function dpsSvg(weeks,series,band=false,metric='avg_dps'){
   const color=line.color||dpsColor(idx);
   let area='';
   if(band&&line.high?.length&&line.low?.length){
-   const pairs=weeks.map((_,i)=>Number.isFinite(line.high[i])&&Number.isFinite(line.low[i])?i:-1).filter(i=>i>=0);
-   if(pairs.length===weeks.length){
-    area='<polygon points="'+pairs.map(i=>x(i)+','+y(line.high[i])).join(' ')+' '+pairs.slice().reverse().map(i=>x(i)+','+y(line.low[i])).join(' ')+'" fill="'+color+'" fill-opacity=".12"/>';
+   let start=-1;const zones=[];
+   for(let i=0;i<=weeks.length;i++){
+    const ok=i<weeks.length&&Number.isFinite(line.high[i])&&Number.isFinite(line.low[i]);
+    if(ok&&start<0)start=i;
+    if(!ok&&start>=0){
+     const ids=Array.from({length:i-start},(_,offset)=>start+offset);
+     if(ids.length>=2)zones.push('<polygon points="'+ids.map(k=>x(k)+','+y(line.high[k])).join(' ')+' '+ids.slice().reverse().map(k=>x(k)+','+y(line.low[k])).join(' ')+'" fill="'+color+'" fill-opacity=".13"/>');
+     start=-1;
+    }
    }
+   area=zones.join('');
   }
   const dots=line.values.map((v,i)=>Number.isFinite(v)?`<circle cx="${x(i)}" cy="${y(v)}" r="3.5" fill="${color}"><title>${safe(line.label)} · Period ${weeks[i].period}: ${Math.round(v).toLocaleString('ko-KR')} DPS</title></circle>`:'').join('');
   return area+`<path d="${path(line.values)}" fill="none" stroke="${color}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>`+dots;
