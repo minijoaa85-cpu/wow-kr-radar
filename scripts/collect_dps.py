@@ -117,6 +117,18 @@ def collect(session=requests, backfill_limit=None):
     except (requests.RequestException,ValueError) as exc:
         print('Mythicstats period index unavailable:',str(exc)[:200])
         return False
+    # The period index paginates older weeks. The official MID1 season chart
+    # enumerates verified weeks 1056-1075, including those omitted by page 1.
+    try:
+        season_page=session.get('https://mythicstats.com/season/mid1',headers={'User-Agent':AGENT},timeout=24)
+        season_page.raise_for_status()
+        season_soup=BeautifulSoup(season_page.text,'html.parser')
+        for el in season_soup(['script','style','noscript']):el.decompose()
+        season_text=' '.join(season_soup.stripped_strings)
+        old_week_ids={int(n) for n in re.findall(r'(?<!\\d)(10\\d{2})\\s+Blood\\b',season_text,re.I)}
+        periods=sorted({**dict(periods),**{p:'mid1' for p in old_week_ids if 1000<=p<min(dict(periods))}}.items())
+    except (requests.RequestException,ValueError):
+        pass
     try:history=json.loads(INDEX.read_text(encoding='utf-8')).get('periods',[])
     except (OSError,ValueError):history=[]
     existing={int(x['period']):x for x in history if isinstance(x,dict) and str(x.get('period','')).isdigit()}
@@ -166,7 +178,7 @@ def collect(session=requests, backfill_limit=None):
     index={'status':'ok' if archived else 'unavailable','source':'Mythicstats','source_url':SOURCE,
       'period_source':PERIOD_URL,'last_collected':now.isoformat(),'metric':'Overall dungeon DPS from Warcraft Logs, including noncombat time',
       'keys':'source period-specific','seasons':['mid1','mid2'],'expected_periods':len(periods),'missing_periods':[p for p,_ in periods if p not in {x['period'] for x in archived}],
-      'periods':archived}
+      'season_periods':[{'period':p,'season':sn} for p,sn in periods], 'periods':archived}
     INDEX.write_text(json.dumps(index,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print('Mythicstats full Midnight:',len(archived),'of',len(periods),'verified periods;',len(stored),'new;',len(failures),'failed')
     return len(archived)>0
