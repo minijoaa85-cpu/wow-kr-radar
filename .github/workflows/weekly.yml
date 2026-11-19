@@ -35,11 +35,13 @@ jobs:
           OPENAI_MODEL: gpt-4.1-mini
       - name: Collect KR Mythic+ affixes
         run: python scripts/collect_kr_mplus.py
+      - name: Collect KR Mythic+ runs
+        run: python scripts/collect_kr_runs.py
       - name: Commit weekly archives
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/latest.json data/history/ data/kr_mplus.json
+          git add data/latest.json data/history/ data/kr_mplus.json data/kr_runs.json
           if ! git diff --cached --quiet; then
             git commit -m "data: weekly WoW retail news snapshot"
             git push
