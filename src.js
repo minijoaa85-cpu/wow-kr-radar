@@ -193,16 +193,31 @@ function renderDps(){
  ${dpsSvg(weeks,groupSeries,true)}
  <h3>② 선택 전문화 비교 · 최대 6개</h3><div class="dps-controls"><label>표시할 통계<select id="dps-metric"><option value="avg_dps" ${metric==='avg_dps'?'selected':''}>평균 DPS (Avg)</option><option value="top_dps" ${metric==='top_dps'?'selected':''}>고점 참고: 상위 5% 평균(Top)</option></select></label><div class="dps-legend">${selected.map((n,i)=>`<span><i style="background:${dpsColor(i)}"></i>${safe(dpsLabel(n))}</span>`).join('')}</div></div>
  <div class="dps-picks">${specs.map(name=>`<label class="${selected.includes(name)?'chosen':''}"><input type="checkbox" data-dps-spec="${safe(name)}" ${selected.includes(name)?'checked':''}>${safe(dpsLabel(name))}</label>`).join('')}</div>
- ${dpsSvg(weeks,plotted)}
+ ${dpsSvg(weeks,plotted,metric==='avg_dps')}
  <p class="dps-note">저점: 선택 전문화별 관측 주차 중 <b>최저 Avg DPS</b>. 고점: 해당 주의 <b>상위 5% 평균 DPS</b>. 원본은 개별 로그의 최저 DPS를 제공하지 않으므로 이를 임의로 생성하지 않습니다.</p>
  <div class="dps-extent">${selected.map(name=>{const vals=weeks.map(w=>w.items.find(x=>x.name===name)).filter(Boolean);return `<div><b>${safe(dpsLabel(name))}</b><span>최저 주간 Avg: ${dpsNum(Math.min(...vals.map(x=>x.avg_dps)))}</span><span>최신 Avg: ${dpsNum(vals.at(-1)?.avg_dps)}</span><span>최신 Top 5%: ${dpsNum(vals.at(-1)?.top_dps)}</span></div>`}).join('')}</div>
  <h3>③ 모든 ${dpsRoleLabels[role]} 전문화 · 주차별 평균 DPS 히트맵</h3><p class="dps-note">색이 진할수록 이 역할·선택 기간에서 Avg DPS가 높습니다. 단위 K DPS. 표의 가로 스크롤로 모든 주차를 확인할 수 있어요.</p>
  ${dpsHeatmap(weeks,specs,role)}
- <h3>④ 전체 수치 표 · 전문화 × 주차</h3><div class="kr-runs-table dps-wide-table"><table><thead><tr><th>전문화</th>${weeks.map(w=>`<th>${w.period}</th>`).join('')}</tr></thead><tbody>${specs.map(name=>`<tr><th>${safe(dpsLabel(name))}</th>${weeks.map(w=>{const v=w.items.find(x=>x.name===name);return `<td title="Top 5% ${dpsNum(v?.top_dps)} · ${v?.runs??0} runs">${v?dpsNum(v.avg_dps):'—'}</td>`}).join('')}</tr>`).join('')}</tbody></table></div></section>`:'<div class="empty">선택한 한밤 시즌의 검증된 자료가 아직 없습니다. 수집 가능한 주차만 표시합니다.</div>'}
+ <h3>④ 전체 수치 표 · 전문화 × 주차</h3><button type="button" id="dps-export-csv" class="dps-export">전체 주차 데이터 CSV 내보내기 ↓</button><div class="kr-runs-table dps-wide-table"><table><thead><tr><th>전문화</th>${weeks.map(w=>`<th>${w.period}</th>`).join('')}</tr></thead><tbody>${specs.map(name=>`<tr><th>${safe(dpsLabel(name))}</th>${weeks.map(w=>{const v=w.items.find(x=>x.name===name);return `<td title="Top 5% ${dpsNum(v?.top_dps)} · ${v?.runs??0} runs">${v?dpsNum(v.avg_dps):'—'}</td>`}).join('')}</tr>`).join('')}</tbody></table></div></section>`:'<div class="empty">선택한 한밤 시즌의 검증된 자료가 아직 없습니다. 수집 가능한 주차만 표시합니다.</div>'}
  <p class="version-footnote">출처: MythicStats · Warcraft Logs 기반 · 역할별 DPS 비교이며 힐러는 HPS가 아닌 DPS · 시즌 1과 2의 패치 및 던전 구성 차이, 최신 주 표본 수에 유의하세요. 원본 출처에서 검증된 한밤 시즌 1·2 Period는 1056부터이며, 과거 DPS 자료가 제공되지 않은 주는 빈칸으로 남겨 둡니다.</p>`;
  document.querySelectorAll('[data-dps-role]').forEach(el=>el.onclick=()=>{state.dpsRole=el.dataset.dpsRole;state.dpsSelected=[];renderDps()});
  if($('dps-season'))$('dps-season').onchange=e=>{state.dpsSeason=e.target.value;renderDps()};
  if($('dps-metric'))$('dps-metric').onchange=e=>{state.dpsMetric=e.target.value;renderDps()};
+ if($('dps-export-csv'))$('dps-export-csv').onclick=()=>{
+  const rows=[['Period','Season','Role','Spec','Avg DPS','Top 5% DPS','Runs','Role Rank','Keys','Source']];
+  for(const w of weeks){
+    for(const name of specs){
+      const item=w.items.find(x=>x.name===name);
+      rows.push([w.period,w.season||'',role,name,item?.avg_dps??'',item?.top_dps??'',item?.runs??'',item?.rank??'',w.keys||'',w.source_url||'']);
+    }
+  }
+  const cell=v=>'"'+String(v??'').replaceAll('"','""')+'"';
+  const csv='\uFEFF'+rows.map(row=>row.map(cell).join(',')).join('\r\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
+  const link=document.createElement('a'),url=URL.createObjectURL(blob);
+  link.href=url;link.download='Mythicstats_Midnight_'+state.dpsSeason+'_'+role+'.csv';
+  document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
+ };
  document.querySelectorAll('[data-dps-spec]').forEach(el=>el.onchange=()=>{
   const chosen=Array.from(document.querySelectorAll('[data-dps-spec]:checked')).map(x=>x.dataset.dpsSpec);
   if(chosen.length>6){el.checked=false;return;}
