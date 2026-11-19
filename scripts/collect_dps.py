@@ -83,7 +83,7 @@ def read_page(html,requested=None,now=None,season=None):
     row_rx=re.compile(r'(?<!\S)(\d{1,2})\s+(0|[↑↓]\s?\d+|[+-]\d+)\s+([SABCDF])\s+(\d+(?:[.,]\d+)?[KMB]?)\s+(\d+(?:[.,]\d+)?[KMB]?)\s+(\d+(?:[.,]\d+)?[KMB]?)\s+('+rx_names+r')\b',re.I)
     positions=[(role, re.search(r'\b'+head+r' specs\b',text,re.I)) for role,head in [('damage','Damage'),('tank','Tank'),('healer','Healer')]]
     if any(x[1] is None for x in positions):raise ValueError('One or more role sections missing')
-    bracket=re.search(r'Mythic\\+\\s+(\\d+)-(\\d+)\\s+keys',text,re.I)
+    bracket=re.search(r'Mythic\+\s+(\d+)-(\d+)\s+keys',text,re.I)
     keystone_range=(bracket.group(1)+'-'+bracket.group(2)) if bracket else 'not stated'
     items=[]
     for idx,(role,head) in enumerate(positions):
