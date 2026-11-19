@@ -1,8 +1,31 @@
 {
   "schema_version": 1,
-  "latest": "0.4",
+  "latest": "0.4.1",
   "updated_at": "2026-11-19",
   "entries": [
+    {
+      "version": "0.4.1",
+      "date": "2026-11-19",
+      "title": "MythicStats DPS 주간 추이",
+      "type": "분석 기능 확장",
+      "summary": "MythicStats 주간 Period별 전문화 DPS 추적 탭, 자동 아카이브 및 주간 그래프",
+      "changes": [
+        "좌측 메인 메뉴에 DPS 주간 추이 탭 추가",
+        "13개 직업의 공격 전문화별 Avg DPS / Top 5% DPS 전환 그래프",
+        "원본 Period별 DPS 순위, 표본 Runs, 소스 링크 제공",
+        "주간 수집 시 Mythicstats 숫자 지표만 간단한 JSON으로 저장",
+        "첫 수집 시 검증 가능한 과거 Period 최대 7개 제한적 수집",
+        "주간 DPS 기록은 별도 data/dps/period-N.json 파일로 보관",
+        "개발 히스토리 V0.4.1 PDF/PPTX 자동 생성"
+      ],
+      "notes": [
+        "MythicStats의 원문 DPS 통계는 Warcraft Logs 자료 기반이며 전체 던전 시간으로 나눈 DPS입니다.",
+        "기본 화면은 원본의 16~24단 범위이며, 주차 초기 표본이 적으면 변동성이 큽니다.",
+        "원본 사이트의 접근 또는 파싱 실패 시 임의 DPS를 생성하지 않고 미수집 상태로 표시합니다.",
+        "주간 DPS 아카이브는 원본 사이트가 실제 응답한 Period만 누적합니다."
+      ],
+      "commit": "dfb0e1298908acaa8f27375e2c70f14dbd9ace0f"
+    },
     {
       "version": "0.4",
       "date": "2026-11-19",
