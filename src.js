@@ -1,7 +1,7 @@
 import './style.css';
 const cats=['전체','공식·핫픽스','직업·밸런스','쐐기·레이드','로드맵','국내 소식','커뮤니티','기타'];
 const sources=['전체','Blizzard','Wowhead','Inven','Reddit Competitive (indexed)','Reddit WoW (indexed)','MMO-Champion'];
-const state={cat:'전체',src:'전체',q:'',tab:'overview',week:'latest',items:[],history:[],releases:[],meta:null,priorIds:new Set(),showOriginal:false,myWatch:[],watchSpecs:[],mplus:null,krRuns:null,dpsLoaded:false,dpsIndex:null,dpsWeeks:[],dpsClass:'hunter',dpsSpec:'marksmanship hunter',dpsMetric:'avg_dps',dpsRole:'damage',dpsSeason:'all',dpsSelected:['marksmanship hunter','beast-mastery hunter'],dpsShowBand:true,dpsView:'selected'};
+const state={cat:'전체',src:'전체',q:'',tab:'overview',week:'latest',items:[],history:[],releases:[],meta:null,priorIds:new Set(),showOriginal:false,myWatch:[],watchSpecs:[],mplus:null,krRuns:null,dpsLoaded:false,dpsIndex:null,dpsWeeks:[],dpsClass:'hunter',dpsSpec:'marksmanship hunter',dpsMetric:'avg_dps',dpsRole:'damage',dpsSeason:'latest',dpsSelected:['marksmanship hunter','beast-mastery hunter'],dpsShowBand:true,dpsView:'selected'};
 const $=id=>document.getElementById(id);
 const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const formatted=d=>{if(!d)return '날짜 미상';const t=new Date(d);return Number.isNaN(t.getTime())?'날짜 미상':new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'short',day:'numeric'}).format(t)};
@@ -114,9 +114,8 @@ async function loadDps(){
   }));
   const verified=result.filter(x=>x&&x.status==='ok');
   const byId=new Map(verified.map(x=>[x.period,x]));
-  const seasonPeriods=ix.season_periods?.length?ix.season_periods:
-    [...(ix.periods||[]),...(ix.missing_periods||[]).map(period=>({period,season:period<1076?'mid1':'mid2'}))];
-  state.dpsWeeks=seasonPeriods.map(p=>byId.get(p.period)||{period:p.period,season:p.season,items:[],status:'missing'}).sort((a,b)=>a.period-b.period);
+  // Charts use only source-verified data; missing historic weeks remain documented in the archive metadata.
+  state.dpsWeeks=[...byId.values()].filter(w=>w.items?.length&&['damage','tank','healer'].every(role=>w.items.some(x=>x.role===role))).sort((a,b)=>a.period-b.period);
  }catch(e){state.dpsIndex={status:'unavailable',error:e.message};state.dpsWeeks=[];}
  if(state.tab==='dps')renderDps();else if(state.tab==='history')history();
 }
@@ -129,7 +128,20 @@ const dpsMoreNames={
  'discipline priest':'수양 사제','holy priest':'신성 사제','restoration druid':'회복 드루이드'
 };
 const dpsLabel=name=>dpsMoreNames[name]||dpsNameMap[name]||name;
-const dpsColor=i=>['#e7ba6b','#7abaf3','#81d3a5','#db91d3','#ee8c80','#b5a8f1'][i%6];
+// Blizzard RAID_CLASS_COLORS; identical to the game's class identity palette.
+const wowClassColor={
+ 'death-knight':'#C41E3A','demon-hunter':'#A330C9','druid':'#FF7C0A',
+ 'evoker':'#33937F','hunter':'#AAD372','mage':'#3FC7EB','monk':'#00FF98',
+ 'paladin':'#F48CBA','priest':'#FFFFFF','rogue':'#FFF468','shaman':'#0070DD',
+ 'warlock':'#8788EE','warrior':'#C69B6D'
+};
+const dpsColor=(name,i=0)=>wowClassColor[name?.split(' ').slice(1).join(' ')]||wowClassColor[name]||['#E7BA6B','#76B4EF','#7BCFA8'][i%3];
+const dpsRoleIcon={damage:'⚔',tank:'⬟',healer:'✚'};
+const dpsRoleClass=role=>'dps-role-'+(role||'damage');
+const specLinePattern=(name,all)=>{
+ const same=all.filter(x=>x.split(' ').slice(1).join(' ')===name.split(' ').slice(1).join(' '));
+ return ['','7 4','2 5','11 3 2 3'][Math.max(0,same.indexOf(name))%4];
+};
 const dpsNum=value=>Number.isFinite(value)?Math.round(value/1000).toLocaleString('ko-KR')+'K':'—';
 function dpsSvg(weeks,series,band=false,metric='avg_dps'){
  const allValues=series.flatMap(s=>s.values.filter(Number.isFinite));
@@ -145,7 +157,7 @@ function dpsSvg(weeks,series,band=false,metric='avg_dps'){
  const ticks=Array.from({length:5},(_,i)=>{const v=lo+(hi-lo)*i/4;const yy=T+(hi-v)/(hi-lo)*innerH;return `<line x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}" stroke="#2b4057" stroke-dasharray="4 5"/><text x="${L-9}" y="${yy+5}" fill="#91a7bb" text-anchor="end" font-size="12">${Math.round(v)}K</text>`}).join('');
  const path=(values)=>values.map((v,i)=>Number.isFinite(v)?(i===0||!Number.isFinite(values[i-1])?'M':'L')+x(i).toFixed(1)+','+y(v).toFixed(1):'').join(' ');
  const lines=series.map((line,idx)=>{
-  const color=line.color||dpsColor(idx);
+  const color=line.color||dpsColor(line.name||'',idx);
   let area='';
   if(band&&line.high?.length&&line.low?.length){
    let start=-1;const zones=[];
@@ -161,7 +173,7 @@ function dpsSvg(weeks,series,band=false,metric='avg_dps'){
    area=zones.join('');
   }
   const dots=line.values.map((v,i)=>Number.isFinite(v)?`<circle cx="${x(i)}" cy="${y(v)}" r="3.5" fill="${color}"><title>${safe(line.label)} · Period ${weeks[i].period}: ${Math.round(v).toLocaleString('ko-KR')} DPS</title></circle>`:'').join('');
-  return area+`<path d="${path(line.values)}" fill="none" stroke="${color}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>`+dots;
+  return area+`<path d="${path(line.values)}" fill="none" stroke="${color}" stroke-width="2.6" stroke-dasharray="${line.dash||''}" stroke-linecap="round" stroke-linejoin="round"/>`+dots;
  }).join('');
  const labels=weeks.map((w,i)=>i%Math.max(1,Math.ceil(weeks.length/12))===0||i===weeks.length-1?`<text x="${x(i)}" y="${H-19}" text-anchor="middle" fill="#90a5ba" font-size="11">${w.period}</text>`:'').join('');
  return `<div class="dps-chart-wrap"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Mythicstats 주간 평균 DPS 추이 그래프">${ticks}${lines}${labels}</svg></div>`;
@@ -170,7 +182,7 @@ function dpsHeatmap(weeks,specs,role){
  const values=weeks.flatMap(w=>specs.map(name=>w.items.find(x=>x.name===name)?.avg_dps).filter(Number.isFinite));
  const lo=Math.min(...values),hi=Math.max(...values);
  const tile=(v)=>!Number.isFinite(v)?'background:transparent':`background:rgba(218,173,95,${(.12+.76*(v-lo)/Math.max(1,hi-lo)).toFixed(3)})`;
- return `<div class="dps-heatmap"><table><thead><tr><th class="sticky-col">전문화 / Period</th>${weeks.map(w=>`<th title="${safe(w.season||'')}">${w.period}</th>`).join('')}</tr></thead><tbody>${specs.map(name=>`<tr><th class="sticky-col">${safe(dpsLabel(name))}</th>${weeks.map(w=>{const row=w.items.find(x=>x.name===name);return `<td style="${tile(row?.avg_dps)}" title="${safe(dpsLabel(name))} · ${w.period} · Avg ${dpsNum(row?.avg_dps)} · Top 5% ${dpsNum(row?.top_dps)}">${row?Math.round(row.avg_dps/1000):'—'}</td>`}).join('')}</tr>`).join('')}</tbody></table></div>`;
+ return `<div class="dps-heatmap"><table><thead><tr><th class="sticky-col">전문화 / Period</th>${weeks.map(w=>`<th title="${safe(w.season||'')}">${w.period}</th>`).join('')}</tr></thead><tbody>${specs.map(name=>`<tr><th class="sticky-col" style="border-left:4px solid ${dpsColor(name)}"><span style="color:${dpsColor(name)}">${safe(dpsLabel(name))}</span></th>${weeks.map(w=>{const row=w.items.find(x=>x.name===name);return `<td style="${tile(row?.avg_dps)}" title="${safe(dpsLabel(name))} · ${w.period} · Avg ${dpsNum(row?.avg_dps)} · Top 5% ${dpsNum(row?.top_dps)}">${row?Math.round(row.avg_dps/1000):'—'}</td>`}).join('')}</tr>`).join('')}</tbody></table></div>`;
 }
 function renderDps(){
  if(!state.dpsLoaded){$('content').innerHTML='<div class="empty">MythicStats 한밤 전체 시즌 데이터를 확인하는 중입니다.</div>';loadDps();return;}
