@@ -136,7 +136,7 @@ def collect(session=requests, backfill_limit=None):
             response=session.get(SOURCE,params={'period':period},headers={'User-Agent':AGENT,'Accept':'text/html'},timeout=24)
             response.raise_for_status()
             record=read_page(response.text,requested=period,now=now,season=season)
-            oldfile.write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\\n',encoding='utf-8')
+            oldfile.write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
             existing[period]={'period':period,'season':season,'file':oldfile.name,'spec_count':len(record['items']),'captured_at':record['captured_at']}
             stored.append(period)
         except (requests.RequestException,ValueError) as exc:
@@ -150,7 +150,7 @@ def collect(session=requests, backfill_limit=None):
       'period_source':PERIOD_URL,'last_collected':now.isoformat(),'metric':'Overall dungeon DPS from Warcraft Logs, including noncombat time',
       'keys':'16-24','seasons':['mid1','mid2'],'expected_periods':len(periods),'missing_periods':[p for p,_ in periods if p not in {x['period'] for x in archived}],
       'periods':archived}
-    INDEX.write_text(json.dumps(index,ensure_ascii=False,indent=2)+'\\n',encoding='utf-8')
+    INDEX.write_text(json.dumps(index,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print('Mythicstats full Midnight:',len(archived),'of',len(periods),'verified periods;',len(stored),'new;',len(failures),'failed')
     return len(archived)>0
 
