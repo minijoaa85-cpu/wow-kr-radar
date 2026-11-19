@@ -53,12 +53,18 @@ jobs:
           assert dps_index.is_file(), 'Missing weekly DPS archive index'
           dps=json.loads(dps_index.read_text(encoding='utf-8'))
           assert isinstance(dps.get('periods'),list), 'Bad DPS archive index'
-          for period in dps['periods'][:12]:
+          for period in dps['periods']:
             file=Path('dist/data/dps')/period['file']
             assert file.is_file(), f'Missing DPS period file: {file}'
             snapshot=json.loads(file.read_text(encoding='utf-8'))
             assert snapshot.get('period')==period['period'], 'DPS period mismatch'
-            assert len(snapshot.get('items',[]))>=15, 'Incomplete DPS source snapshot'
+            assert len(snapshot.get('items',[]))>=23, 'Incomplete role-based DPS snapshot'
+            assert {x.get('role') for x in snapshot['items']}=={'damage','tank','healer'}, 'Missing DPS role'
+            assert snapshot.get('season') in ('mid1','mid2'), 'Missing verified Midnight season'
+          if dps.get('season_periods'):
+            all_periods={x['period'] for x in dps['season_periods']}
+            covered={x['period'] for x in dps['periods']} | set(dps.get('missing_periods',[]))
+            assert all_periods==covered, 'DPS weeks not fully accounted for'
           releases=Path('dist/data/releases.json')
           assert releases.is_file(), 'Missing release history index'
           records=json.loads(releases.read_text(encoding='utf-8'))['entries']
