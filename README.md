@@ -1,4 +1,4 @@
-# WoW KR Radar v0.2.1
+# WoW KR Radar v0.3
 
 한국 월드 오브 워크래프트 **본섭(리테일)** 플레이어를 위한 모바일/PC 대시보드. 공식 뉴스, Wowhead, 와우 인벤, Reddit 등의 공개 기사/게시물 메타데이터를 수집하고 원문 링크로 연결합니다.
 
@@ -41,6 +41,17 @@ npm run build
 - Google News RSS URL은 원문 URL이 아닌 뉴스 경유 링크일 수 있음.
 - 저작권, robots.txt, API 조건, 속도 제한을 존중해야 함.
 - `OPENAI_API_KEY` 입력 시 API 사용량에 따른 비용 발생.
+
+## v0.3 — My Watch · KR Mythic+ · Feed Health
+- 관심 직업 13종 선택 후 관련 기사 필터링 (현재 브라우저의 localStorage에만 저장)
+- **한국 쐐기** 메뉴에서 Raider.IO 공개 API의 한국 지역(kr) 쐐기 주간 속성 표시
+- API 오류 시 임의 랭킹/속성을 만들지 않고 미수집 상태 표시
+- `data/kr_mplus.json`을 매주 자동 수집하여 뉴스와 함께 기록
+- Reddit RSS 경로 수정; Reddit 측 429 등은 별도로 추적
+- 수집 소스별 성공 상태(feed_results) JSON 기록
+- 개발 버전 V0.3 PDF/PPTX 요약 추가
+- 해외 뉴스 한국어 AI 번역은 **OPENAI_API_KEY 설정 시**에만 활성화됨
+- 아직 한국 서버 쐐기 **랭킹·메타 통계**는 미구현이며 후속 계획
 
 ## v0.2.1 버전 히스토리 센터
 - 새 메뉴 **개발 히스토리**에서 사이트 개발 버전 V0.1 / V0.2 / V0.2.1의 변경사항 열람
