@@ -17,15 +17,15 @@ HIST = DATA / 'history'
 KST = dt.timezone(dt.timedelta(hours=9))
 NOW = dt.datetime.now(KST)
 WEEK = NOW.strftime('%G-W%V')
-USER_AGENT = 'WoWKR-Radar/0.1 (public news feed metadata aggregator; respect original sources)'
+USER_AGENT = 'WoWKR-Radar/0.3 (public news feed metadata aggregator; respect original sources)'
 # First-party feeds, editorial search feeds, and opt-in public Reddit RSS.
 FEEDS = [
  ('Blizzard', 'global', 'https://news.google.com/rss/search?q='+quote('site:worldofwarcraft.blizzard.com/en-us/news/ "World of Warcraft" when:14d')+'&hl=en-US&gl=US&ceid=US:en'),
  ('Wowhead', 'global', 'https://news.google.com/rss/search?q='+quote('site:wowhead.com/news/ "Midnight" OR "Retail" when:14d')+'&hl=en-US&gl=US&ceid=US:en'),
  ('Inven', 'KR', 'https://news.google.com/rss/search?q='+quote('site:inven.co.kr "월드 오브 워크래프트" OR "와우" when:14d')+'&hl=ko&gl=KR&ceid=KR:ko'),
  ('MMO-Champion', 'global', 'https://news.google.com/rss/search?q='+quote('site:mmo-champion.com "World of Warcraft" when:14d')+'&hl=en-US&gl=US&ceid=US:en'),
- ('Reddit', 'global', 'https://www.reddit.com/r/CompetitiveWoW/new/.rss'),
- ('Reddit', 'global', 'https://www.reddit.com/r/wow/new/.rss'),
+ ('Reddit', 'global', 'https://www.reddit.com/r/CompetitiveWoW/new.rss'),
+ ('Reddit', 'global', 'https://www.reddit.com/r/wow/new.rss'),
 ]
 KEYWORDS = ('wow','warcraft','midnight','eclipse','raid','mythic','dungeon','hotfix','ptr','class','season','와우','한밤','쐐기','공격대','블리자드','직업','특성','레이드','패치','신화','던전')
 BLOCK = ('forever','포에버','포에저','wow classic','classic wow','classic era','classic servers','classic realms','classic season','classic anniversary','cataclysm classic','mists of pandaria classic','burning crusade classic','wrath classic','hardcore realm','hardcore servers','season of discovery','wow forever','와우 포에버','와우포에버','포에버 서버','포에버 pvp','포에버 fix','포에버_fix','포에저','클래식 서버','클래식 시즌','클래식 하드코어','클래식 전문','디스커버리의 시즌','불타는 성전 클래식','판다리아의 안개 클래식')
@@ -107,7 +107,7 @@ def translate(items):
 
 def main():
  DATA.mkdir(exist_ok=True);HIST.mkdir(exist_ok=True)
- items=[];errors=[];success=0
+ items=[];errors=[];success=0;feed_results=[]
  seen=set()
  for src,region,url in FEEDS:
   try:
@@ -131,9 +131,10 @@ def main():
     items.append(item);count+=1
     if count>=30:break
    success+=1
+   feed_results.append({'source':src,'status':'ok','count':count})
    print(src,'read:',count)
   except (requests.RequestException,ElementTree.ParseError,ValueError) as exc:
-   errors.append({'source':src,'error':str(exc)[:180]});print('Feed failure:',src,exc)
+   errors.append({'source':src,'error':str(exc)[:180]});feed_results.append({'source':src,'status':'error','count':0});print('Feed failure:',src,exc)
   time.sleep(0.35)
  # Do not destroy saved latest with a temporary all-feed outage.
  if success==0:
@@ -142,7 +143,7 @@ def main():
  items=items[:120]
  translated=translate([x for x in items if x['region']!='KR'])
  for x in items:x.pop('original_snippet',None)
- latest={'generated_at':NOW.isoformat(),'status':'live' if items else 'empty','week':WEEK,'items':items,'collection':{'attempted':len(FEEDS),'success':success,'errors':errors,'translated':translated}}
+ latest={'generated_at':NOW.isoformat(),'status':'live' if items else 'empty','week':WEEK,'items':items,'collection':{'attempted':len(FEEDS),'success':success,'errors':errors,'translated':translated,'feed_results':feed_results}}
  (DATA/'latest.json').write_text(json.dumps(latest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
  # Merge instead of overwrite: manual reruns may add headlines during the same week.
  p=HIST/(WEEK+'.json')
