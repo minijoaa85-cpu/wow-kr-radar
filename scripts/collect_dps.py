@@ -83,6 +83,8 @@ def read_page(html,requested=None,now=None,season=None):
     row_rx=re.compile(r'(?<!\S)(\d{1,2})\s+(0|[↑↓]\s?\d+|[+-]\d+)\s+([SABCDF])\s+(\d+(?:[.,]\d+)?[KMB]?)\s+(\d+(?:[.,]\d+)?[KMB]?)\s+(\d+(?:[.,]\d+)?[KMB]?)\s+('+rx_names+r')\b',re.I)
     positions=[(role, re.search(r'\b'+head+r' specs\b',text,re.I)) for role,head in [('damage','Damage'),('tank','Tank'),('healer','Healer')]]
     if any(x[1] is None for x in positions):raise ValueError('One or more role sections missing')
+    bracket=re.search(r'Mythic\\+\\s+(\\d+)-(\\d+)\\s+keys',text,re.I)
+    keystone_range=(bracket.group(1)+'-'+bracket.group(2)) if bracket else 'not stated'
     items=[]
     for idx,(role,head) in enumerate(positions):
         ending=positions[idx+1][1].start() if idx+1<len(positions) else (text.find('About this summary',head.end()) if 'About this summary' in text[head.end():] else len(text))
@@ -103,7 +105,7 @@ def read_page(html,requested=None,now=None,season=None):
         items.extend(sorted(current,key=lambda item:item['rank']))
     return {'period':period,'season':season,'captured_at':(now or datetime.now(KST)).isoformat(),
       'source':'Mythicstats','source_url':f'{SOURCE}?period={period}',
-      'scope':'Mythic+ dungeon-wide DPS; all 3 roles from source','keys':'16-24','items':items,'status':'ok'}
+      'scope':'Mythic+ dungeon-wide DPS; all 3 roles from source','keys':keystone_range,'items':items,'status':'ok'}
 
 def collect(session=requests, backfill_limit=None):
     now=datetime.now(KST)
@@ -133,9 +135,24 @@ def collect(session=requests, backfill_limit=None):
             except (ValueError,OSError):pass
         if backfill_limit is not None and len(stored)>=backfill_limit:break
         try:
-            response=session.get(SOURCE,params={'period':period},headers={'User-Agent':AGENT,'Accept':'text/html'},timeout=24)
-            response.raise_for_status()
-            record=read_page(response.text,requested=period,now=now,season=season)
+            # First try the canonical filter. Some older seasons require an explicit season or dungeon query.
+            options=[{'period':period,'dungeon':''}]
+            if season=='mid1':
+                options.extend([{'period':period,'season':season,'dungeon':''},{'period':period,'season':season}])
+            else:
+                options.append({'period':period})
+            record=None
+            last_error=''
+            for params in options:
+                try:
+                    response=session.get(SOURCE,params=params,headers={'User-Agent':AGENT,'Accept':'text/html'},timeout=24)
+                    response.raise_for_status()
+                    record=read_page(response.text,requested=period,now=now,season=season)
+                    break
+                except (requests.RequestException,ValueError) as inner:
+                    last_error=str(inner)[:150]
+                    time.sleep(0.25)
+            if record is None:raise ValueError(last_error or 'No matching source period')
             oldfile.write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
             existing[period]={'period':period,'season':season,'file':oldfile.name,'spec_count':len(record['items']),'captured_at':record['captured_at']}
             stored.append(period)
@@ -148,7 +165,7 @@ def collect(session=requests, backfill_limit=None):
     archived.sort(key=lambda x:x['period'],reverse=True)
     index={'status':'ok' if archived else 'unavailable','source':'Mythicstats','source_url':SOURCE,
       'period_source':PERIOD_URL,'last_collected':now.isoformat(),'metric':'Overall dungeon DPS from Warcraft Logs, including noncombat time',
-      'keys':'16-24','seasons':['mid1','mid2'],'expected_periods':len(periods),'missing_periods':[p for p,_ in periods if p not in {x['period'] for x in archived}],
+      'keys':'source period-specific','seasons':['mid1','mid2'],'expected_periods':len(periods),'missing_periods':[p for p,_ in periods if p not in {x['period'] for x in archived}],
       'periods':archived}
     INDEX.write_text(json.dumps(index,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print('Mythicstats full Midnight:',len(archived),'of',len(periods),'verified periods;',len(stored),'new;',len(failures),'failed')
