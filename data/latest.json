@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T22:35:59.630280+09:00",
+  "generated_at": "2026-11-19T22:41:45.683800+09:00",
   "status": "live",
   "week": "2026-W47",
   "items": [
@@ -710,8 +710,8 @@
     "errors": [],
     "translated": true,
     "translated_count": 50,
-    "reused_translations": 48,
-    "new_translations": 2,
+    "reused_translations": 50,
+    "new_translations": 0,
     "feed_results": [
       {
         "source": "Blizzard",

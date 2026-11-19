@@ -1,7 +1,7 @@
 {
   "period": 1090,
   "season": "mid2",
-  "captured_at": "2026-11-19T22:36:07.752951+09:00",
+  "captured_at": "2026-11-19T22:41:50.983704+09:00",
   "source": "Mythicstats",
   "source_url": "https://mythicstats.com/dps?period=1090",
   "scope": "Mythic+ dungeon-wide DPS; all 3 roles from source",
@@ -80,9 +80,9 @@
       "role": "damage",
       "rank": 7,
       "tier": "C",
-      "avg_dps": 347000,
-      "top_dps": 459000,
-      "runs": 203
+      "avg_dps": 345000,
+      "top_dps": 457000,
+      "runs": 209
     },
     {
       "spec": "frost",
@@ -158,8 +158,8 @@
       "rank": 14,
       "tier": "C",
       "avg_dps": 334000,
-      "top_dps": 431000,
-      "runs": 306
+      "top_dps": 433000,
+      "runs": 314
     },
     {
       "spec": "feral",
@@ -169,8 +169,8 @@
       "rank": 15,
       "tier": "D",
       "avg_dps": 330000,
-      "top_dps": 445000,
-      "runs": 181
+      "top_dps": 448000,
+      "runs": 186
     },
     {
       "spec": "outlaw",
