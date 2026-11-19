@@ -49,6 +49,16 @@ jobs:
           run_data=json.loads(kr_runs.read_text(encoding='utf-8'))
           assert run_data.get('status') in ('live','unavailable','not_collected'), 'Invalid KR run status'
           assert isinstance(run_data.get('runs'),list), 'Invalid KR runs array'
+          dps_index=Path('dist/data/dps/index.json')
+          assert dps_index.is_file(), 'Missing weekly DPS archive index'
+          dps=json.loads(dps_index.read_text(encoding='utf-8'))
+          assert isinstance(dps.get('periods'),list), 'Bad DPS archive index'
+          for period in dps['periods'][:12]:
+            file=Path('dist/data/dps')/period['file']
+            assert file.is_file(), f'Missing DPS period file: {file}'
+            snapshot=json.loads(file.read_text(encoding='utf-8'))
+            assert snapshot.get('period')==period['period'], 'DPS period mismatch'
+            assert len(snapshot.get('items',[]))>=15, 'Incomplete DPS source snapshot'
           releases=Path('dist/data/releases.json')
           assert releases.is_file(), 'Missing release history index'
           records=json.loads(releases.read_text(encoding='utf-8'))['entries']
