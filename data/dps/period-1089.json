@@ -1,0 +1,281 @@
+{
+  "period": 1089,
+  "captured_at": "2026-11-19T21:30:35.256507+09:00",
+  "source": "Mythicstats",
+  "source_url": "https://mythicstats.com/dps?period=1089",
+  "scope": "Mythic+ dungeon-wide DPS; source displayed keystone bracket",
+  "keys": "16-24",
+  "items": [
+    {
+      "spec": "assassination",
+      "class": "rogue",
+      "name": "assassination rogue",
+      "rank": 1,
+      "tier": "S",
+      "avg_dps": 415000,
+      "top_dps": 574000,
+      "runs": 2200
+    },
+    {
+      "spec": "subtlety",
+      "class": "rogue",
+      "name": "subtlety rogue",
+      "rank": 2,
+      "tier": "S",
+      "avg_dps": 402000,
+      "top_dps": 519000,
+      "runs": 15000
+    },
+    {
+      "spec": "elemental",
+      "class": "shaman",
+      "name": "elemental shaman",
+      "rank": 3,
+      "tier": "B",
+      "avg_dps": 364000,
+      "top_dps": 469000,
+      "runs": 14000
+    },
+    {
+      "spec": "arms",
+      "class": "warrior",
+      "name": "arms warrior",
+      "rank": 4,
+      "tier": "B",
+      "avg_dps": 363000,
+      "top_dps": 468000,
+      "runs": 15000
+    },
+    {
+      "spec": "demonology",
+      "class": "warlock",
+      "name": "demonology warlock",
+      "rank": 5,
+      "tier": "C",
+      "avg_dps": 351000,
+      "top_dps": 470000,
+      "runs": 9100
+    },
+    {
+      "spec": "arcane",
+      "class": "mage",
+      "name": "arcane mage",
+      "rank": 6,
+      "tier": "C",
+      "avg_dps": 348000,
+      "top_dps": 445000,
+      "runs": 14000
+    },
+    {
+      "spec": "devourer",
+      "class": "demon-hunter",
+      "name": "devourer demon-hunter",
+      "rank": 7,
+      "tier": "C",
+      "avg_dps": 346000,
+      "top_dps": 472000,
+      "runs": 5400
+    },
+    {
+      "spec": "windwalker",
+      "class": "monk",
+      "name": "windwalker monk",
+      "rank": 8,
+      "tier": "C",
+      "avg_dps": 342000,
+      "top_dps": 466000,
+      "runs": 2200
+    },
+    {
+      "spec": "retribution",
+      "class": "paladin",
+      "name": "retribution paladin",
+      "rank": 9,
+      "tier": "C",
+      "avg_dps": 340000,
+      "top_dps": 451000,
+      "runs": 12000
+    },
+    {
+      "spec": "feral",
+      "class": "druid",
+      "name": "feral druid",
+      "rank": 10,
+      "tier": "C",
+      "avg_dps": 338000,
+      "top_dps": 483000,
+      "runs": 1800
+    },
+    {
+      "spec": "frost",
+      "class": "death-knight",
+      "name": "frost death-knight",
+      "rank": 11,
+      "tier": "C",
+      "avg_dps": 337000,
+      "top_dps": 459000,
+      "runs": 5000
+    },
+    {
+      "spec": "unholy",
+      "class": "death-knight",
+      "name": "unholy death-knight",
+      "rank": 12,
+      "tier": "C",
+      "avg_dps": 336000,
+      "top_dps": 454000,
+      "runs": 2700
+    },
+    {
+      "spec": "enhancement",
+      "class": "shaman",
+      "name": "enhancement shaman",
+      "rank": 13,
+      "tier": "C",
+      "avg_dps": 333000,
+      "top_dps": 444000,
+      "runs": 2700
+    },
+    {
+      "spec": "fire",
+      "class": "mage",
+      "name": "fire mage",
+      "rank": 14,
+      "tier": "D",
+      "avg_dps": 322000,
+      "top_dps": 420000,
+      "runs": 549
+    },
+    {
+      "spec": "marksmanship",
+      "class": "hunter",
+      "name": "marksmanship hunter",
+      "rank": 15,
+      "tier": "D",
+      "avg_dps": 321000,
+      "top_dps": 427000,
+      "runs": 1100
+    },
+    {
+      "spec": "beast-mastery",
+      "class": "hunter",
+      "name": "beast-mastery hunter",
+      "rank": 16,
+      "tier": "D",
+      "avg_dps": 320000,
+      "top_dps": 431000,
+      "runs": 10000
+    },
+    {
+      "spec": "survival",
+      "class": "hunter",
+      "name": "survival hunter",
+      "rank": 17,
+      "tier": "D",
+      "avg_dps": 320000,
+      "top_dps": 463000,
+      "runs": 846
+    },
+    {
+      "spec": "destruction",
+      "class": "warlock",
+      "name": "destruction warlock",
+      "rank": 18,
+      "tier": "D",
+      "avg_dps": 312000,
+      "top_dps": 430000,
+      "runs": 517
+    },
+    {
+      "spec": "fury",
+      "class": "warrior",
+      "name": "fury warrior",
+      "rank": 19,
+      "tier": "D",
+      "avg_dps": 311000,
+      "top_dps": 419000,
+      "runs": 1500
+    },
+    {
+      "spec": "havoc",
+      "class": "demon-hunter",
+      "name": "havoc demon-hunter",
+      "rank": 20,
+      "tier": "F",
+      "avg_dps": 309000,
+      "top_dps": 414000,
+      "runs": 3600
+    },
+    {
+      "spec": "outlaw",
+      "class": "rogue",
+      "name": "outlaw rogue",
+      "rank": 21,
+      "tier": "F",
+      "avg_dps": 309000,
+      "top_dps": 421000,
+      "runs": 250
+    },
+    {
+      "spec": "affliction",
+      "class": "warlock",
+      "name": "affliction warlock",
+      "rank": 22,
+      "tier": "F",
+      "avg_dps": 307000,
+      "top_dps": 404000,
+      "runs": 571
+    },
+    {
+      "spec": "shadow",
+      "class": "priest",
+      "name": "shadow priest",
+      "rank": 23,
+      "tier": "F",
+      "avg_dps": 301000,
+      "top_dps": 412000,
+      "runs": 2000
+    },
+    {
+      "spec": "devastation",
+      "class": "evoker",
+      "name": "devastation evoker",
+      "rank": 24,
+      "tier": "F",
+      "avg_dps": 299000,
+      "top_dps": 397000,
+      "runs": 586
+    },
+    {
+      "spec": "balance",
+      "class": "druid",
+      "name": "balance druid",
+      "rank": 25,
+      "tier": "F",
+      "avg_dps": 298000,
+      "top_dps": 402000,
+      "runs": 2000
+    },
+    {
+      "spec": "frost",
+      "class": "mage",
+      "name": "frost mage",
+      "rank": 26,
+      "tier": "F",
+      "avg_dps": 297000,
+      "top_dps": 412000,
+      "runs": 1100
+    },
+    {
+      "spec": "augmentation",
+      "class": "evoker",
+      "name": "augmentation evoker",
+      "rank": 27,
+      "tier": "F",
+      "avg_dps": 290000,
+      "top_dps": 416000,
+      "runs": 497
+    }
+  ],
+  "status": "ok"
+}

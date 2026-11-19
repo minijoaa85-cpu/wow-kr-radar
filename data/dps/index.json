@@ -1,8 +1,58 @@
 {
-  "status": "pending",
+  "status": "ok",
   "source": "Mythicstats",
   "source_url": "https://mythicstats.com/dps",
-  "last_collected": null,
+  "last_collected": "2026-11-19T21:30:35.256507+09:00",
+  "metric": "Overall dungeon DPS from Warcraft Logs, including out-of-combat time",
   "keys": "16-24",
-  "periods": []
+  "periods": [
+    {
+      "period": 1090,
+      "captured_at": "2026-11-19T21:30:35.256507+09:00",
+      "file": "period-1090.json",
+      "spec_count": 27
+    },
+    {
+      "period": 1089,
+      "captured_at": "2026-11-19T21:30:35.256507+09:00",
+      "file": "period-1089.json",
+      "spec_count": 27
+    },
+    {
+      "period": 1088,
+      "captured_at": "2026-11-19T21:30:35.256507+09:00",
+      "file": "period-1088.json",
+      "spec_count": 27
+    },
+    {
+      "period": 1087,
+      "captured_at": "2026-11-19T21:30:35.256507+09:00",
+      "file": "period-1087.json",
+      "spec_count": 27
+    },
+    {
+      "period": 1086,
+      "captured_at": "2026-11-19T21:30:35.256507+09:00",
+      "file": "period-1086.json",
+      "spec_count": 27
+    },
+    {
+      "period": 1085,
+      "captured_at": "2026-11-19T21:30:35.256507+09:00",
+      "file": "period-1085.json",
+      "spec_count": 27
+    },
+    {
+      "period": 1084,
+      "captured_at": "2026-11-19T21:30:35.256507+09:00",
+      "file": "period-1084.json",
+      "spec_count": 27
+    },
+    {
+      "period": 1083,
+      "captured_at": "2026-11-19T21:30:35.256507+09:00",
+      "file": "period-1083.json",
+      "spec_count": 27
+    }
+  ]
 }
