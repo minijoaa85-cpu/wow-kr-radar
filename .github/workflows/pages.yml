@@ -40,6 +40,10 @@ jobs:
           index=Path('dist/data/history/index.json')
           assert latest.is_file(), 'Missing deployed latest.json'
           assert index.is_file(), 'Missing deployed history index'
+          kr=Path('dist/data/kr_mplus.json')
+          assert kr.is_file(), 'Missing KR Mythic+ status data'
+          krdata=json.loads(kr.read_text(encoding='utf-8'))
+          assert krdata.get('status') in ('live','unavailable','not_collected'), 'Invalid KR Mythic+ state'
           releases=Path('dist/data/releases.json')
           assert releases.is_file(), 'Missing release history index'
           records=json.loads(releases.read_text(encoding='utf-8'))['entries']
