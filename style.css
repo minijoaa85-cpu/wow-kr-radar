@@ -124,3 +124,9 @@
 .dps-note{font-size:11px;line-height:1.85;color:#a1b5c9}
 @media(max-width:950px){.dps-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.dps-controls{grid-template-columns:1fr}.dps-panel{padding:14px}.dps-summary strong{font-size:14px}}
+
+
+.dps-history{margin-top:20px}
+.dps-history-links{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.dps-history-links a{font-size:11px;border:1px solid #38516b;color:#ebc891;background:#15273b;padding:9px 12px;border-radius:6px}
+.dps-history .history-view{border:0;background:#d0a85e;color:#172439;border-radius:6px;padding:9px 12px;font-weight:700;font-size:11px;cursor:pointer}
