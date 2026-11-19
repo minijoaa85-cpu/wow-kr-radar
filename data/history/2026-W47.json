@@ -102,6 +102,20 @@
       "sample": false
     },
     {
+      "id": "927e9e47f7664a70",
+      "title_ko": "Join the World of Warcraft 22nd Anniversary Celebration - Blizzard",
+      "title_original": "Join the World of Warcraft 22nd Anniversary Celebration - Blizzard",
+      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
+      "source": "Blizzard",
+      "region": "global",
+      "category": "커뮤니티",
+      "published_at": "2026-11-17T17:58:00+00:00",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQNkJWMmxwalRleE0takVOQlZoSktBLTdiX0g3RXk3ZWdScTlJbWhoS3U3NThmM0pfYnJHXzBOZXFSQnp0RzR5YllHWS1DMm01S0NwY2ZkaHgwbi1kSWQ3eUYzdlZjWmhYVGVSMW1DUXJrMl80SWxtbGU4R1FHeXN1VWUwdGZtUGJ2b1Bqc0plNDhzNVVrMHoyZlUtOHRmc200UDJtQWhSVFJHX1ZTbGhqc3l3?oc=5",
+      "verified": false,
+      "translated": false,
+      "sample": false
+    },
+    {
       "id": "f36bc7ef8d42de30",
       "title_ko": "Blizzard on Encounter Design in Season 3 - Reduced Mechanical Penalties - Wowhead",
       "title_original": "Blizzard on Encounter Design in Season 3 - Reduced Mechanical Penalties - Wowhead",
@@ -294,5 +308,5 @@
     "translated": false
   },
   "created_at": "2026-11-19T00:01:31.779743+09:00",
-  "updated_at": "2026-11-19T09:58:22.356400+09:00"
+  "updated_at": "2026-11-19T09:59:42.086196+09:00"
 }
