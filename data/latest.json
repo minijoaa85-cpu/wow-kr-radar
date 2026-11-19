@@ -1,8 +1,36 @@
 {
-  "generated_at": "2026-11-19T10:00:12.629691+09:00",
+  "generated_at": "2026-11-19T11:31:52.852038+09:00",
   "status": "live",
   "week": "2026-W47",
   "items": [
+    {
+      "id": "f95ce349e7239e6a",
+      "title_ko": "[PTR] 12.1.7 하우징 장식 - 언더마인 고블린 테마.",
+      "title_original": "[PTR] 12.1.7 하우징 장식 - 언더마인 고블린 테마. - 인벤",
+      "summary_ko": "원문 링크에서 자세한 내용을 확인하세요.",
+      "source": "Inven",
+      "region": "KR",
+      "category": "국내 소식",
+      "published_at": "2026-11-19T01:26:28+00:00",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1IR2RnSmJvOFZXQ2NOT3RVQWloTXZ4eExUMTBob0lRTjhsQUVrX1BUdENDWEVhOWtyTHNJN2lwWlYyZjN3ckh0bGQ1U1ZoYVZWV2VocnVYSQ?oc=5",
+      "verified": false,
+      "translated": true,
+      "sample": false
+    },
+    {
+      "id": "c06eb17d5693f806",
+      "title_ko": "[PTR] 12.1.7 옴니움 장서 가이드 - 여섯 번째, 일곱 번째 특성 및 찍는 방법.",
+      "title_original": "[PTR] 12.1.7 옴니움 장서 가이드 - 여섯 번째, 일곱 번째 특성 및 찍는 방법. - 인벤",
+      "summary_ko": "원문 링크에서 자세한 내용을 확인하세요.",
+      "source": "Inven",
+      "region": "KR",
+      "category": "국내 소식",
+      "published_at": "2026-11-19T01:08:34+00:00",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE01UDRrQnYxZjZnZHByTmN5VEJ6MHFwNU5hXzkxeDdmLS1kMkx5OGdWZWdpREhSUnVQZEpLdGZrSVBldlp6LTNxNUlkODFGeFZHeFVVeXNVMA?oc=5",
+      "verified": false,
+      "translated": true,
+      "sample": false
+    },
     {
       "id": "02d00a4e81995e84",
       "title_ko": "[PTR] 12.1.7 모험담 신화 난이도가 삭제되었습니다.",
@@ -97,6 +125,20 @@
       "category": "로드맵",
       "published_at": "2026-11-17T18:01:45+00:00",
       "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNeGpHdzNpNEZyMUwyUzd6OTAwOS1zUURrWGNCSUtBZU92TWpQUTNoZ1Y2dnkxZnRwWHBRbTgxUUxNZEZXQU5pXzdjbzNBWkFfdndVNGh5Z3hGdU1wS3h6YldRZGVVZ1hXU2hOcEZrblRHZC1weFVyeFJkMVhWVjA3WVBWQk5yRmR1VkxJ?oc=5",
+      "verified": false,
+      "translated": false,
+      "sample": false
+    },
+    {
+      "id": "927e9e47f7664a70",
+      "title_ko": "Join the World of Warcraft 22nd Anniversary Celebration - Blizzard",
+      "title_original": "Join the World of Warcraft 22nd Anniversary Celebration - Blizzard",
+      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
+      "source": "Blizzard",
+      "region": "global",
+      "category": "커뮤니티",
+      "published_at": "2026-11-17T17:58:00+00:00",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQNkJWMmxwalRleE0takVOQlZoSktBLTdiX0g3RXk3ZWdScTlJbWhoS3U3NThmM0pfYnJHXzBOZXFSQnp0RzR5YllHWS1DMm01S0NwY2ZkaHgwbi1kSWQ3eUYzdlZjWmhYVGVSMW1DUXJrMl80SWxtbGU4R1FHeXN1VWUwdGZtUGJ2b1Bqc0plNDhzNVVrMHoyZlUtOHRmc200UDJtQWhSVFJHX1ZTbGhqc3l3?oc=5",
       "verified": false,
       "translated": false,
       "sample": false
@@ -200,20 +242,6 @@
       "sample": false
     },
     {
-      "id": "859dab000b79ab5c",
-      "title_ko": "Mythic Twin Fangs Nerf for The Venomous Abyss Raid - Wowhead",
-      "title_original": "Mythic Twin Fangs Nerf for The Venomous Abyss Raid - Wowhead",
-      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
-      "source": "Wowhead",
-      "region": "global",
-      "category": "직업·밸런스",
-      "published_at": "2026-11-06T08:21:26+00:00",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNT3FrWWlHRmZTU3AyWVB3b19ORlQ3SnlSM3NZRTJwTEdyVHFMa2Jfb1Q5b1VzMHFrT1BoSVRVT2RzYV9Mb1RlLWFzdmh2blJobjN0RS0ySXZ5NXUzZ3dTbVA2RzBMVmc5NlpQQ3VvXzB3cFpURFRLT09KQTg0cHBDajU2RUtodHFPcl9yN2lIRQ?oc=5",
-      "verified": false,
-      "translated": false,
-      "sample": false
-    },
-    {
       "id": "6175c80d2db92746",
       "title_ko": "Venomous Abyss Raid Hotfixes Now Live - Patch 12.1.5 Hotfixes for November 6 - Wowhead",
       "title_original": "Venomous Abyss Raid Hotfixes Now Live - Patch 12.1.5 Hotfixes for November 6 - Wowhead",
@@ -223,6 +251,20 @@
       "category": "공식·핫픽스",
       "published_at": "2026-11-06T08:00:00+00:00",
       "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPbkp5UURiUllDVVhUNjNTX1d5VU5OVzY1NjlSQVg1OXBfR1lKb2dqbzllX0FiRmdMUFI3S3NFellHYmdqWGpWbW5VMGJDNkhTU2NyQ1k5amVNUTc2MG9kMDluTkQtdF9kaFVyR3E3YTZmeHRMRnU2RVRFZzhWYUlSRzdzNk5rcVJ3RDRMeG9rbnFwazlIUEpvcmkwX20wNk03WFF3YUJGRjhzcjdWSzM4?oc=5",
+      "verified": false,
+      "translated": false,
+      "sample": false
+    },
+    {
+      "id": "859dab000b79ab5c",
+      "title_ko": "Mythic Twin Fangs Nerf for The Venomous Abyss Raid - Wowhead",
+      "title_original": "Mythic Twin Fangs Nerf for The Venomous Abyss Raid - Wowhead",
+      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
+      "source": "Wowhead",
+      "region": "global",
+      "category": "직업·밸런스",
+      "published_at": "2026-11-06T00:28:58+00:00",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNT3FrWWlHRmZTU3AyWVB3b19ORlQ3SnlSM3NZRTJwTEdyVHFMa2Jfb1Q5b1VzMHFrT1BoSVRVT2RzYV9Mb1RlLWFzdmh2blJobjN0RS0ySXZ5NXUzZ3dTbVA2RzBMVmc5NlpQQ3VvXzB3cFpURFRLT09KQTg0cHBDajU2RUtodHFPcl9yN2lIRQ?oc=5",
       "verified": false,
       "translated": false,
       "sample": false
@@ -274,7 +316,7 @@
       {
         "source": "Blizzard",
         "status": "ok",
-        "count": 0
+        "count": 1
       },
       {
         "source": "Wowhead",
@@ -284,7 +326,7 @@
       {
         "source": "Inven",
         "status": "ok",
-        "count": 2
+        "count": 4
       },
       {
         "source": "MMO-Champion",
