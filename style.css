@@ -163,3 +163,30 @@
 
 .dps-export{background:#d3aa68;color:#142336;border:none;border-radius:7px;padding:10px 15px;font-size:12px;font-weight:800;margin:0 0 14px;cursor:pointer}
 .dps-export:hover{background:#e7bc78}
+
+
+/* V0.4.3 — Blizzard class palette and distinct combat role modules */
+.dps-role-tabs{gap:10px;align-items:stretch}
+.dps-role-tabs button{display:flex;align-items:center;gap:10px;min-width:116px;text-align:left;transition:background .2s,border-color .2s}
+.dps-role-tabs button span:last-child{display:flex;flex-direction:column;gap:3px}
+.dps-role-tabs button small{font-size:9px;letter-spacing:.3px;opacity:.75;font-weight:400}
+.dps-role-tabs .role-icon{font-size:22px;width:27px;text-align:center;line-height:1.2}
+.dps-role-tabs button.dps-role-damage{border-left:4px solid #e4ac64;border-radius:7px 7px 7px 7px}
+.dps-role-tabs button.dps-role-tank{border-left:4px solid #78b3e8;border-radius:13px}
+.dps-role-tabs button.dps-role-healer{border-left:4px solid #75cea2;border-radius:19px 6px 19px 6px}
+.dps-role-tabs button.dps-role-damage.active{background:rgba(228,172,100,.18);border-color:#e4ac64;color:#ffddac}
+.dps-role-tabs button.dps-role-tank.active{background:rgba(120,179,232,.17);border-color:#78b3e8;color:#b8e0ff}
+.dps-role-tabs button.dps-role-healer.active{background:rgba(117,206,162,.17);border-color:#75cea2;color:#b9f4d9}
+.dps-panel.dps-role-damage{border-top:3px solid #e4ac64}
+.dps-panel.dps-role-tank{border:2px solid #365d81;border-top:4px solid #78b3e8;border-radius:16px}
+.dps-panel.dps-role-healer{border:2px solid #32684f;border-top:4px solid #75cea2;border-radius:20px 8px 20px 8px}
+.dps-summary.dps-role-damage>div{border-top:2px solid #e4ac64}
+.dps-summary.dps-role-tank>div{border:1px solid #365d81;border-radius:12px;border-top:3px solid #78b3e8;background:linear-gradient(145deg,#11263b,#101c2d)}
+.dps-summary.dps-role-healer>div{border:1px solid #32684f;border-radius:17px 6px 17px 6px;border-top:3px solid #75cea2;background:linear-gradient(145deg,#112b27,#101d2c)}
+.dps-picks label{border-left:3px solid var(--spec-color,#b5c4d7)}
+.dps-picks label.chosen{border-color:var(--spec-color,#d3ab71);background:color-mix(in srgb,var(--spec-color,#d3ab71) 14%,#152238)}
+.dps-picks label span{color:var(--spec-color,#d2dbe8);font-weight:700}
+.dps-picks label input{accent-color:var(--spec-color,#d3ab71)}
+.dps-legend b{font-weight:700}
+.dps-extent>div{border-radius:9px}
+@media(max-width:700px){.dps-role-tabs{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.dps-role-tabs button{min-width:0;padding:11px 8px;gap:5px}.dps-role-tabs .role-icon{font-size:18px;width:19px}.dps-role-tabs button small{font-size:8px}}
