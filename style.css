@@ -41,3 +41,13 @@
 .mplus-affix p{font-size:12px;color:#a2b4c7;line-height:1.9}
 @media(max-width:950px){.watch-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.mplus-affixes{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.watch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mplus-affixes{grid-template-columns:1fr}.mplus-panel{padding:15px}}
+
+.feed-health{background:#111d2f;border:1px solid #2c4157;border-radius:10px;padding:16px 19px}
+.feed-health summary{font-size:12px;color:#e9ca8f;font-weight:700;cursor:pointer}
+.health-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:16px}
+.health-item{display:flex;justify-content:space-between;gap:9px;padding:11px;background:#0c1726;border-radius:6px;font-size:11px}
+.health-item span{color:#b4c5d7}
+.health-item strong.ok{color:#5ecda7}
+.health-item strong.failed{color:#f8ad8e}
+.feed-health p{color:#849bb0;font-size:11px;line-height:1.9}
+@media(max-width:700px){.health-grid{grid-template-columns:1fr}}
