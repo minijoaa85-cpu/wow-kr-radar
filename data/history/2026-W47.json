@@ -4,6 +4,76 @@
   "week": "2026-W47",
   "items": [
     {
+      "id": "02d00a4e81995e84",
+      "title_ko": "[PTR] 12.1.7 모험담 신화 난이도가 삭제되었습니다.",
+      "title_original": "[PTR] 12.1.7 모험담 신화 난이도가 삭제되었습니다. - 인벤",
+      "summary_ko": "원문 링크에서 자세한 내용을 확인하세요.",
+      "source": "Inven",
+      "region": "KR",
+      "category": "국내 소식",
+      "published_at": "2026-11-19T00:23:32+00:00",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFA2NmlzdTlLempDWHIzdEdxQ3JTT1oxQW9zR2dSTUpWQ3huRGplaGduQU0xdUJlRGJteDhxempJb1FKWkhoQ09iRmk0Y2xiY3lPdW1aS1VDaw?oc=5",
+      "verified": false,
+      "translated": true,
+      "sample": false
+    },
+    {
+      "id": "7f10d39bc204698c",
+      "title_ko": "[PTR] 12.1.7 릴리즈 빌드가 출시되었습니다.",
+      "title_original": "[PTR] 12.1.7 릴리즈 빌드가 출시되었습니다. - 인벤",
+      "summary_ko": "원문 링크에서 자세한 내용을 확인하세요.",
+      "source": "Inven",
+      "region": "KR",
+      "category": "국내 소식",
+      "published_at": "2026-11-19T00:20:59+00:00",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBSTGRfNFJiVjF3NXR2emgta3dyVjlPdHVNV1dWeGhCdEhkNW5JTEhTS1RmaTE0MjZ3OXlsRmVpZG5OeEFVLU5CZEZ2VjJTS0ZHR19JNUl4QQ?oc=5",
+      "verified": false,
+      "translated": true,
+      "sample": false
+    },
+    {
+      "id": "3b30041bd6426348",
+      "title_ko": "All Mythic Difficulty Achievements Removed from Talebound on Patch 12.1.7 PTR - Wowhead",
+      "title_original": "All Mythic Difficulty Achievements Removed from Talebound on Patch 12.1.7 PTR - Wowhead",
+      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
+      "source": "Wowhead",
+      "region": "global",
+      "category": "로드맵",
+      "published_at": "2026-11-19T00:09:30+00:00",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxORzlkd25feGxiOUZrNnQyREtkWlpuMVkwdXg1aVN6WTRqMnFGMnJfeml4NXlTNWZYaExhRkxWVWFROGVYRzc3SkdpOXg4X2xmRDFpRkpHSENpVm85eEh1UkNQalFXX2NfMnJ5eWgwWWY1ZVVkbVZSbWo3TFZHTVV3THBQNl82ZWQwTlQyVFdtTldXM19vYm1Ya1NsMlBWS2ZraVZlNGljUllUaGNkV01qeXBfOA?oc=5",
+      "verified": false,
+      "translated": false,
+      "sample": false
+    },
+    {
+      "id": "490272e5a8e32d82",
+      "title_ko": "Patch 12.1.7 PTR - Build 70986 - MMO-Champion",
+      "title_original": "Patch 12.1.7 PTR - Build 70986 - MMO-Champion",
+      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
+      "source": "MMO-Champion",
+      "region": "global",
+      "category": "로드맵",
+      "published_at": "2026-11-18T23:59:00+00:00",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQNV8wT0VsY043bU9iYXZzSWx0Qng3aFRLSE1YZkFFRjZTOTRMLUxTdnVPb3BxUGFqQ1VYZmtOb2paVTdPUm9KLVFFT1BCWTlNVHZFa09UYnJ1djloWnU4dERPTnRpNEtNQ0NhSXotTVRKUlU2MmJLdjc1SXU4TXBOS2xtNnA?oc=5",
+      "verified": false,
+      "translated": false,
+      "sample": false
+    },
+    {
+      "id": "cf0cee8e47188f5c",
+      "title_ko": "Patch 12.1.7 Echoes of the Worldcore Arrives on December 1 - MMO-Champion",
+      "title_original": "Patch 12.1.7 Echoes of the Worldcore Arrives on December 1 - MMO-Champion",
+      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
+      "source": "MMO-Champion",
+      "region": "global",
+      "category": "로드맵",
+      "published_at": "2026-11-17T19:00:00+00:00",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQdnpiN1dvcEpOazdzXzJPaUF6akFvcHljNVR3STNOVm8wT1lpV0Z1YmRnTEJnZ09Cc3hBWlpjcGoxV3RfeDh1QTJocTM5N0dlaUN2TTdZN3JKSVVaU05JbjJoZjJWTWsyUGd4b2lIcndwRkp0WjJWb0hnY1NRcnZaZkExcFJCU3VBMkNabjhVbXlzMDlqcVdfUGRjY2RrdVFZXzdJ?oc=5",
+      "verified": false,
+      "translated": false,
+      "sample": false
+    },
+    {
       "id": "c9a03abbad0c877d",
       "title_ko": "Echoes of the Worldcore - Patch 12.1.7 Releases on December 1 - Wowhead",
       "title_original": "Echoes of the Worldcore - Patch 12.1.7 Releases on December 1 - Wowhead",
@@ -123,7 +193,7 @@
       "source": "Wowhead",
       "region": "global",
       "category": "공식·핫픽스",
-      "published_at": "2026-11-07T07:22:01+00:00",
+      "published_at": "2026-11-06T20:10:28+00:00",
       "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQZHMzZUN1UTU0YktZdnJyblZrMmVOR2lqaUVEZF9Cbjl4UzF5ZFFhbVNneXZrYU5ZUk9iYTY4MXVFdzlHZE44dldOb3BHaTZqdkNBQzNXajBBQ3NPcy1yTFQ2a0t5bFNGa0pZSXloeFVNQkNrSTJiMl85akR5cTFhd085RmdUOGRhcVNZQ25Xeko?oc=5",
       "verified": false,
       "translated": false,
@@ -224,5 +294,5 @@
     "translated": false
   },
   "created_at": "2026-11-19T00:01:31.779743+09:00",
-  "updated_at": "2026-11-19T00:27:41.511132+09:00"
+  "updated_at": "2026-11-19T09:57:49.410489+09:00"
 }
