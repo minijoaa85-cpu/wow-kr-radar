@@ -141,7 +141,7 @@ def collect(session=requests, backfill_limit=None):
             try:
                 previous=json.loads(oldfile.read_text(encoding='utf-8'))
                 roles={x.get('role') for x in previous.get('items',[])}
-                if roles=={'damage','tank','healer'} and previous.get('season')==season:
+                if roles=={'damage','tank','healer'} and previous.get('season')==season and period < max(dict(periods))-1:
                     existing[period]={'period':period,'season':season,'file':oldfile.name,'spec_count':len(previous['items']),'captured_at':previous.get('captured_at')}
                     continue
             except (ValueError,OSError):pass
