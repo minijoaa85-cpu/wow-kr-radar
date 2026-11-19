@@ -129,12 +129,25 @@ def collect(session=requests, backfill_limit=None):
         periods=sorted({**dict(periods),**{p:'mid1' for p in old_week_ids if 1000<=p<min(dict(periods))}}.items())
     except (requests.RequestException,ValueError):
         pass
-    try:history=json.loads(INDEX.read_text(encoding='utf-8')).get('periods',[])
-    except (OSError,ValueError):history=[]
+    try:previous_index=json.loads(INDEX.read_text(encoding='utf-8'))
+    except (OSError,ValueError):previous_index={}
+    history=previous_index.get('periods',[])
     existing={int(x['period']):x for x in history if isinstance(x,dict) and str(x.get('period','')).isdigit()}
-    season_lookup=dict(periods)
+    # Preserve verified old season IDs and retained snapshots after source pagination.
+    season_lookup={int(x['period']):x['season'] for x in previous_index.get('season_periods',[])
+        if isinstance(x,dict) and str(x.get('period','')).isdigit() and re.fullmatch(r'mid[1-9][0-9]*',str(x.get('season','')))}
+    season_lookup.update(dict(periods))
+    for p,item in existing.items():
+        if re.fullmatch(r'mid[1-9][0-9]*',str(item.get('season',''))):
+            season_lookup.setdefault(p,item['season'])
+    periods=sorted(season_lookup.items())
+    recent_end=max(season_lookup)
+    earlier_missing={int(p) for p in previous_index.get('missing_periods',[]) if str(p).isdigit()}
     stored=[];failures=[]
     for period,season in periods:
+        # Old unavailable periods are retried monthly, not on every Friday collection.
+        if period in earlier_missing and period < recent_end-2 and now.day>7:
+            continue
         oldfile=DATA/f'period-{period}.json'
         # Upgrade old damage-only snapshots to all roles. Preserve other existing valid full snapshots.
         if oldfile.exists():
