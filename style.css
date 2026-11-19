@@ -106,3 +106,21 @@
 .kr-runs-table .mplus-caption{padding:2px 12px}
 @media(max-width:1000px){.watch-spec-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.watch-spec-grid{grid-template-columns:1fr}.watch-spec-section{padding:13px}}
+
+
+/* V0.4.1 — Mythicstats DPS trends */
+.dps-source-link{display:inline-block;color:#f0c484;font-size:12px;margin-top:10px}
+.dps-panel{border:1px solid #2a3d53;border-radius:12px;background:#111d2e;padding:22px;margin-top:22px}
+.dps-panel h3{font-size:16px;margin:24px 0 12px;color:#e8edf5}
+.dps-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.dps-controls label{font-size:11px;color:#a6b6c9;display:flex;flex-direction:column;gap:7px}
+.dps-controls select{width:100%;font-size:12px;padding:11px 10px}
+.dps-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin-top:20px}
+.dps-summary>div{border:1px solid #293d54;border-radius:8px;background:#0e1929;padding:15px 12px;min-width:0}
+.dps-summary small{display:block;font-size:10px;color:#8199b2;margin-bottom:8px}
+.dps-summary strong{display:block;color:#efcf92;font-size:16px;overflow-wrap:anywhere}
+.dps-chart-wrap{background:#0c1727;border:1px solid #273a50;border-radius:10px;padding:10px;overflow-x:auto}
+.dps-chart-wrap svg{width:100%;height:auto;display:block;min-width:350px}
+.dps-note{font-size:11px;line-height:1.85;color:#a1b5c9}
+@media(max-width:950px){.dps-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.dps-controls{grid-template-columns:1fr}.dps-panel{padding:14px}.dps-summary strong{font-size:14px}}
