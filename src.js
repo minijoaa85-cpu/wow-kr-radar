@@ -1,7 +1,7 @@
 import './style.css';
 const cats=['전체','공식·핫픽스','직업·밸런스','쐐기·레이드','로드맵','국내 소식','커뮤니티','기타'];
 const sources=['전체','Blizzard','Wowhead','Inven','Reddit','MMO-Champion'];
-const state={cat:'전체',src:'전체',q:'',tab:'overview',week:'latest',items:[],history:[],releases:[],meta:null,priorIds:new Set(),showOriginal:false,myWatch:[],mplus:null};
+const state={cat:'전체',src:'전체',q:'',tab:'overview',week:'latest',items:[],history:[],releases:[],meta:null,priorIds:new Set(),showOriginal:false,myWatch:[],watchSpecs:[],mplus:null,krRuns:null};
 const $=id=>document.getElementById(id);
 const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const formatted=d=>{if(!d)return '날짜 미상';const t=new Date(d);return Number.isNaN(t.getTime())?'날짜 미상':new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'short',day:'numeric'}).format(t)};
@@ -17,16 +17,39 @@ const watchClasses=[
  ['수도사',['monk','수도사']],['드루이드',['druid','드루이드']],['악마사냥꾼',['demon hunter','악마사냥꾼','악사']],
  ['기원사',['evoker','기원사']]
 ];
+const specOptions={
+ '전사':[['무기','arms','무기'],['분노','fury','분노'],['방어','protection warrior','방어 전사']],
+ '성기사':[['신성','holy paladin','신기'],['보호','protection paladin','보기'],['징벌','retribution','징기']],
+ '사냥꾼':[['야수','beast mastery','야냥'],['사격','marksmanship','격냥'],['생존','survival hunter','생냥']],
+ '도적':[['암살','assassination rogue','암살'],['무법','outlaw rogue','무법'],['잠행','subtlety rogue','잠행']],
+ '사제':[['수양','discipline priest','수사'],['신성','holy priest','신사'],['암흑','shadow priest','암사']],
+ '죽음의 기사':[['혈기','blood death knight','혈죽'],['냉기','frost death knight','냉죽'],['부정','unholy death knight','부죽']],
+ '주술사':[['정기','elemental shaman','정술'],['고양','enhancement shaman','고술'],['복원','restoration shaman','복술']],
+ '마법사':[['비전','arcane mage','비법'],['화염','fire mage','화법'],['냉기','frost mage','냉법']],
+ '흑마법사':[['고통','affliction','고흑'],['악마','demonology','악흑'],['파괴','destruction warlock','파흑']],
+ '수도사':[['양조','brewmaster','양조'],['운무','mistweaver','운무'],['풍운','windwalker','풍운']],
+ '드루이드':[['조화','balance druid','조드'],['야성','feral druid','야드'],['수호','guardian druid','수드'],['회복','restoration druid','회드']],
+ '악마사냥꾼':[['파멸','havoc','악딜'],['복수','vengeance demon hunter','악탱']],
+ '기원사':[['황폐','devastation evoker','황폐'],['보존','preservation evoker','보존'],['증강','augmentation evoker','증강']]
+};
 try{state.myWatch=JSON.parse(localStorage.getItem('wowkr_mywatch_v1')||'[]').filter(x=>watchClasses.some(w=>w[0]===x));}catch(e){state.myWatch=[]}
-const watched=x=>state.myWatch.some(name=>{const terms=watchClasses.find(w=>w[0]===name)?.[1]||[];return terms.some(term=>(x.title_original+' '+x.title_ko+' '+x.summary_ko).toLowerCase().includes(term));});
-function init(){document.querySelector('#app').innerHTML=`<div class="shell"><aside class="sidebar"><div class="brand"><div class="brand-icon">W</div><div><strong>WoW KR Radar</strong><small>AZEROTH INTELLIGENCE</small></div></div><div class="side-label">COMMAND CENTER</div><nav id="nav"></nav><div class="side-bottom"><span class="live-dot"></span> <span id="side-status">데이터 로딩 중</span><div class="side-note">한국 본섭 · 아시아/서울<br>뉴스 출처와 원문을 항상 표시합니다.</div></div></aside><main><header class="top"><div><span class="eyebrow">WORLD OF WARCRAFT · RETAIL</span><h1 id="page-title">아제로스 주간 브리핑</h1><p class="subtitle">한국 플레이어를 위한 글로벌 와우 정보 레이더</p></div><div class="top-actions"><span class="chip">🇰🇷 한국 시간 KST</span><span class="chip" id="updated">확인 중</span><a class="button" href="https://worldofwarcraft.blizzard.com/ko-kr/news" target="_blank" rel="noopener">공식 소식 ↗</a></div></header><div id="content"></div><footer>WoW KR Radar v0.3.1 · 비공식 팬 대시보드 · Blizzard 및 모든 매체의 소식은 각 소유자에게 귀속됩니다. · 기사 전문을 재게시하지 않습니다.</footer></main><aside class="utility-sidebar" aria-label="옵션 메뉴"><div class="utility-heading"><span class="utility-eyebrow">PERSONAL SPACE</span><strong>옵션 · 기록</strong><p>필요할 때 꺼내보는 개인화 메뉴와 아카이브</p></div><nav id="option-nav" aria-label="개인화 및 히스토리"></nav><div class="utility-foot">기본 정보는 왼쪽 메뉴에서 확인하세요.</div></aside></div>`;renderNav();load();}
+try{state.watchSpecs=JSON.parse(localStorage.getItem('wowkr_watchspec_v1')||'[]').filter(x=>typeof x==='string'&&x.includes(':'));}catch(e){state.watchSpecs=[]}
+const watched=x=>state.myWatch.some(name=>{
+ const text=(x.title_original+' '+x.title_ko+' '+x.summary_ko).toLowerCase();
+ const active=state.watchSpecs.filter(token=>token.startsWith(name+':'));
+ if(active.length){
+  return active.some(token=>{const spec=specOptions[name]?.find(z=>name+':'+z[0]===token);return spec&&[spec[1],spec[2],name+' '+spec[0]].some(term=>text.includes(term.toLowerCase()));});
+ }
+ return (watchClasses.find(w=>w[0]===name)?.[1]||[]).some(term=>text.includes(term));
+});
+function init(){document.querySelector('#app').innerHTML=`<div class="shell"><aside class="sidebar"><div class="brand"><div class="brand-icon">W</div><div><strong>WoW KR Radar</strong><small>AZEROTH INTELLIGENCE</small></div></div><div class="side-label">COMMAND CENTER</div><nav id="nav"></nav><div class="side-bottom"><span class="live-dot"></span> <span id="side-status">데이터 로딩 중</span><div class="side-note">한국 본섭 · 아시아/서울<br>뉴스 출처와 원문을 항상 표시합니다.</div></div></aside><main><header class="top"><div><span class="eyebrow">WORLD OF WARCRAFT · RETAIL</span><h1 id="page-title">아제로스 주간 브리핑</h1><p class="subtitle">한국 플레이어를 위한 글로벌 와우 정보 레이더</p></div><div class="top-actions"><span class="chip">🇰🇷 한국 시간 KST</span><span class="chip" id="updated">확인 중</span><a class="button" href="https://worldofwarcraft.blizzard.com/ko-kr/news" target="_blank" rel="noopener">공식 소식 ↗</a></div></header><div id="content"></div><footer>WoW KR Radar v0.4 · 비공식 팬 대시보드 · Blizzard 및 모든 매체의 소식은 각 소유자에게 귀속됩니다. · 기사 전문을 재게시하지 않습니다.</footer></main><aside class="utility-sidebar" aria-label="옵션 메뉴"><div class="utility-heading"><span class="utility-eyebrow">PERSONAL SPACE</span><strong>옵션 · 기록</strong><p>필요할 때 꺼내보는 개인화 메뉴와 아카이브</p></div><nav id="option-nav" aria-label="개인화 및 히스토리"></nav><div class="utility-foot">기본 정보는 왼쪽 메뉴에서 확인하세요.</div></aside></div>`;renderNav();load();}
 function renderNav(){
  const item=([k,t],optional=false)=>`<button type="button" class="nav-item ${optional?'utility-item':''} ${state.tab===k?'selected':''}" data-tab="${k}" aria-current="${state.tab===k?'page':'false'}"><span class="nav-icon">${icon[k]}</span><span>${t}</span></button>`;
  $('nav').innerHTML=menus.map(x=>item(x)).join('');
  $('option-nav').innerHTML=optionMenus.map(x=>item(x,true)).join('');
  document.querySelectorAll('[data-tab]').forEach(el=>el.onclick=()=>{state.tab=el.dataset.tab;renderNav();render();window.scrollTo({top:0,behavior:'smooth'});});
 }
-async function load(){try{let [latest,hist,versionRes]=await Promise.all([fetch('./data/latest.json?ts='+Date.now()),fetch('./data/history/index.json?ts='+Date.now()),fetch('./data/releases.json?ts='+Date.now())]);if(!latest.ok)throw Error('최신 데이터 파일 없음');state.meta=await latest.json();state.items=state.meta.items||[];state.history=(await hist.json()).weeks||[];state.releases=versionRes.ok?(await versionRes.json()).entries||[]:[];try{const m=await fetch('./data/kr_mplus.json?ts='+Date.now());state.mplus=m.ok?await m.json():null;}catch(e){state.mplus=null;}try{const previous=state.history.find(w=>w.week!==state.meta.week);if(previous){const p=await fetch('./data/history/'+encodeURIComponent(previous.week)+'.json');if(p.ok)state.priorIds=new Set((await p.json()).items.map(x=>x.id));}}catch(e){console.warn('Previous snapshot unavailable',e)}render()}catch(e){$('content').innerHTML=`<div class="empty">데이터를 불러오지 못했습니다: ${safe(e.message)}. GitHub Pages에 배포되었는지 확인하세요.</div>`;}}
+async function load(){try{let [latest,hist,versionRes]=await Promise.all([fetch('./data/latest.json?ts='+Date.now()),fetch('./data/history/index.json?ts='+Date.now()),fetch('./data/releases.json?ts='+Date.now())]);if(!latest.ok)throw Error('최신 데이터 파일 없음');state.meta=await latest.json();state.items=state.meta.items||[];state.history=(await hist.json()).weeks||[];state.releases=versionRes.ok?(await versionRes.json()).entries||[]:[];try{const m=await fetch('./data/kr_mplus.json?ts='+Date.now());state.mplus=m.ok?await m.json():null;}catch(e){state.mplus=null;}try{const r=await fetch('./data/kr_runs.json?ts='+Date.now());state.krRuns=r.ok?await r.json():null;}catch(e){state.krRuns=null;}try{const previous=state.history.find(w=>w.week!==state.meta.week);if(previous){const p=await fetch('./data/history/'+encodeURIComponent(previous.week)+'.json');if(p.ok)state.priorIds=new Set((await p.json()).items.map(x=>x.id));}}catch(e){console.warn('Previous snapshot unavailable',e)}render()}catch(e){$('content').innerHTML=`<div class="empty">데이터를 불러오지 못했습니다: ${safe(e.message)}. GitHub Pages에 배포되었는지 확인하세요.</div>`;}}
 const curated=i=>i.filter(x=>state.cat==='전체'||x.category===state.cat).filter(x=>state.src==='전체'||x.source===state.src).filter(x=>(x.title_ko+' '+x.summary_ko+' '+x.source+' '+x.title_original).toLowerCase().includes(state.q.toLowerCase()));
 function filters(){return `<div class="filters"><div class="filter-scroll">${cats.map(c=>`<button data-cat="${safe(c)}" class="filter ${state.cat===c?'on':''}">${safe(c)}</button>`).join('')}</div><div class="filter-control"><select id="source">${sources.map(s=>`<option ${state.src===s?'selected':''}>${s}</option>`).join('')}</select><label class="original-toggle"><input type="checkbox" id="original-toggle" ${state.showOriginal?'checked':''}/> 원제 보기</label><input type="search" id="search" value="${safe(state.q)}" placeholder="기사 / 직업 / 키워드 검색" aria-label="뉴스 검색"/></div></div>`}
 function bindFilters(){if($('original-toggle'))$('original-toggle').onchange=e=>{state.showOriginal=e.target.checked;render()};document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{state.cat=b.dataset.cat;render()});if($('source'))$('source').onchange=e=>{state.src=e.target.value;render()};if($('search'))$('search').oninput=e=>{state.q=e.target.value;clearTimeout(signalTimer);signalTimer=setTimeout(()=>{let cursor=document.activeElement?.id==='search';render();if(cursor){$('search')?.focus();$('search')?.setSelectionRange(state.q.length,state.q.length)}},150)}}
@@ -46,12 +69,16 @@ if(state.tab==='overview')html+=`<section class="links">${heading('바로 가기
 $('content').innerHTML=html;bindFilters();if($('go-news'))$('go-news').onclick=()=>{state.tab='news';renderNav();render()};if($('go-hist'))$('go-hist').onclick=()=>{state.tab='history';renderNav();render()};}
 function history(){const items=state.history;$('content').innerHTML=`<section class="hist-intro"><h2>주간 브리핑 아카이브</h2><p>자동 수집이 성공한 주차별 데이터는 JSON 파일로 영구 저장됩니다. 새 주가 시작되어도 과거 뉴스는 그대로 유지합니다.</p></section>${items.length?`<div class="timeline">${items.map(w=>`<article class="history-card"><div><b>${safe(w.week)}</b><p>${safe(w.date||'')}</p></div><strong>${Number(w.count||0)}개 기사</strong><a href="./data/history/${encodeURIComponent(w.week)}.json" download>주간 기록 JSON ↓</a><button class="history-view" data-week="${safe(w.week)}">기사 보기 ↗</button></article>`).join('')}</div><div id="history-results"></div>`:`<div class="empty">아직 생성된 주간 기록이 없습니다. 매주 월요일 자동 수집이 실행되면 이곳에 누적됩니다.</div>`}`;document.querySelectorAll('[data-week]').forEach(el=>el.onclick=async()=>{let r=await fetch('./data/history/'+encodeURIComponent(el.dataset.week)+'.json');if(r.ok){let d=await r.json();$('history-results').innerHTML=heading(safe(d.week)+' 보관 뉴스',d.items.length+'개 기사')+'<div class="article-grid">'+cards(d.items)+'</div>';$('history-results').scrollIntoView({behavior:'smooth'})}})}
 function renderWatch(){
-  const relevant=state.items.filter(watched);
-  $('content').innerHTML=`<section class="hist-intro"><span class="eyebrow">PERSONALIZED RETAIL NEWS</span><h2>My Watch · 관심 직업 추적</h2><p>직업을 선택하면 기사 제목과 요약의 키워드에 맞는 소식만 모아 보여줍니다. 선택 정보는 현재 브라우저에만 저장되며 기기 간 동기화되지 않습니다.</p></section>
-  <div class="watch-grid">${watchClasses.map(([name])=>`<label class="watch-option"><input type="checkbox" data-watch="${safe(name)}" ${state.myWatch.includes(name)?'checked':''}><span>${safe(name)}</span></label>`).join('')}</div>
-  <section class="feed">${heading('관심 직업 소식',state.myWatch.length?`관심 직업 ${state.myWatch.join(' · ')} · 매칭 뉴스 ${relevant.length}건`:'위에서 관심 직업을 선택하세요') }
-  <div class="article-grid">${state.myWatch.length?cards(relevant):'<div class="empty">관심 직업을 선택하면 관련 기사가 표시됩니다.</div>'}</div></section>`;
-  document.querySelectorAll('[data-watch]').forEach(el=>el.onchange=()=>{state.myWatch=Array.from(document.querySelectorAll('[data-watch]:checked')).map(n=>n.dataset.watch);try{localStorage.setItem('wowkr_mywatch_v1',JSON.stringify(state.myWatch));}catch(e){}renderWatch();});
+ const relevant=state.items.filter(watched);
+ const selectedClasses=state.myWatch;
+ $('content').innerHTML=`<section class="hist-intro"><span class="eyebrow">PERSONALIZED RETAIL NEWS</span><h2>My Watch · 직업 / 전문화</h2><p>관심 직업을 선택한 다음 전문화까지 좁힐 수 있습니다. 키워드 기반 뉴스 필터이며 실제 게임 성능 순위는 아닙니다. 선택 정보는 이 브라우저에만 보관됩니다.</p></section>
+ <div class="watch-grid">${watchClasses.map(([name])=>`<label class="watch-option"><input type="checkbox" data-watch="${safe(name)}" ${selectedClasses.includes(name)?'checked':''}><span>${safe(name)}</span></label>`).join('')}</div>
+ ${selectedClasses.length?`<section class="watch-spec-section"><h3>전문화 상세 선택 <small>(선택하지 않으면 해당 직업 전체)</small></h3>
+ <div class="watch-spec-grid">${selectedClasses.map(name=>`<div class="watch-spec-group"><b>${safe(name)}</b>${(specOptions[name]||[]).map(spec=>`<label><input type="checkbox" data-spec="${safe(name+':'+spec[0])}" ${state.watchSpecs.includes(name+':'+spec[0])?'checked':''}> ${safe(spec[0])}</label>`).join('')}</div>`).join('')}</div></section>`:''}
+ <section class="feed">${heading('관심 직업 소식',selectedClasses.length?`관심 직업 ${selectedClasses.join(' · ')} · 관련 뉴스 ${relevant.length}건`:'먼저 관심 직업을 선택하세요')}
+ <div class="article-grid">${selectedClasses.length?cards(relevant):'<div class="empty">관심 직업을 선택하면 관련 뉴스가 나타납니다.</div>'}</div></section>`;
+ document.querySelectorAll('[data-watch]').forEach(el=>el.onchange=()=>{state.myWatch=Array.from(document.querySelectorAll('[data-watch]:checked')).map(n=>n.dataset.watch);state.watchSpecs=state.watchSpecs.filter(token=>state.myWatch.some(n=>token.startsWith(n+':')));try{localStorage.setItem('wowkr_mywatch_v1',JSON.stringify(state.myWatch));localStorage.setItem('wowkr_watchspec_v1',JSON.stringify(state.watchSpecs));}catch(e){}renderWatch();});
+ document.querySelectorAll('[data-spec]').forEach(el=>el.onchange=()=>{state.watchSpecs=Array.from(document.querySelectorAll('[data-spec]:checked')).map(n=>n.dataset.spec);try{localStorage.setItem('wowkr_watchspec_v1',JSON.stringify(state.watchSpecs));}catch(e){}renderWatch();});
 }
 function renderKrMplus(){
  const m=state.mplus;
@@ -68,7 +95,7 @@ function renderKrMplus(){
 }
 function versionHistory(){
   const items=state.releases||[];
-  $('content').innerHTML=`<section class="hist-intro"><span class="eyebrow">VERSION CONTROL · CHANGELOG</span><h2>WoW KR Radar 개발 히스토리</h2><p>사이트 개발·업데이트 내역을 주간 뉴스 기록과 별도로 관리합니다. 버전별 주요 변경사항과 GitHub 코드 이력 및 요약 보고서를 확인할 수 있습니다.</p><div class="version-mini-stats"><span>현재 버전 <strong>V0.3.1</strong></span><span>기록된 버전 <strong>${items.length}개</strong></span><span>문서 <strong>PDF · PPTX</strong></span></div></section>
+  $('content').innerHTML=`<section class="hist-intro"><span class="eyebrow">VERSION CONTROL · CHANGELOG</span><h2>WoW KR Radar 개발 히스토리</h2><p>사이트 개발·업데이트 내역을 주간 뉴스 기록과 별도로 관리합니다. 버전별 주요 변경사항과 GitHub 코드 이력 및 요약 보고서를 확인할 수 있습니다.</p><div class="version-mini-stats"><span>현재 버전 <strong>V0.4</strong></span><span>기록된 버전 <strong>${items.length}개</strong></span><span>문서 <strong>PDF · PPTX</strong></span></div></section>
   ${items.length?'<div class="release-list">'+items.map((r,index)=>`
     <article class="release-card">
       <div class="release-top"><span class="release-version">V${safe(r.version)}</span><span class="kind">${safe(r.type)}</span>${index===0?'<span class="sample">최신 버전</span>':''}<time>${safe(r.date)}</time></div>
