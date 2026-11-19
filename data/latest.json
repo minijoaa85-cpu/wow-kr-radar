@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T09:57:49.410489+09:00",
+  "generated_at": "2026-11-19T09:58:22.356400+09:00",
   "status": "live",
   "week": "2026-W47",
   "items": [
@@ -262,13 +262,45 @@
     "errors": [
       {
         "source": "Reddit",
-        "error": "404 Client Error: Not Found for url: https://www.reddit.com/r/CompetitiveWoW/new/.rss"
+        "error": "404 Client Error: Not Found for url: https://www.reddit.com/r/CompetitiveWoW/new.rss"
       },
       {
         "source": "Reddit",
-        "error": "429 Client Error: Too Many Requests for url: https://www.reddit.com/r/wow/new/.rss"
+        "error": "429 Client Error: Too Many Requests for url: https://www.reddit.com/r/wow/new.rss"
       }
     ],
-    "translated": false
+    "translated": false,
+    "feed_results": [
+      {
+        "source": "Blizzard",
+        "status": "ok",
+        "count": 0
+      },
+      {
+        "source": "Wowhead",
+        "status": "ok",
+        "count": 14
+      },
+      {
+        "source": "Inven",
+        "status": "ok",
+        "count": 2
+      },
+      {
+        "source": "MMO-Champion",
+        "status": "ok",
+        "count": 2
+      },
+      {
+        "source": "Reddit",
+        "status": "error",
+        "count": 0
+      },
+      {
+        "source": "Reddit",
+        "status": "error",
+        "count": 0
+      }
+    ]
   }
 }
