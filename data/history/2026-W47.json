@@ -133,7 +133,7 @@
       "id": "490272e5a8e32d82",
       "title_ko": "패치 12.1.7 PTR - 빌드 70986 - MMO-Champion",
       "title_original": "Patch 12.1.7 PTR - Build 70986 - MMO-Champion",
-      "summary_ko": "패치 12.1.7 PTR 빌드 70986에 관한 헤드라인 기반 브리핑입니다. (출처: MMO-Champion)",
+      "summary_ko": "헤드라인 기반 간략 소식입니다: 패치 12.1.7 PTR 빌드 70986 소식입니다.",
       "source": "MMO-Champion",
       "region": "global",
       "category": "로드맵",
@@ -209,6 +209,20 @@
       "category": "커뮤니티",
       "published_at": "2026-11-18T14:35:41+00:00",
       "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPMC1adUZyb21WMTZGU1VaRS1Tc19WTEQ0bmRrYjRkR0hFSGxPUmd1bDJDNjFHMW1SckcwcldqZlAxM1EwbWFoWVhtQkxCS3FUdTFNX28xcTVTa0xSRDktbFlXZlQzUzA1UUY3eWxlTTYxRkNlVlFEb0Y2cklmMFRQaUFJWXpHUQ?oc=5",
+      "verified": false,
+      "translated": true,
+      "sample": false
+    },
+    {
+      "id": "3314f368f2a2f104",
+      "title_ko": "오래된 레이드 농사를 위해 여러 대체 캐릭터와 잠금 공유 불가능. 제가 무엇을 잘못하고 있나요? - Reddit",
+      "title_original": "Unable to share the lockout with multiple alts for old raid farming. What am I doing wrong? - Reddit",
+      "summary_ko": "헤드라인 기반 간략 소식입니다: 오래된 레이드 농사를 위한 잠금 공유가 여러 대체 캐릭터에서 불가능한 문제에 관한 내용입니다.",
+      "source": "Reddit WoW (indexed)",
+      "region": "global",
+      "category": "쐐기·레이드",
+      "published_at": "2026-11-18T10:36:30+00:00",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQNWg3RUtJcUtMeDFYZElaQXJ6eTVuYzVsaXR4bV82Q3U0RER3LW9EXy1adUJNSmdNY3hrbkdBcngyOUp6VEJJVURIcXRsamlmYldITjVjdGZBYjhNQ2hPSG45VmNGamRXVGhseHA5ZkhPdVdMUnlnWTNkWmF4dktEV2pBN1ktanZkSmRuQ3VHX3RBWjdja0JSZQ?oc=5",
       "verified": false,
       "translated": true,
       "sample": false
@@ -663,16 +677,16 @@
     },
     {
       "id": "bd629f4d6e214aa7",
-      "title_ko": "Dungeon Corpse Runs - Reddit",
+      "title_ko": "던전 시체 이동 - Reddit",
       "title_original": "Dungeon Corpse Runs - Reddit",
-      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
+      "summary_ko": "헤드라인 기반 간략 소식입니다: 던전 내 시체 이동에 관한 내용입니다.",
       "source": "Reddit WoW (indexed)",
       "region": "global",
       "category": "쐐기·레이드",
       "published_at": "2026-11-10T08:00:00+00:00",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5PRDVPclhqMkh2VktsYmhkVVp2enRKcGpIeDRwQUY5SUg2d21Vbmh3Z3JKVTdzaUF4LWJtM0RseEo1OUlRSklLN3JvVE04OGoxQWhnYjczVW5UaDdVVHJyaGpzZUdUZm45b3NJUXdCNVgxV3FE?oc=5",
       "verified": false,
-      "translated": false,
+      "translated": true,
       "sample": false
     },
     {
@@ -817,9 +831,9 @@
     },
     {
       "id": "d54e1f4d394faefd",
-      "title_ko": "변경된 Tortollan NPC와 맹독의 심연 조정 - 패치 12.1.5 핫픽스 - Wowhead",
+      "title_ko": "이름이 변경된 Tortollan NPC와 Venomous Abyss 조정 - 패치 12.1.5 긴급 수정 - Wowhead",
       "title_original": "Renamed Tortollan NPCs and Venomous Abyss Tuning - Patch 12.1.5 Hotfixes - Wowhead",
-      "summary_ko": "헤드라인 기반 브리핑: Wowhead가 패치 12.1.5 핫픽스에서 Tortollan NPC 이름 변경과 맹독의 심연 조정 사항을 소개합니다.",
+      "summary_ko": "헤드라인 기반 간략 소식입니다: 패치 12.1.5 긴급 수정으로 이름이 변경된 Tortollan NPC와 Venomous Abyss 조정 소식입니다.",
       "source": "Wowhead",
       "region": "global",
       "category": "공식·핫픽스",
@@ -896,5 +910,5 @@
     "translated": false
   },
   "created_at": "2026-11-19T00:01:31.779743+09:00",
-  "updated_at": "2026-11-19T21:30:29.426681+09:00"
+  "updated_at": "2026-11-19T22:32:31.998808+09:00"
 }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T21:30:29.426681+09:00",
+  "generated_at": "2026-11-19T22:32:31.998808+09:00",
   "status": "live",
   "week": "2026-W47",
   "items": [
@@ -46,48 +46,6 @@
       "sample": false
     },
     {
-      "id": "1f73cac66ac8c451",
-      "title_ko": "[질답] 경매장 보증금 패치된건가요?",
-      "title_original": "[질답] 경매장 보증금 패치된건가요? - 인벤",
-      "summary_ko": "원문 링크에서 자세한 내용을 확인하세요.",
-      "source": "Inven",
-      "region": "KR",
-      "category": "국내 소식",
-      "published_at": "2026-11-19T03:03:35+00:00",
-      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBicmhrdGhMQlMxeUtFMHFiM2N0ZVlha3hTT1ZxRDItRG16M2ZoaXZWWVdUY2sxZkdyYWM3Z012N29yZGMxTFZFS19JMWFRaU40SzNtR0tvRQ?oc=5",
-      "verified": false,
-      "translated": true,
-      "sample": false
-    },
-    {
-      "id": "f95ce349e7239e6a",
-      "title_ko": "[PTR] 12.1.7 하우징 장식 - 언더마인 고블린 테마.",
-      "title_original": "[PTR] 12.1.7 하우징 장식 - 언더마인 고블린 테마. - 인벤",
-      "summary_ko": "원문 링크에서 자세한 내용을 확인하세요.",
-      "source": "Inven",
-      "region": "KR",
-      "category": "국내 소식",
-      "published_at": "2026-11-19T01:26:28+00:00",
-      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1IR2RnSmJvOFZXQ2NOT3RVQWloTXZ4eExUMTBob0lRTjhsQUVrX1BUdENDWEVhOWtyTHNJN2lwWlYyZjN3ckh0bGQ1U1ZoYVZWV2VocnVYSQ?oc=5",
-      "verified": false,
-      "translated": true,
-      "sample": false
-    },
-    {
-      "id": "02d00a4e81995e84",
-      "title_ko": "[PTR] 12.1.7 모험담 신화 난이도가 삭제되었습니다.",
-      "title_original": "[PTR] 12.1.7 모험담 신화 난이도가 삭제되었습니다. - 인벤",
-      "summary_ko": "원문 링크에서 자세한 내용을 확인하세요.",
-      "source": "Inven",
-      "region": "KR",
-      "category": "국내 소식",
-      "published_at": "2026-11-19T00:23:32+00:00",
-      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFA2NmlzdTlLempDWHIzdEdxQ3JTT1oxQW9zR2dSTUpWQ3huRGplaGduQU0xdUJlRGJteDhxempJb1FKWkhoQ09iRmk0Y2xiY3lPdW1aS1VDaw?oc=5",
-      "verified": false,
-      "translated": true,
-      "sample": false
-    },
-    {
       "id": "3b30041bd6426348",
       "title_ko": "패치 12.1.7 PTR에서 탈바운드의 모든 신화 난이도 업적 삭제 - Wowhead",
       "title_original": "All Mythic Difficulty Achievements Removed from Talebound on Patch 12.1.7 PTR - Wowhead",
@@ -97,6 +55,20 @@
       "category": "로드맵",
       "published_at": "2026-11-19T00:09:30+00:00",
       "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxORzlkd25feGxiOUZrNnQyREtkWlpuMVkwdXg1aVN6WTRqMnFGMnJfeml4NXlTNWZYaExhRkxWVWFROGVYRzc3SkdpOXg4X2xmRDFpRkpHSENpVm85eEh1UkNQalFXX2NfMnJ5eWgwWWY1ZVVkbVZSbWo3TFZHTVV3THBQNl82ZWQwTlQyVFdtTldXM19vYm1Ya1NsMlBWS2ZraVZlNGljUllUaGNkV01qeXBfOA?oc=5",
+      "verified": false,
+      "translated": true,
+      "sample": false
+    },
+    {
+      "id": "490272e5a8e32d82",
+      "title_ko": "패치 12.1.7 PTR - 빌드 70986 - MMO-Champion",
+      "title_original": "Patch 12.1.7 PTR - Build 70986 - MMO-Champion",
+      "summary_ko": "헤드라인 기반 간략 소식입니다: 패치 12.1.7 PTR 빌드 70986 소식입니다.",
+      "source": "MMO-Champion",
+      "region": "global",
+      "category": "로드맵",
+      "published_at": "2026-11-18T23:59:00+00:00",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQNV8wT0VsY043bU9iYXZzSWx0Qng3aFRLSE1YZkFFRjZTOTRMLUxTdnVPb3BxUGFqQ1VYZmtOb2paVTdPUm9KLVFFT1BCWTlNVHZFa09UYnJ1djloWnU4dERPTnRpNEtNQ0NhSXotTVRKUlU2MmJLdjc1SXU4TXBOS2xtNnA?oc=5",
       "verified": false,
       "translated": true,
       "sample": false
@@ -172,15 +144,15 @@
       "sample": false
     },
     {
-      "id": "a1885b04c99d9e9a",
-      "title_ko": "현 소매 와우 상태에서는 이런 유형의 테마가 다시는 없을 것이다. 그 맛을 잃었고 미드나이트 같지 않다 - Reddit",
-      "title_original": "retail wow will never have this type of theme again at its current state. it have lost its taste. it doesn't feels midnight. - Reddit",
-      "summary_ko": "현 소매 와우 상태에서는 이런 유형의 테마가 다시는 없을 것이다. 그 맛을 잃었고 미드나이트 같지 않다 - Reddit 기반 헤드라인 브리핑",
+      "id": "3314f368f2a2f104",
+      "title_ko": "오래된 레이드 농사를 위해 여러 대체 캐릭터와 잠금 공유 불가능. 제가 무엇을 잘못하고 있나요? - Reddit",
+      "title_original": "Unable to share the lockout with multiple alts for old raid farming. What am I doing wrong? - Reddit",
+      "summary_ko": "헤드라인 기반 간략 소식입니다: 오래된 레이드 농사를 위한 잠금 공유가 여러 대체 캐릭터에서 불가능한 문제에 관한 내용입니다.",
       "source": "Reddit WoW (indexed)",
       "region": "global",
-      "category": "커뮤니티",
-      "published_at": "2026-11-18T09:08:16+00:00",
-      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQMTEtbTNrTURDZXUxZ19HWVJwaHIxc2pHbGR6TTFUNzc5MUVVMFo5OFRzMC12VVFKd3JleC12SzBlcERudjVJenJVYlNydFF3Tk1qUTJQNlpDd2h3Qk9UQVF5U2NSR3REX3lFa2NUdnZMWmtEa05MeGRvLXZRaVY0U25Vb1JUVUNWV0ZwYldFSWhsM0VBd25F?oc=5",
+      "category": "쐐기·레이드",
+      "published_at": "2026-11-18T10:36:30+00:00",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQNWg3RUtJcUtMeDFYZElaQXJ6eTVuYzVsaXR4bV82Q3U0RER3LW9EXy1adUJNSmdNY3hrbkdBcngyOUp6VEJJVURIcXRsamlmYldITjVjdGZBYjhNQ2hPSG45VmNGamRXVGhseHA5ZkhPdVdMUnlnWTNkWmF4dktEV2pBN1ktanZkSmRuQ3VHX3RBWjdja0JSZQ?oc=5",
       "verified": false,
       "translated": true,
       "sample": false
@@ -536,20 +508,6 @@
       "sample": false
     },
     {
-      "id": "3de28bbf605d53f0",
-      "title_ko": "이번 주 신화+ 던전 돌기 횟수가 예상만큼 크게 줄지 않았다 - Reddit",
-      "title_original": "Number of mythic+ run this week didn't fall as much as I expected - Reddit",
-      "summary_ko": "이번 소식은 제목 기반 요약입니다. 이번 주 신화+ 던전 돌기 수가 예상만큼 크게 감소하지 않았다는 Reddit 게시글을 다룹니다.",
-      "source": "Reddit WoW (indexed)",
-      "region": "global",
-      "category": "쐐기·레이드",
-      "published_at": "2026-11-12T03:06:30+00:00",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNa3I5SnczaXZsN3Rma0dLNWkzZlN5RE1Zek1JLW1JcXlyMlZROFNVR1pxZmNObG1nYkkwMGF2aUQ2dlBwSTNReTVod093THVoVTRlNngxMzlGdFdSVGxBMV92QTJYX0RyN3RjRzBaWGQzTHBEMmZKVmx3Rmx0d0xYa2F5RVM1b2tBNlhHMGdKZk1OZjRCX3dwQzIzbVo?oc=5",
-      "verified": false,
-      "translated": true,
-      "sample": false
-    },
-    {
       "id": "84c8ec8b80d200cc",
       "title_ko": "레벨 40에 듀얼 전문화 비용 50골드 - 보조 특성 나무 해금 - Wowhead",
       "title_original": "Dual Spec Costs 50 Gold at Level 40 - Unlock Secondary Talent Tree - Wowhead",
@@ -573,6 +531,20 @@
       "category": "쐐기·레이드",
       "published_at": "2026-11-10T16:35:20+00:00",
       "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNNTQweXFmdkFuSGlvYTAwSXZlZU5NbUVxSlc5YmlHYi0tejVLLUQ2WEFHVjlTSHo5VzBHSzlZVzBlXzlpeFhVYUlhbEIwcWs4Ri0zdVFqTTQzTk1sTVRpd296RkdrODQ5SExLTlRrbG9aNGt6NENzWDJQM0VidzM4Q3BINWoxSjVXWkt0bF9hQWFINVFi?oc=5",
+      "verified": false,
+      "translated": true,
+      "sample": false
+    },
+    {
+      "id": "bd629f4d6e214aa7",
+      "title_ko": "던전 시체 이동 - Reddit",
+      "title_original": "Dungeon Corpse Runs - Reddit",
+      "summary_ko": "헤드라인 기반 간략 소식입니다: 던전 내 시체 이동에 관한 내용입니다.",
+      "source": "Reddit WoW (indexed)",
+      "region": "global",
+      "category": "쐐기·레이드",
+      "published_at": "2026-11-10T08:00:00+00:00",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5PRDVPclhqMkh2VktsYmhkVVp2enRKcGpIeDRwQUY5SUg2d21Vbmh3Z3JKVTdzaUF4LWJtM0RseEo1OUlRSklLN3JvVE04OGoxQWhnYjczVW5UaDdVVHJyaGpzZUdUZm45b3NJUXdCNVgxV3FE?oc=5",
       "verified": false,
       "translated": true,
       "sample": false
@@ -704,6 +676,20 @@
       "sample": false
     },
     {
+      "id": "d54e1f4d394faefd",
+      "title_ko": "이름이 변경된 Tortollan NPC와 Venomous Abyss 조정 - 패치 12.1.5 긴급 수정 - Wowhead",
+      "title_original": "Renamed Tortollan NPCs and Venomous Abyss Tuning - Patch 12.1.5 Hotfixes - Wowhead",
+      "summary_ko": "헤드라인 기반 간략 소식입니다: 패치 12.1.5 긴급 수정으로 이름이 변경된 Tortollan NPC와 Venomous Abyss 조정 소식입니다.",
+      "source": "Wowhead",
+      "region": "global",
+      "category": "공식·핫픽스",
+      "published_at": "2026-11-06T07:36:05+00:00",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQZFNUUGRubG53WEZJN2NJRzZSbVNzNzRpSnlNWjZVYW9WRGwwTlpQVHZZeVAxSjkwdW1Vd0VlV2Mwb1hjN2NlS0lNWW5iWC1WRnZoNDhNVkstcFoxM0laY1FyN0hUanpXUlBJQUFkVzRvRlN4Xzl5NkdGTXlSTkhINWxKTWcxRG9lM3NTVV9rWDhQRGdXRlVBVUp5UkR0WFVDSzNyeFY0Ulc3dw?oc=5",
+      "verified": false,
+      "translated": true,
+      "sample": false
+    },
+    {
       "id": "859dab000b79ab5c",
       "title_ko": "맹독의 심연 공격대 신화 난이도 Twin Fangs 너프 - Wowhead",
       "title_original": "Mythic Twin Fangs Nerf for The Venomous Abyss Raid - Wowhead",
@@ -720,17 +706,12 @@
   ],
   "collection": {
     "attempted": 6,
-    "success": 5,
-    "errors": [
-      {
-        "source": "MMO-Champion",
-        "error": "429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?q=site%3Ammo-champion.com%20%22World%20of%20Warcraft%22%20when%3A14d&hl=en-US&gl=US&ceid=US:en"
-      }
-    ],
+    "success": 6,
+    "errors": [],
     "translated": true,
-    "translated_count": 48,
-    "reused_translations": 48,
-    "new_translations": 0,
+    "translated_count": 50,
+    "reused_translations": 46,
+    "new_translations": 4,
     "feed_results": [
       {
         "source": "Blizzard",
@@ -740,17 +721,17 @@
       {
         "source": "Wowhead",
         "status": "ok",
-        "count": 12
+        "count": 13
       },
       {
         "source": "Inven",
         "status": "ok",
-        "count": 3
+        "count": 0
       },
       {
         "source": "MMO-Champion",
-        "status": "error",
-        "count": 0
+        "status": "ok",
+        "count": 1
       },
       {
         "source": "Reddit Competitive (indexed)",
