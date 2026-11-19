@@ -68,7 +68,7 @@ def discover_periods(html):
     soup=BeautifulSoup(html,'html.parser')
     for el in soup(['script','style','noscript']):el.decompose()
     text=' '.join(soup.stripped_strings)
-    rows=re.findall(r'(?<!\\d)(\\d{4})\\s+(mid[12])\\b',text,re.I)
+    rows=re.findall(r'(?<!\d)(\d{4})\s+(mid[12])\b',text,re.I)
     return sorted({int(p):season.lower() for p,season in rows}.items())
 
 def read_page(html,requested=None,now=None,season=None):
@@ -80,8 +80,8 @@ def read_page(html,requested=None,now=None,season=None):
     period=int(m.group(1))
     if requested is not None and period!=requested:raise ValueError(f'Expected period {requested}, got {period}')
     rx_names='|'.join(sorted(map(re.escape,KNOWN),key=len,reverse=True))
-    row_rx=re.compile(r'(?<!\\S)(\\d{1,2})\\s+(0|[↑↓]\\s?\\d+|[+-]\\d+)\\s+([SABCDF])\\s+(\\d+(?:[.,]\\d+)?[KMB]?)\\s+(\\d+(?:[.,]\\d+)?[KMB]?)\\s+(\\d+(?:[.,]\\d+)?[KMB]?)\\s+('+rx_names+r')\\b',re.I)
-    positions=[(role, re.search(r'\\b'+head+r' specs\\b',text,re.I)) for role,head in [('damage','Damage'),('tank','Tank'),('healer','Healer')]]
+    row_rx=re.compile(r'(?<!\S)(\d{1,2})\s+(0|[↑↓]\s?\d+|[+-]\d+)\s+([SABCDF])\s+(\d+(?:[.,]\d+)?[KMB]?)\s+(\d+(?:[.,]\d+)?[KMB]?)\s+(\d+(?:[.,]\d+)?[KMB]?)\s+('+rx_names+r')\b',re.I)
+    positions=[(role, re.search(r'\b'+head+r' specs\b',text,re.I)) for role,head in [('damage','Damage'),('tank','Tank'),('healer','Healer')]]
     if any(x[1] is None for x in positions):raise ValueError('One or more role sections missing')
     items=[]
     for idx,(role,head) in enumerate(positions):
