@@ -10,8 +10,8 @@ class DPSParserTests(unittest.TestCase):
         with self.assertRaises(ValueError):number('??')
 
     def test_season_period_index(self):
-        html='<html><body><h1>Period (week) index</h1>1090 mid2 Meta 1089 mid2 Meta 1075 mid1 Meta 1061 mid1 Meta 1060 tww3 Meta</body></html>'
-        self.assertEqual(discover_periods(html),[(1061,'mid1'),(1075,'mid1'),(1089,'mid2'),(1090,'mid2')])
+        html='<html><body><h1>Period (week) index</h1>1090 mid2 Meta 1089 mid2 Meta 1075 mid1 Meta 1061 mid1 Meta 1060 tww3 Meta 1091 mid3 Meta</body></html>'
+        self.assertEqual(discover_periods(html),[(1061,'mid1'),(1075,'mid1'),(1089,'mid2'),(1090,'mid2'),(1091,'mid3')])
 
     def make_section(self, names):
         return ' '.join(f'{i} 0 C {220+i}K {300+i}K 1.3K {name}' for i,name in enumerate(names,1))
