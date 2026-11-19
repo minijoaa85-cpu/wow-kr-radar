@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T09:59:42.086196+09:00",
+  "generated_at": "2026-11-19T10:00:12.629691+09:00",
   "status": "live",
   "week": "2026-W47",
   "items": [
@@ -102,20 +102,6 @@
       "sample": false
     },
     {
-      "id": "927e9e47f7664a70",
-      "title_ko": "Join the World of Warcraft 22nd Anniversary Celebration - Blizzard",
-      "title_original": "Join the World of Warcraft 22nd Anniversary Celebration - Blizzard",
-      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
-      "source": "Blizzard",
-      "region": "global",
-      "category": "커뮤니티",
-      "published_at": "2026-11-17T17:58:00+00:00",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQNkJWMmxwalRleE0takVOQlZoSktBLTdiX0g3RXk3ZWdScTlJbWhoS3U3NThmM0pfYnJHXzBOZXFSQnp0RzR5YllHWS1DMm01S0NwY2ZkaHgwbi1kSWQ3eUYzdlZjWmhYVGVSMW1DUXJrMl80SWxtbGU4R1FHeXN1VWUwdGZtUGJ2b1Bqc0plNDhzNVVrMHoyZlUtOHRmc200UDJtQWhSVFJHX1ZTbGhqc3l3?oc=5",
-      "verified": false,
-      "translated": false,
-      "sample": false
-    },
-    {
       "id": "f36bc7ef8d42de30",
       "title_ko": "Blizzard on Encounter Design in Season 3 - Reduced Mechanical Penalties - Wowhead",
       "title_original": "Blizzard on Encounter Design in Season 3 - Reduced Mechanical Penalties - Wowhead",
@@ -186,6 +172,20 @@
       "sample": false
     },
     {
+      "id": "1634d4ef7992357e",
+      "title_ko": "Massive Nerfs to The Venomous Abyss Raid - Large Nerfs to Ula'tek on Every Difficulty - Wowhead",
+      "title_original": "Massive Nerfs to The Venomous Abyss Raid - Large Nerfs to Ula'tek on Every Difficulty - Wowhead",
+      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
+      "source": "Wowhead",
+      "region": "global",
+      "category": "직업·밸런스",
+      "published_at": "2026-11-07T00:08:47+00:00",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQUHBiYzN3SmdxaHM2Zk5rZ2owQndXbTZzemxHTk5kRkctZFpXZDN4S2hScEFzaGhsNUxSLXpWWkk2RGUxX3BjaHZHTmZmWVRPN3pON3N0NUNHa0lDMXotajQzTmZsZHBoNlB0SGZQcy1qT2NYbjFhcGRuVU1ySjZEYUZVektNUDJ6VEZpZS14VF9OSDkxQ0ljTmotOGRmektpUWozbWpsOTFoNzg?oc=5",
+      "verified": false,
+      "translated": false,
+      "sample": false
+    },
+    {
       "id": "d418b972dedeb0d5",
       "title_ko": "Ula'tek Nerfed on All Difficulties - Hotfixes Now Live - Wowhead",
       "title_original": "Ula'tek Nerfed on All Difficulties - Hotfixes Now Live - Wowhead",
@@ -195,20 +195,6 @@
       "category": "공식·핫픽스",
       "published_at": "2026-11-06T20:10:28+00:00",
       "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQZHMzZUN1UTU0YktZdnJyblZrMmVOR2lqaUVEZF9Cbjl4UzF5ZFFhbVNneXZrYU5ZUk9iYTY4MXVFdzlHZE44dldOb3BHaTZqdkNBQzNXajBBQ3NPcy1yTFQ2a0t5bFNGa0pZSXloeFVNQkNrSTJiMl85akR5cTFhd085RmdUOGRhcVNZQ25Xeko?oc=5",
-      "verified": false,
-      "translated": false,
-      "sample": false
-    },
-    {
-      "id": "1634d4ef7992357e",
-      "title_ko": "Massive Nerfs to The Venomous Abyss Raid - Large Nerfs to Ula'tek on Every Difficulty - Wowhead",
-      "title_original": "Massive Nerfs to The Venomous Abyss Raid - Large Nerfs to Ula'tek on Every Difficulty - Wowhead",
-      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
-      "source": "Wowhead",
-      "region": "global",
-      "category": "직업·밸런스",
-      "published_at": "2026-11-06T13:22:44+00:00",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQUHBiYzN3SmdxaHM2Zk5rZ2owQndXbTZzemxHTk5kRkctZFpXZDN4S2hScEFzaGhsNUxSLXpWWkk2RGUxX3BjaHZHTmZmWVRPN3pON3N0NUNHa0lDMXotajQzTmZsZHBoNlB0SGZQcy1qT2NYbjFhcGRuVU1ySjZEYUZVektNUDJ6VEZpZS14VF9OSDkxQ0ljTmotOGRmektpUWozbWpsOTFoNzg?oc=5",
       "verified": false,
       "translated": false,
       "sample": false
@@ -288,7 +274,7 @@
       {
         "source": "Blizzard",
         "status": "ok",
-        "count": 1
+        "count": 0
       },
       {
         "source": "Wowhead",

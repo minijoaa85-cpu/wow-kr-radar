@@ -1,8 +1,30 @@
 {
-  "status": "not_collected",
+  "status": "live",
   "region": "kr",
-  "retrieved_at": null,
-  "affixes": [],
+  "retrieved_at": "2026-11-19T10:00:16.359691+09:00",
+  "title": "잘아타스의 제안: 공허결속, 폭군, 경화, 잘아타스의 기만",
+  "affixes": [
+    {
+      "name": "잘아타스의 제안: 공허결속",
+      "description": "전투 중 잘아타스가 주위의 적을 강화하는 공허결속 사절을 소환합니다.",
+      "icon": "inv_cosmicvoid_buff"
+    },
+    {
+      "name": "폭군",
+      "description": "우두머리의 생명력이 25%만큼 증가합니다. 우두머리와 그 하수인의 공격력이 최대 15%만큼 증가합니다.",
+      "icon": "achievement_boss_archaedas"
+    },
+    {
+      "name": "경화",
+      "description": "우두머리가 아닌 적의 생명력이 20%만큼, 공격력이 20%만큼 증가합니다.",
+      "icon": "ability_toughness"
+    },
+    {
+      "name": "잘아타스의 기만",
+      "description": "잘아타스가 플레이어를 배신해 자신이 베푼 혜택을 박탈하며, 사망 시 남은 시간이 15초만큼 차감되게 합니다.",
+      "icon": "ability_racial_chillofnight"
+    }
+  ],
   "source": "Raider.IO",
   "source_url": "https://raider.io/mythic-plus/affixes"
 }
