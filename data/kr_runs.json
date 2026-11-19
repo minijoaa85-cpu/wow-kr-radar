@@ -1,8 +1,9 @@
 {
-  "status": "not_collected",
+  "status": "unavailable",
   "region": "kr",
-  "retrieved_at": null,
+  "retrieved_at": "2026-11-19T11:35:09.449762+09:00",
   "source": "Raider.IO",
-  "source_url": "https://raider.io/mythic-plus-rankings",
-  "runs": []
+  "source_url": "https://raider.io/mythic-plus-rankings/season-mn-2/all/kr/leaderboards",
+  "runs": [],
+  "error": "API did not provide a runs array"
 }
