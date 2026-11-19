@@ -130,3 +130,32 @@
 .dps-history-links{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
 .dps-history-links a{font-size:11px;border:1px solid #38516b;color:#ebc891;background:#15273b;padding:9px 12px;border-radius:6px}
 .dps-history .history-view{border:0;background:#d0a85e;color:#172439;border-radius:6px;padding:9px 12px;font-weight:700;font-size:11px;cursor:pointer}
+
+
+/* V0.4.2 — Midnight full-season performance intelligence */
+.dps-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:20px 0}
+.dps-role-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.dps-role-tabs button{background:#16253a;border:1px solid #344962;border-radius:7px;color:#a8bdd2;padding:12px 23px;font-size:13px;font-weight:700}
+.dps-role-tabs button.active{background:#d4a860;color:#172235;border-color:#deb46e}
+.dps-toolbar label{color:#8da4bd;font-size:11px;display:flex;align-items:center;gap:8px}
+.dps-toolbar select{padding:11px;font-size:12px}
+.dps-picks{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}
+.dps-picks label{display:flex;align-items:center;gap:6px;background:#142338;color:#b6c9db;border:1px solid #2c435e;border-radius:7px;padding:9px 12px;font-size:11px;cursor:pointer}
+.dps-picks label.chosen{border-color:#d3ab71;background:#283447;color:#f5d49d}
+.dps-picks input{width:15px;height:15px;accent-color:#d5ac6b;margin:0}
+.dps-legend{display:flex;align-items:center;flex-wrap:wrap;gap:9px;align-self:end}
+.dps-legend span{display:flex;align-items:center;gap:5px;font-size:11px;color:#c4d3e1}
+.dps-legend i{width:10px;height:10px;border-radius:50%}
+.dps-extent{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
+.dps-extent>div{display:flex;flex-direction:column;gap:5px;background:#101c2e;padding:14px;border:1px solid #2c4158;border-radius:9px}
+.dps-extent b{font-size:12px;color:#edc789}
+.dps-extent span{font-size:11px;color:#a8bdd1}
+.dps-heatmap{overflow:auto;max-height:700px;border:1px solid #32475d;border-radius:9px;background:#0c1929}
+.dps-heatmap table{border-collapse:separate;border-spacing:2px;font-size:10px;white-space:nowrap}
+.dps-heatmap td{padding:10px 7px;text-align:center;min-width:38px;border-radius:3px;color:#f1f3f7;font-variant-numeric:tabular-nums}
+.dps-heatmap th{background:#19283a;color:#b1c6d8;padding:9px;font-weight:700}
+.dps-heatmap .sticky-col{position:sticky;left:0;z-index:1;min-width:130px;text-align:left;background:#1c3045}
+.dps-wide-table{margin-top:12px}
+.dps-wide-table table{min-width:1000px}
+.dps-wide-table th,.dps-wide-table td{font-size:11px;white-space:nowrap}
+@media(max-width:700px){.dps-extent{grid-template-columns:1fr}.dps-toolbar{align-items:flex-start;flex-direction:column}.dps-role-tabs button{padding:10px 17px}.dps-toolbar label{width:100%}.dps-toolbar select{flex:1}}
