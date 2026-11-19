@@ -18,7 +18,7 @@ DATA=ROOT/'data'/'dps'
 DATA.mkdir(parents=True,exist_ok=True)
 INDEX=DATA/'index.json'
 SOURCE='https://mythicstats.com/dps'
-AGENT='WoWKR-Radar/0.4.1 (weekly attributed summary; source mythicstats.com/dps)'
+AGENT='WoWKR-Radar/0.4.3 (weekly attributed summary; source mythicstats.com/dps)'
 KST=timezone(timedelta(hours=9))
 SPEC_CLASSES={
  'rogue':['assassination','subtlety','outlaw'],
@@ -68,7 +68,7 @@ def discover_periods(html):
     soup=BeautifulSoup(html,'html.parser')
     for el in soup(['script','style','noscript']):el.decompose()
     text=' '.join(soup.stripped_strings)
-    rows=re.findall(r'(?<!\d)(\d{4})\s+(mid[12])\b',text,re.I)
+    rows=re.findall(r'(?<!\d)(\d{4})\s+(mid[1-9][0-9]*)\b',text,re.I)
     return sorted({int(p):season.lower() for p,season in rows}.items())
 
 def read_page(html,requested=None,now=None,season=None):
@@ -177,10 +177,10 @@ def collect(session=requests, backfill_limit=None):
     archived.sort(key=lambda x:x['period'],reverse=True)
     index={'status':'ok' if archived else 'unavailable','source':'Mythicstats','source_url':SOURCE,
       'period_source':PERIOD_URL,'last_collected':now.isoformat(),'metric':'Overall dungeon DPS from Warcraft Logs, including noncombat time',
-      'keys':'source period-specific','seasons':['mid1','mid2'],'expected_periods':len(periods),'missing_periods':[p for p,_ in periods if p not in {x['period'] for x in archived}],
+      'keys':'source period-specific','seasons':sorted(set(season_lookup.values()),key=lambda z:int(z[3:])),'expected_periods':len(periods),'missing_periods':[p for p,_ in periods if p not in {x['period'] for x in archived}],
       'season_periods':[{'period':p,'season':sn} for p,sn in periods], 'periods':archived}
     INDEX.write_text(json.dumps(index,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    print('Mythicstats full Midnight:',len(archived),'of',len(periods),'verified periods;',len(stored),'new;',len(failures),'failed')
+    print('Mythicstats seasons',sorted(set(season_lookup.values())),'verified:',len(archived),'of',len(periods),'periods;',len(stored),'new;',len(failures),'unverified')
     return len(archived)>0
 
 if __name__=='__main__':
