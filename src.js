@@ -155,14 +155,14 @@ function dpsSvg(weeks,series,band=false,metric='avg_dps'){
  const x=i=>L+(weeks.length<=1?innerW/2:i*innerW/(weeks.length-1));
  const y=v=>T+(hi-v/1000)/(hi-lo)*innerH;
  const ticks=Array.from({length:5},(_,i)=>{const v=lo+(hi-lo)*i/4;const yy=T+(hi-v)/(hi-lo)*innerH;return `<line x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}" stroke="#2b4057" stroke-dasharray="4 5"/><text x="${L-9}" y="${yy+5}" fill="#91a7bb" text-anchor="end" font-size="12">${Math.round(v)}K</text>`}).join('');
- const path=(values)=>values.map((v,i)=>Number.isFinite(v)?(i===0||!Number.isFinite(values[i-1])?'M':'L')+x(i).toFixed(1)+','+y(v).toFixed(1):'').join(' ');
+ const path=(values)=>values.map((v,i)=>Number.isFinite(v)?(i===0||!Number.isFinite(values[i-1])||weeks[i].season!==weeks[i-1].season?'M':'L')+x(i).toFixed(1)+','+y(v).toFixed(1):'').join(' ');
  const lines=series.map((line,idx)=>{
   const color=line.color||dpsColor(line.name||'',idx);
   let area='';
   if(band&&line.high?.length&&line.low?.length){
    let start=-1;const zones=[];
    for(let i=0;i<=weeks.length;i++){
-    const ok=i<weeks.length&&Number.isFinite(line.high[i])&&Number.isFinite(line.low[i]);
+    const ok=i<weeks.length&&Number.isFinite(line.high[i])&&Number.isFinite(line.low[i])&&(start<0||weeks[i].season===weeks[i-1].season);
     if(ok&&start<0)start=i;
     if(!ok&&start>=0){
      const ids=Array.from({length:i-start},(_,offset)=>start+offset);
@@ -176,7 +176,8 @@ function dpsSvg(weeks,series,band=false,metric='avg_dps'){
   return area+`<path d="${path(line.values)}" fill="none" stroke="${color}" stroke-width="2.6" stroke-dasharray="${line.dash||''}" stroke-linecap="round" stroke-linejoin="round"/>`+dots;
  }).join('');
  const labels=weeks.map((w,i)=>i%Math.max(1,Math.ceil(weeks.length/12))===0||i===weeks.length-1?`<text x="${x(i)}" y="${H-19}" text-anchor="middle" fill="#90a5ba" font-size="11">${w.period}</text>`:'').join('');
- return `<div class="dps-chart-wrap"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Mythicstats 주간 평균 DPS 추이 그래프">${ticks}${lines}${labels}</svg></div>`;
+ const separators=weeks.map((w,i)=>i>0&&w.season!==weeks[i-1].season?`<line x1="${(x(i-1)+x(i))/2}" y1="${T}" x2="${(x(i-1)+x(i))/2}" y2="${H-B}" stroke="#8a9caa" stroke-width="1" stroke-dasharray="5 6"/><text x="${x(i)}" y="${T+12}" fill="#b9c8d9" font-size="11">${safe(w.season)}</text>`:'').join('');
+ return `<div class="dps-chart-wrap"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Mythicstats 주간 평균 DPS 추이 그래프">${ticks}${separators}${lines}${labels}</svg></div>`;
 }
 function dpsHeatmap(weeks,specs,role){
  const values=weeks.flatMap(w=>specs.map(name=>w.items.find(x=>x.name===name)?.avg_dps).filter(Number.isFinite));
