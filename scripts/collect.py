@@ -17,15 +17,15 @@ HIST = DATA / 'history'
 KST = dt.timezone(dt.timedelta(hours=9))
 NOW = dt.datetime.now(KST)
 WEEK = NOW.strftime('%G-W%V')
-USER_AGENT = 'WoWKR-Radar/0.3 (public news feed metadata aggregator; respect original sources)'
+USER_AGENT = 'WoWKR-Radar/0.4 (public news feed metadata aggregator; respect original sources)'
 # First-party feeds, editorial search feeds, and opt-in public Reddit RSS.
 FEEDS = [
  ('Blizzard', 'global', 'https://news.google.com/rss/search?q='+quote('site:worldofwarcraft.blizzard.com/en-us/news/ "World of Warcraft" when:14d')+'&hl=en-US&gl=US&ceid=US:en'),
  ('Wowhead', 'global', 'https://news.google.com/rss/search?q='+quote('site:wowhead.com/news/ "Midnight" OR "Retail" when:14d')+'&hl=en-US&gl=US&ceid=US:en'),
  ('Inven', 'KR', 'https://news.google.com/rss/search?q='+quote('site:inven.co.kr "월드 오브 워크래프트" OR "와우" when:14d')+'&hl=ko&gl=KR&ceid=KR:ko'),
  ('MMO-Champion', 'global', 'https://news.google.com/rss/search?q='+quote('site:mmo-champion.com "World of Warcraft" when:14d')+'&hl=en-US&gl=US&ceid=US:en'),
- ('Reddit', 'global', 'https://www.reddit.com/r/CompetitiveWoW/new.rss'),
- ('Reddit', 'global', 'https://www.reddit.com/r/wow/new.rss'),
+ ('Reddit Competitive (indexed)', 'global', 'https://news.google.com/rss/search?q='+quote('site:reddit.com/r/CompetitiveWoW/ (mythic OR raid OR tuning OR season) when:14d')+'&hl=en-US&gl=US&ceid=US:en'),
+ ('Reddit WoW (indexed)', 'global', 'https://news.google.com/rss/search?q='+quote('site:reddit.com/r/wow/ (Midnight OR patch OR raid OR dungeon) when:14d')+'&hl=en-US&gl=US&ceid=US:en'),
 ]
 KEYWORDS = ('wow','warcraft','midnight','eclipse','raid','mythic','dungeon','hotfix','ptr','class','season','와우','한밤','쐐기','공격대','블리자드','직업','특성','레이드','패치','신화','던전')
 BLOCK = ('forever','포에버','포에저','wow classic','classic wow','classic era','classic servers','classic realms','classic season','classic anniversary','cataclysm classic','mists of pandaria classic','burning crusade classic','wrath classic','hardcore realm','hardcore servers','season of discovery','wow forever','와우 포에버','와우포에버','포에버 서버','포에버 pvp','포에버 fix','포에버_fix','포에저','클래식 서버','클래식 시즌','클래식 하드코어','클래식 전문','디스커버리의 시즌','불타는 성전 클래식','판다리아의 안개 클래식')
@@ -82,28 +82,51 @@ def feed_items(xml):
    link=e.find('a:link',ns)
    yield {'title':get_text(e,'{http://www.w3.org/2005/Atom}title'),'url':link.get('href','') if link is not None else '', 'published_at':parse_date(get_text(e,'{http://www.w3.org/2005/Atom}updated')),'description':get_text(e,'{http://www.w3.org/2005/Atom}summary')}
 
+def restore_translation_cache(items):
+    try:
+        previous=json.loads((DATA/'latest.json').read_text(encoding='utf-8')).get('items',[])
+    except (OSError,ValueError):
+        previous=[]
+    cache={(x.get('source'),x.get('title_original')):x for x in previous if x.get('translated') and x.get('region')!='KR'}
+    reused=0
+    for x in items:
+        cached=cache.get((x.get('source'),x.get('title_original')))
+        if cached:
+            x['title_ko']=cached.get('title_ko') or x['title_ko']
+            x['summary_ko']=cached.get('summary_ko') or x['summary_ko']
+            x['translated']=True
+            reused+=1
+    return reused
+
 def translate(items):
- """Optional compact Korean summaries. No API key -> titles preserved and status explicit."""
- key=os.getenv('OPENAI_API_KEY','').strip()
- if not key:return False
- model=os.getenv('OPENAI_MODEL','gpt-4.1-mini')
- for idx in range(0,len(items),8):
-  batch=items[idx:idx+8]
-  try:
-   payload={'model':model,'temperature':0,'response_format':{'type':'json_object'},'messages':[
-    {'role':'system','content':'You translate World of Warcraft RETAIL news headlines into natural Korean and create precise one-sentence Korean summaries. Do not hallucinate facts, dates, balance changes, or details not explicitly in title and snippet. Keep game terminology standard in Korean. Return JSON {"results":[{"title_ko":"...","summary_ko":"..."},...]}, preserving input order and exact count.'},
-    {'role':'user','content':json.dumps([{'title':x['title_original'],'snippet':x['original_snippet'][:300]} for x in batch],ensure_ascii=False)}]}
-   resp=requests.post('https://api.openai.com/v1/chat/completions',headers={'Authorization':'Bearer '+key},json=payload,timeout=70)
-   resp.raise_for_status()
-   out=json.loads(resp.json()['choices'][0]['message']['content'])['results']
-   if len(out)!=len(batch):raise ValueError('Translation response count mismatch')
-   for item,tr in zip(batch,out):
-    item['title_ko']=clean(tr.get('title_ko')) or item['title_original']
-    item['summary_ko']=clean(tr.get('summary_ko')) or '원문에서 자세한 내용을 확인하세요.'
-    item['translated']=True
-  except (requests.RequestException,KeyError,ValueError,json.JSONDecodeError) as ex:
-   print('Translation unavailable for batch:',str(ex)[:200]);continue
- return any(x.get('translated') for x in items)
+    """Translate headline+feed snippet only. Never claim article-body summarization."""
+    key=os.getenv('OPENAI_API_KEY','').strip()
+    pending=[x for x in items if x['region']!='KR' and not x.get('translated')]
+    if not key or not pending:return 0
+    model=os.getenv('OPENAI_MODEL','gpt-4.1-mini')
+    done=0
+    for idx in range(0,min(len(pending),40),8):
+        batch=pending[idx:idx+8]
+        try:
+            prompt=[
+             {'role':'system','content':'You translate World of Warcraft retail news headlines and visible RSS snippets into Korean. Never add details not present in the supplied fields. Summaries must say it is a headline-based brief. Translate the title even if the snippet is empty. Preserve uncertainty, PTR/datamining qualifications. Return JSON object with results list of title_ko and summary_ko, exactly one for each input, in order.'},
+             {'role':'user','content':json.dumps([{'title':x['title_original'],'snippet':x.get('original_snippet','')[:260]} for x in batch],ensure_ascii=False)}
+            ]
+            resp=requests.post('https://api.openai.com/v1/chat/completions',headers={'Authorization':'Bearer '+key},json={'model':model,'response_format':{'type':'json_object'},'messages':prompt},timeout=65)
+            resp.raise_for_status()
+            translated=json.loads(resp.json()['choices'][0]['message']['content'])['results']
+            if not isinstance(translated,list) or len(translated)!=len(batch):raise ValueError('Translation count mismatch')
+            for x,entry in zip(batch,translated):
+                title=clean(entry.get('title_ko',''))
+                summary=clean(entry.get('summary_ko',''))
+                if not title or not summary:continue
+                x['title_ko']=title
+                x['summary_ko']=summary
+                x['translated']=True
+                done+=1
+        except (requests.RequestException,KeyError,ValueError,TypeError) as exc:
+            print('Translation batch failed:',str(exc)[:180])
+    return done
 
 def main():
  DATA.mkdir(exist_ok=True);HIST.mkdir(exist_ok=True)
@@ -141,9 +164,10 @@ def main():
   print('All feeds failed. Existing snapshots unchanged.');return 1
  items.sort(key=lambda x:x['published_at'],reverse=True)
  items=items[:120]
- translated=translate([x for x in items if x['region']!='KR'])
+ cached=restore_translation_cache(items)
+ translated=translate(items)
  for x in items:x.pop('original_snippet',None)
- latest={'generated_at':NOW.isoformat(),'status':'live' if items else 'empty','week':WEEK,'items':items,'collection':{'attempted':len(FEEDS),'success':success,'errors':errors,'translated':translated,'feed_results':feed_results}}
+ latest={'generated_at':NOW.isoformat(),'status':'live' if items else 'empty','week':WEEK,'items':items,'collection':{'attempted':len(FEEDS),'success':success,'errors':errors,'translated':cached+translated>0,'translated_count':sum(1 for x in items if x.get('translated') and x['region']!='KR'),'reused_translations':cached,'new_translations':translated,'feed_results':feed_results}}
  (DATA/'latest.json').write_text(json.dumps(latest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
  # Merge instead of overwrite: manual reruns may add headlines during the same week.
  p=HIST/(WEEK+'.json')
