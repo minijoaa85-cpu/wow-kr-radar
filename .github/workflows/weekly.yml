@@ -7,7 +7,7 @@ on:
       - 'tests/**'
       - '.github/workflows/weekly.yml'
   schedule:
-    - cron: '0 22 * * 0'
+    - cron: '0 1 * * 5'
   workflow_dispatch:
 permissions:
   contents: write
