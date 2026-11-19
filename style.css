@@ -24,3 +24,20 @@
 .release-actions a:hover{background:#354b62}
 .version-footnote{font-size:11px;color:#8c9caf;line-height:1.9;margin-top:19px}
 @media(max-width:700px){.release-card{padding:16px}.release-top time{margin-left:0}.release-actions a{flex:1 1 130px}.version-mini-stats span{flex:1 1 100px}}
+
+/* V0.3 — My Watch and Korean Mythic+ */
+.watch-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:20px}
+.watch-option{display:flex;align-items:center;gap:10px;cursor:pointer;padding:16px 13px;background:#111d2f;border:1px solid #30435b;border-radius:9px;font-size:12px;color:#cfdbeb}
+.watch-option:has(input:checked){border-color:#e0b36c;background:#253146;color:#ffde9d;font-weight:700}
+.watch-option input{width:17px;height:17px;margin:0;accent-color:#d8a957;flex:none}
+.mplus-panel{background:#111d2e;border:1px solid #30435b;border-radius:12px;padding:24px;margin:22px 0}
+.mplus-header{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.mplus-header h3{font-size:20px;margin:0 0 7px}
+.mplus-header p,.mplus-caption{color:#91a7bb;font-size:11px;line-height:1.8}
+.mplus-header a{color:#f2cb88;font-size:12px}
+.mplus-affixes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:19px 0}
+.mplus-affix{background:#0d1929;border-radius:9px;border:1px solid #2b3c52;padding:19px}
+.mplus-affix b{font-size:15px;color:#f0cb8c}
+.mplus-affix p{font-size:12px;color:#a2b4c7;line-height:1.9}
+@media(max-width:950px){.watch-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.mplus-affixes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.watch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mplus-affixes{grid-template-columns:1fr}.mplus-panel{padding:15px}}
