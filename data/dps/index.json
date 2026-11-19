@@ -3,7 +3,7 @@
   "source": "Mythicstats",
   "source_url": "https://mythicstats.com/dps",
   "period_source": "https://mythicstats.com/period",
-  "last_collected": "2026-11-19T22:32:42.903242+09:00",
+  "last_collected": "2026-11-19T22:36:07.752951+09:00",
   "metric": "Overall dungeon DPS from Warcraft Logs, including noncombat time",
   "keys": "16-24",
   "seasons": [
@@ -35,98 +35,98 @@
       "season": "mid2",
       "file": "period-1090.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T22:32:42.903242+09:00"
+      "captured_at": "2026-11-19T22:36:07.752951+09:00"
     },
     {
       "period": 1089,
       "season": "mid2",
       "file": "period-1089.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T22:32:42.903242+09:00"
+      "captured_at": "2026-11-19T22:36:07.752951+09:00"
     },
     {
       "period": 1088,
       "season": "mid2",
       "file": "period-1088.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T22:32:42.903242+09:00"
+      "captured_at": "2026-11-19T22:36:07.752951+09:00"
     },
     {
       "period": 1087,
       "season": "mid2",
       "file": "period-1087.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T22:32:42.903242+09:00"
+      "captured_at": "2026-11-19T22:36:07.752951+09:00"
     },
     {
       "period": 1086,
       "season": "mid2",
       "file": "period-1086.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T22:32:42.903242+09:00"
+      "captured_at": "2026-11-19T22:36:07.752951+09:00"
     },
     {
       "period": 1085,
       "season": "mid2",
       "file": "period-1085.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T22:32:42.903242+09:00"
+      "captured_at": "2026-11-19T22:36:07.752951+09:00"
     },
     {
       "period": 1084,
       "season": "mid2",
       "file": "period-1084.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T22:32:42.903242+09:00"
+      "captured_at": "2026-11-19T22:36:07.752951+09:00"
     },
     {
       "period": 1083,
       "season": "mid2",
       "file": "period-1083.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T22:32:42.903242+09:00"
+      "captured_at": "2026-11-19T22:36:07.752951+09:00"
     },
     {
       "period": 1082,
       "season": "mid2",
       "file": "period-1082.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T22:32:42.903242+09:00"
+      "captured_at": "2026-11-19T22:36:07.752951+09:00"
     },
     {
       "period": 1081,
       "season": "mid2",
       "file": "period-1081.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T22:32:42.903242+09:00"
+      "captured_at": "2026-11-19T22:36:07.752951+09:00"
     },
     {
       "period": 1080,
       "season": "mid2",
       "file": "period-1080.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T22:32:42.903242+09:00"
+      "captured_at": "2026-11-19T22:36:07.752951+09:00"
     },
     {
       "period": 1079,
       "season": "mid2",
       "file": "period-1079.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T22:32:42.903242+09:00"
+      "captured_at": "2026-11-19T22:36:07.752951+09:00"
     },
     {
       "period": 1078,
       "season": "mid2",
       "file": "period-1078.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T22:32:42.903242+09:00"
+      "captured_at": "2026-11-19T22:36:07.752951+09:00"
     },
     {
       "period": 1077,
       "season": "mid2",
       "file": "period-1077.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T22:32:42.903242+09:00"
+      "captured_at": "2026-11-19T22:36:07.752951+09:00"
     }
   ]
-}\n
+}

@@ -1,7 +1,7 @@
 {
   "period": 1086,
   "season": "mid2",
-  "captured_at": "2026-11-19T22:32:42.903242+09:00",
+  "captured_at": "2026-11-19T22:36:07.752951+09:00",
   "source": "Mythicstats",
   "source_url": "https://mythicstats.com/dps?period=1086",
   "scope": "Mythic+ dungeon-wide DPS; all 3 roles from source",
@@ -449,4 +449,4 @@
     }
   ],
   "status": "ok"
-}\n
+}

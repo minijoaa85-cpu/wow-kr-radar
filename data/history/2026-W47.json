@@ -229,9 +229,9 @@
     },
     {
       "id": "a1885b04c99d9e9a",
-      "title_ko": "현 소매 와우 상태에서는 이런 유형의 테마가 다시는 없을 것이다. 그 맛을 잃었고 미드나이트 같지 않다 - Reddit",
+      "title_ko": "리테일 와우는 현재 상태로 이와 같은 테마를 다시는 가지지 않을 것이다. 그 맛을 잃었고, 자정의 느낌이 들지 않는다. - Reddit",
       "title_original": "retail wow will never have this type of theme again at its current state. it have lost its taste. it doesn't feels midnight. - Reddit",
-      "summary_ko": "현 소매 와우 상태에서는 이런 유형의 테마가 다시는 없을 것이다. 그 맛을 잃었고 미드나이트 같지 않다 - Reddit 기반 헤드라인 브리핑",
+      "summary_ko": "이 요약은 제목을 기반으로 한 브리핑입니다. 리테일 와우가 현재 상태로는 자정 느낌의 테마를 다시는 가지지 못하며, 맛을 잃었다는 Reddit의 의견을 전하고 있습니다.",
       "source": "Reddit WoW (indexed)",
       "region": "global",
       "category": "커뮤니티",
@@ -635,9 +635,9 @@
     },
     {
       "id": "3de28bbf605d53f0",
-      "title_ko": "이번 주 신화+ 던전 돌기 횟수가 예상만큼 크게 줄지 않았다 - Reddit",
+      "title_ko": "이번 주 신화+ 던전 진행 수가 내가 예상한 만큼 크게 줄지 않았다 - Reddit",
       "title_original": "Number of mythic+ run this week didn't fall as much as I expected - Reddit",
-      "summary_ko": "이번 소식은 제목 기반 요약입니다. 이번 주 신화+ 던전 돌기 수가 예상만큼 크게 감소하지 않았다는 Reddit 게시글을 다룹니다.",
+      "summary_ko": "이 요약은 제목을 기반으로 한 브리핑입니다. Reddit 사용자가 이번 주 신화+ 던전 진행 횟수가 예상만큼 크게 떨어지지 않았다고 언급하고 있습니다.",
       "source": "Reddit WoW (indexed)",
       "region": "global",
       "category": "쐐기·레이드",
@@ -910,5 +910,5 @@
     "translated": false
   },
   "created_at": "2026-11-19T00:01:31.779743+09:00",
-  "updated_at": "2026-11-19T22:32:31.998808+09:00"
+  "updated_at": "2026-11-19T22:35:59.630280+09:00"
 }
