@@ -1,4 +1,4 @@
-# WoW KR Radar v0.4
+# WoW KR Radar v0.4.1
 
 한국 월드 오브 워크래프트 **본섭(리테일)** 플레이어를 위한 모바일/PC 대시보드. 공식 뉴스, Wowhead, 와우 인벤, Reddit 등의 공개 기사/게시물 메타데이터를 수집하고 원문 링크로 연결합니다.
 
@@ -41,6 +41,17 @@ npm run build
 - Google News RSS URL은 원문 URL이 아닌 뉴스 경유 링크일 수 있음.
 - 저작권, robots.txt, API 조건, 속도 제한을 존중해야 함.
 - `OPENAI_API_KEY` 입력 시 API 사용량에 따른 비용 발생.
+
+## v0.4.1 — MythicStats 전문화별 DPS 주간 추이
+- 왼쪽 메뉴에 **DPS 주간 추이** 탭. 직업/공격 전문화 선택과 Avg DPS/Top 5% 전환 그래프, 순위·Runs 표 제공
+- 데이터 원문: https://mythicstats.com/dps (Warcraft Logs 집계, 쐐기 16~24단, 전체 던전 시간 기준)
+- 매주 데이터 수집에서 최신 Period 통계 숫자만 `data/dps/period-N.json`에 별도 저장
+- 최초 수집에서 원본에 실재하는 과거 7개 Period까지 제한적으로 보관 (총 8주)
+- 오른쪽 **주간 히스토리**에도 DPS 기간별 JSON 다운로드 링크 추가
+- 개발 히스토리 V0.4.1 PDF/PPTX 문서 자동 생성
+- 주간 시작 시 데이터가 불안정하며 시즌 변경이나 원본 범위 차이로 단순한 DPS 수치 비교가 부정확할 수 있음
+- 서버 호출/출처 파싱에 실패하면 숫자를 채워넣지 않고 이전 데이터 보존
+- 외부 서비스의 이용 제한을 준수하고 원문 소유자의 자료라는 표시 유지
 
 ## v0.4 — 뉴스·My Watch·한국 쐐기 정보
 - Reddit 직접 RSS의 404/429 문제를 줄이기 위해 Google News Reddit 색인 쿼리 사용. 수집되지 않은 토론이 있을 수 있으며 실시간 Reddit API가 아님
