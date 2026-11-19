@@ -1,7 +1,7 @@
 import './style.css';
 const cats=['전체','공식·핫픽스','직업·밸런스','쐐기·레이드','로드맵','국내 소식','커뮤니티','기타'];
 const sources=['전체','Blizzard','Wowhead','Inven','Reddit Competitive (indexed)','Reddit WoW (indexed)','MMO-Champion'];
-const state={cat:'전체',src:'전체',q:'',tab:'overview',week:'latest',items:[],history:[],releases:[],meta:null,priorIds:new Set(),showOriginal:false,myWatch:[],watchSpecs:[],mplus:null,krRuns:null,dpsLoaded:false,dpsIndex:null,dpsWeeks:[],dpsClass:'hunter',dpsSpec:'marksmanship hunter',dpsMetric:'avg_dps'};
+const state={cat:'전체',src:'전체',q:'',tab:'overview',week:'latest',items:[],history:[],releases:[],meta:null,priorIds:new Set(),showOriginal:false,myWatch:[],watchSpecs:[],mplus:null,krRuns:null,dpsLoaded:false,dpsIndex:null,dpsWeeks:[],dpsClass:'hunter',dpsSpec:'marksmanship hunter',dpsMetric:'avg_dps',dpsRole:'damage',dpsSeason:'all',dpsSelected:['marksmanship hunter','beast-mastery hunter'],dpsShowBand:true,dpsView:'selected'};
 const $=id=>document.getElementById(id);
 const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const formatted=d=>{if(!d)return '날짜 미상';const t=new Date(d);return Number.isNaN(t.getTime())?'날짜 미상':new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'short',day:'numeric'}).format(t)};
@@ -107,7 +107,7 @@ async function loadDps(){
   const r=await fetch('./data/dps/index.json?ts='+Date.now());
   if(!r.ok)throw Error('DPS 인덱스 접근 불가');
   const ix=await r.json();state.dpsIndex=ix;
-  const recent=(ix.periods||[]).slice(0,12);
+  const recent=(ix.periods||[]);
   const result=await Promise.all(recent.map(async p=>{
    if(!/^period-\d+\.json$/.test(p.file||''))return null;
    try{const r=await fetch('./data/dps/'+p.file);return r.ok?await r.json():null;}catch(e){return null;}
@@ -116,43 +116,94 @@ async function loadDps(){
  }catch(e){state.dpsIndex={status:'unavailable',error:e.message};state.dpsWeeks=[];}
  if(state.tab==='dps')renderDps();else if(state.tab==='history')history();
 }
-function dpsChart(entries,metric){
- const valid=entries.filter(x=>x.entry&&Number.isFinite(x.entry[metric]));
- if(!valid.length)return '<div class="empty">선택한 전문화의 확인된 주별 DPS 기록이 없습니다.</div>';
- const values=valid.map(x=>x.entry[metric]/1000);
- let lo=Math.floor(Math.min(...values)*.95/10)*10,hi=Math.ceil(Math.max(...values)*1.05/10)*10;
+const dpsRoleLabels={damage:'딜러',tank:'탱커',healer:'힐러'};
+const dpsMoreNames={
+ 'blood death-knight':'혈기 죽음의 기사','vengeance demon-hunter':'복수 악마사냥꾼',
+ 'guardian druid':'수호 드루이드','protection warrior':'방어 전사','protection paladin':'보호 성기사',
+ 'brewmaster monk':'양조 수도사','preservation evoker':'보존 기원사','mistweaver monk':'운무 수도사',
+ 'holy paladin':'신성 성기사','restoration shaman':'복원 주술사',
+ 'discipline priest':'수양 사제','holy priest':'신성 사제','restoration druid':'회복 드루이드'
+};
+const dpsLabel=name=>dpsMoreNames[name]||dpsNameMap[name]||name;
+const dpsColor=i=>['#e7ba6b','#7abaf3','#81d3a5','#db91d3','#ee8c80','#b5a8f1'][i%6];
+const dpsNum=value=>Number.isFinite(value)?Math.round(value/1000).toLocaleString('ko-KR')+'K':'—';
+function dpsSvg(weeks,series,band=false,metric='avg_dps'){
+ const allValues=series.flatMap(s=>s.values.filter(Number.isFinite));
+ const highs=band?series.flatMap(s=>(s.high||[]).filter(Number.isFinite)):[];
+ const lows=band?series.flatMap(s=>(s.low||[]).filter(Number.isFinite)):[];
+ const vals=[...allValues,...highs,...lows].map(v=>v/1000);
+ if(!vals.length)return '<div class="empty">선택한 주차에 비교 가능한 전문화가 없습니다.</div>';
+ let lo=Math.floor(Math.min(...vals)*.9/10)*10,hi=Math.ceil(Math.max(...vals)*1.04/10)*10;
  if(hi<=lo)hi=lo+10;
- const xx=i=>valid.length===1?440:70+i*800/(valid.length-1);
- const yy=v=>236-(v-lo)*185/(hi-lo);
- const dots=valid.map((p,i)=>`<circle cx="${xx(i)}" cy="${yy(values[i])}" r="5" fill="#e4b56d"><title>Period ${p.period}: ${Math.round(p.entry[metric]).toLocaleString('ko-KR')} DPS · 표본 ${p.entry.runs.toLocaleString('ko-KR')}회</title></circle>`).join('');
- const ticks=Array.from({length:5},(_,i)=>{const val=lo+(hi-lo)*i/4;const y=yy(val);return `<line x1="65" y1="${y}" x2="880" y2="${y}" stroke="#34475a" stroke-dasharray="4 6"/><text x="57" y="${y+4}" text-anchor="end" fill="#9eb2c7" font-size="13">${Math.round(val)}K</text>`}).join('');
- const points=valid.map((p,i)=>xx(i)+','+yy(values[i])).join(' ');
- const labels=valid.map((p,i)=>`<text x="${xx(i)}" y="262" text-anchor="middle" fill="#9eb2c7" font-size="12">${p.period}</text>`).join('');
- return `<div class="dps-chart-wrap"><svg viewBox="0 0 920 280" role="img" aria-label="Period별 ${metric==='avg_dps'?'평균':'상위 5%'} DPS 추이">${ticks}<polyline points="${points}" fill="none" stroke="#e4b56d" stroke-width="3" stroke-linejoin="round"/>${dots}${labels}</svg></div>`;
+ const W=1050,H=360,L=63,R=19,T=24,B=52,innerW=W-L-R,innerH=H-T-B;
+ const x=i=>L+(weeks.length<=1?innerW/2:i*innerW/(weeks.length-1));
+ const y=v=>T+(hi-v/1000)/(hi-lo)*innerH;
+ const ticks=Array.from({length:5},(_,i)=>{const v=lo+(hi-lo)*i/4;const yy=T+(hi-v)/(hi-lo)*innerH;return `<line x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}" stroke="#2b4057" stroke-dasharray="4 5"/><text x="${L-9}" y="${yy+5}" fill="#91a7bb" text-anchor="end" font-size="12">${Math.round(v)}K</text>`}).join('');
+ const path=(values)=>values.map((v,i)=>Number.isFinite(v)?(i===0||!Number.isFinite(values[i-1])?'M':'L')+x(i).toFixed(1)+','+y(v).toFixed(1):'').join(' ');
+ const lines=series.map((line,idx)=>{
+  const color=line.color||dpsColor(idx);
+  let area='';
+  if(band&&line.high?.length&&line.low?.length){
+   const pairs=weeks.map((_,i)=>Number.isFinite(line.high[i])&&Number.isFinite(line.low[i])?i:-1).filter(i=>i>=0);
+   if(pairs.length===weeks.length){
+    area='<polygon points="'+pairs.map(i=>x(i)+','+y(line.high[i])).join(' ')+' '+pairs.slice().reverse().map(i=>x(i)+','+y(line.low[i])).join(' ')+'" fill="'+color+'" fill-opacity=".12"/>';
+   }
+  }
+  const dots=line.values.map((v,i)=>Number.isFinite(v)?`<circle cx="${x(i)}" cy="${y(v)}" r="3.5" fill="${color}"><title>${safe(line.label)} · Period ${weeks[i].period}: ${Math.round(v).toLocaleString('ko-KR')} DPS</title></circle>`:'').join('');
+  return area+`<path d="${path(line.values)}" fill="none" stroke="${color}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>`+dots;
+ }).join('');
+ const labels=weeks.map((w,i)=>i%Math.max(1,Math.ceil(weeks.length/12))===0||i===weeks.length-1?`<text x="${x(i)}" y="${H-19}" text-anchor="middle" fill="#90a5ba" font-size="11">${w.period}</text>`:'').join('');
+ return `<div class="dps-chart-wrap"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Mythicstats 주간 평균 DPS 추이 그래프">${ticks}${lines}${labels}</svg></div>`;
+}
+function dpsHeatmap(weeks,specs,role){
+ const values=weeks.flatMap(w=>specs.map(name=>w.items.find(x=>x.name===name)?.avg_dps).filter(Number.isFinite));
+ const lo=Math.min(...values),hi=Math.max(...values);
+ const tile=(v)=>!Number.isFinite(v)?'background:transparent':`background:rgba(218,173,95,${(.12+.76*(v-lo)/Math.max(1,hi-lo)).toFixed(3)})`;
+ return `<div class="dps-heatmap"><table><thead><tr><th class="sticky-col">전문화 / Period</th>${weeks.map(w=>`<th title="${safe(w.season||'')}">${w.period}</th>`).join('')}</tr></thead><tbody>${specs.map(name=>`<tr><th class="sticky-col">${safe(dpsLabel(name))}</th>${weeks.map(w=>{const row=w.items.find(x=>x.name===name);return `<td style="${tile(row?.avg_dps)}" title="${safe(dpsLabel(name))} · ${w.period} · Avg ${dpsNum(row?.avg_dps)} · Top 5% ${dpsNum(row?.top_dps)}">${row?Math.round(row.avg_dps/1000):'—'}</td>`}).join('')}</tr>`).join('')}</tbody></table></div>`;
 }
 function renderDps(){
- if(!state.dpsLoaded){$('content').innerHTML='<div class="empty">MythicStats 주간 자료를 확인하는 중입니다.</div>';loadDps();return;}
- const weeks=state.dpsWeeks,latest=weeks.at(-1);
- const all=latest?.items||[];
- const classes=[...new Set(all.map(x=>x.class))].sort();
- if(classes.length&&!classes.includes(state.dpsClass))state.dpsClass=classes[0];
- const choices=all.filter(x=>x.class===state.dpsClass);
- if(choices.length&&!choices.some(x=>x.name===state.dpsSpec))state.dpsSpec=choices[0].name;
- const entries=weeks.map(w=>({period:w.period,entry:w.items.find(x=>x.name===state.dpsSpec),url:w.source_url})).filter(x=>x.entry);
- const current=entries.at(-1)?.entry;
- const m=state.dpsMetric;
- $('content').innerHTML=`<section class="hist-intro"><span class="eyebrow">MYTHICSTATS · WEEKLY DAMAGE TREND</span><h2>쐐기 전문화 DPS 주간 추이</h2><p>Mythicstats의 Warcraft Logs 기반 공개 통계에서 <b>전체 던전 시간 기준 DPS</b>를 주간 Period로 추적합니다. 현재 원본 화면의 쐐기 <b>16~24단</b> 범위, 표본 수와 기간 차이를 함께 확인하세요.</p><a class="dps-source-link" href="https://mythicstats.com/dps" target="_blank" rel="noopener noreferrer">Mythicstats 원본 열기 ↗</a></section>
- ${weeks.length?`<section class="dps-panel">
- <div class="dps-controls"><label>직업<select id="dps-class">${classes.map(x=>`<option value="${safe(x)}" ${state.dpsClass===x?'selected':''}>${safe(dpsClassLabels[x]||x)}</option>`).join('')}</select></label><label>전문화<select id="dps-spec">${choices.map(x=>`<option value="${safe(x.name)}" ${state.dpsSpec===x.name?'selected':''}>${safe(dpsNameMap[x.name]||x.name)}</option>`).join('')}</select></label><label>분석 기준<select id="dps-metric"><option value="avg_dps" ${m==='avg_dps'?'selected':''}>평균 DPS</option><option value="top_dps" ${m==='top_dps'?'selected':''}>상위 5% DPS</option></select></label></div>
- <div class="dps-summary"><div><small>선택 전문화</small><strong>${safe(dpsNameMap[state.dpsSpec]||state.dpsSpec)}</strong></div><div><small>최근 평균 DPS</small><strong>${current?Math.round(current.avg_dps/1000).toLocaleString('ko-KR')+'K':'—'}</strong></div><div><small>최근 순위 / 표본</small><strong>${current?'#'+current.rank+' · '+current.runs.toLocaleString('ko-KR')+'회':'—'}</strong></div><div><small>수집 Period</small><strong>${weeks.length}주</strong></div></div>
- <h3>${m==='avg_dps'?'평균':'상위 5%'} DPS 추이</h3>
- ${dpsChart(entries,m)}
- <p class="dps-note">${weeks.length<2?'현재 검증된 주간 자료가 1개라 비교선은 아직 생성되지 않았습니다. 이후 자동 수집 시 누적됩니다.':'같은 전문화의 주별 수치를 연결했습니다. 시즌·패치·단수·표본 차이는 직접 성능 변화와 구분해야 합니다.'}</p>
- <div class="kr-runs-table"><table><thead><tr><th>Period</th><th>순위</th><th>Avg DPS</th><th>Top 5%</th><th>Runs</th><th>출처</th></tr></thead><tbody>${entries.slice().reverse().map(w=>`<tr><td>${w.period}</td><td>#${w.entry.rank}</td><td>${Math.round(w.entry.avg_dps/1000).toLocaleString('ko-KR')}K</td><td>${Math.round(w.entry.top_dps/1000).toLocaleString('ko-KR')}K</td><td>${w.entry.runs.toLocaleString('ko-KR')}</td><td><a href="${safe(w.url)}" target="_blank" rel="noopener noreferrer">원문 ↗</a></td></tr>`).join('')}</tbody></table></div></section>`:'<div class="empty">아직 검증된 Mythicstats DPS 주간 수치가 없습니다. 수집 워크플로가 실행되면 이곳에 저장됩니다. 원본 사이트에서 바로 확인할 수 있습니다.</div>'}
- <p class="version-footnote">출처: <a href="https://mythicstats.com/dps" target="_blank" rel="noopener noreferrer">Mythicstats</a> · 쐐기 16~24단 전체 던전 시간 DPS (WCL 계산 기준) · 주간 시작 시 표본 수가 적을 수 있음 · 기존 Period는 자동 저장됩니다.</p>`;
- const cls=$('dps-class');if(cls)cls.onchange=e=>{state.dpsClass=e.target.value;state.dpsSpec='';renderDps()};
- const spec=$('dps-spec');if(spec)spec.onchange=e=>{state.dpsSpec=e.target.value;renderDps()};
- const metric=$('dps-metric');if(metric)metric.onchange=e=>{state.dpsMetric=e.target.value;renderDps()};
+ if(!state.dpsLoaded){$('content').innerHTML='<div class="empty">MythicStats 한밤 전체 시즌 데이터를 확인하는 중입니다.</div>';loadDps();return;}
+ const allWeeks=state.dpsWeeks;
+ const weeks=allWeeks.filter(w=>state.dpsSeason==='all'||w.season===state.dpsSeason);
+ const latest=weeks.at(-1)||allWeeks.at(-1),role=state.dpsRole;
+ const specs=(latest?.items||[]).filter(x=>x.role===role).map(x=>x.name);
+ const active=state.dpsSelected.filter(name=>specs.includes(name)).slice(0,6);
+ const selected=active.length?active:[specs[0]].filter(Boolean);
+ const details=selected.map((name,i)=>({label:dpsLabel(name),color:dpsColor(i),values:weeks.map(w=>w.items.find(x=>x.name===name)?.avg_dps??null),high:weeks.map(w=>w.items.find(x=>x.name===name)?.top_dps??null),low:weeks.map(w=>{const v=w.items.find(x=>x.name===name)?.avg_dps;return Number.isFinite(v)?v:null})}));
+ const roleInfo=weeks.map(w=>{
+  const rs=w.items.filter(x=>x.role===role);
+  const values=rs.map(x=>x.avg_dps);
+  return {period:w.period,avg:values.length?values.reduce((a,b)=>a+b,0)/values.length:null,
+   low:values.length?Math.min(...values):null,high:values.length?Math.max(...values):null,top:rs.length?Math.max(...rs.map(x=>x.top_dps)):null,n:rs.length};
+ });
+ const groupSeries=[{label:dpsRoleLabels[role]+' 전체 전문화 단순 평균',color:'#e7ba6b',values:roleInfo.map(x=>x.avg),low:roleInfo.map(x=>x.low),high:roleInfo.map(x=>x.high)}];
+ const chartMode=state.dpsView==='group'?'group':'selected';
+ const chartLines=chartMode==='group'?groupSeries:details;
+ const metric=state.dpsMetric;
+ const plotted=chartLines.map(line=>({...line,values:metric==='top_dps'&&chartMode==='selected'?line.high:line.values}));
+ const all=latest?.items.filter(x=>x.role===role)||[];
+ $('content').innerHTML=`<section class="hist-intro"><span class="eyebrow">MYTHICSTATS · MIDNIGHT FULL-SEASON TRACKING</span><h2>한밤 쐐기 DPS 주차별 분석</h2><p>딜러·탱커·힐러 역할을 분리해 평균 DPS를 비교해요. 전체 역할 흐름, 선택 전문화의 비교 추이, 전체 전문화 히트맵 및 주차별 표를 함께 제공합니다. 원본 기준 쐐기 16~24단, 던전 전체 시간 기준입니다.</p><a class="dps-source-link" href="https://mythicstats.com/dps" target="_blank" rel="noopener noreferrer">MythicStats 원문 보기 ↗</a> · <a class="dps-source-link" href="https://mythicstats.com/period" target="_blank" rel="noopener noreferrer">시즌·Period 색인 ↗</a></section>
+ <div class="dps-toolbar"><div class="dps-role-tabs">${Object.entries(dpsRoleLabels).map(([key,label])=>`<button type="button" data-dps-role="${key}" class="${key===role?'active':''}">${label}</button>`).join('')}</div><label>시즌<select id="dps-season"><option value="all" ${state.dpsSeason==='all'?'selected':''}>한밤 전체</option><option value="mid1" ${state.dpsSeason==='mid1'?'selected':''}>한밤 시즌 1</option><option value="mid2" ${state.dpsSeason==='mid2'?'selected':''}>한밤 시즌 2</option></select></label></div>
+ <div class="dps-summary"><div><small>확인된 주차 / 원본 기준</small><strong>${weeks.length} / ${state.dpsSeason==='all'?30:15}주</strong></div><div><small>${dpsRoleLabels[role]} 전문화</small><strong>${specs.length}개</strong></div><div><small>현재 시즌 / Period</small><strong>${latest?safe(latest.season)+' · '+latest.period:'—'}</strong></div><div><small>미수집 Period</small><strong>${(state.dpsIndex?.missing_periods||[]).filter(p=>{const record=state.dpsIndex?.periods?.find(x=>x.period===p);return state.dpsSeason==='all'||(record?.season===state.dpsSeason)}).length}개</strong></div></div>
+ ${weeks.length?`<section class="dps-panel"><h3>① 역할 전체 흐름 · 평균 및 전문화 간 범위</h3><p class="dps-note">같은 역할 소속 전문화의 <b>Avg DPS 단순 평균</b> 선, 그 주의 전문화 최저 Avg~최고 Avg 영역. 실제 로그별 최저·최고 값이 아니라 <b>전문화 간 분포 범위</b>입니다.</p>
+ ${dpsSvg(weeks,groupSeries,true)}
+ <h3>② 선택 전문화 비교 · 최대 6개</h3><div class="dps-controls"><label>표시할 통계<select id="dps-metric"><option value="avg_dps" ${metric==='avg_dps'?'selected':''}>평균 DPS (Avg)</option><option value="top_dps" ${metric==='top_dps'?'selected':''}>고점 참고: 상위 5% 평균(Top)</option></select></label><div class="dps-legend">${selected.map((n,i)=>`<span><i style="background:${dpsColor(i)}"></i>${safe(dpsLabel(n))}</span>`).join('')}</div></div>
+ <div class="dps-picks">${specs.map(name=>`<label class="${selected.includes(name)?'chosen':''}"><input type="checkbox" data-dps-spec="${safe(name)}" ${selected.includes(name)?'checked':''}>${safe(dpsLabel(name))}</label>`).join('')}</div>
+ ${dpsSvg(weeks,plotted)}
+ <p class="dps-note">저점: 선택 전문화별 관측 주차 중 <b>최저 Avg DPS</b>. 고점: 해당 주의 <b>상위 5% 평균 DPS</b>. 원본은 개별 로그의 최저 DPS를 제공하지 않으므로 이를 임의로 생성하지 않습니다.</p>
+ <div class="dps-extent">${selected.map(name=>{const vals=weeks.map(w=>w.items.find(x=>x.name===name)).filter(Boolean);return `<div><b>${safe(dpsLabel(name))}</b><span>최저 주간 Avg: ${dpsNum(Math.min(...vals.map(x=>x.avg_dps)))}</span><span>최신 Avg: ${dpsNum(vals.at(-1)?.avg_dps)}</span><span>최신 Top 5%: ${dpsNum(vals.at(-1)?.top_dps)}</span></div>`}).join('')}</div>
+ <h3>③ 모든 ${dpsRoleLabels[role]} 전문화 · 주차별 평균 DPS 히트맵</h3><p class="dps-note">색이 진할수록 이 역할·선택 기간에서 Avg DPS가 높습니다. 단위 K DPS. 표의 가로 스크롤로 모든 주차를 확인할 수 있어요.</p>
+ ${dpsHeatmap(weeks,specs,role)}
+ <h3>④ 전체 수치 표 · 전문화 × 주차</h3><div class="kr-runs-table dps-wide-table"><table><thead><tr><th>전문화</th>${weeks.map(w=>`<th>${w.period}</th>`).join('')}</tr></thead><tbody>${specs.map(name=>`<tr><th>${safe(dpsLabel(name))}</th>${weeks.map(w=>{const v=w.items.find(x=>x.name===name);return `<td title="Top 5% ${dpsNum(v?.top_dps)} · ${v?.runs??0} runs">${v?dpsNum(v.avg_dps):'—'}</td>`}).join('')}</tr>`).join('')}</tbody></table></div></section>`:'<div class="empty">선택한 한밤 시즌의 검증된 자료가 아직 없습니다. 수집 가능한 주차만 표시합니다.</div>'}
+ <p class="version-footnote">출처: MythicStats · Warcraft Logs 기반 · 역할별 DPS 비교이며 힐러는 HPS가 아닌 DPS · 시즌 1과 2의 패치 및 던전 구성 차이, 최신 주 표본 수에 유의하세요. 한밤 시즌 Period 1061~1090은 원본 색인 기준입니다.</p>`;
+ document.querySelectorAll('[data-dps-role]').forEach(el=>el.onclick=()=>{state.dpsRole=el.dataset.dpsRole;state.dpsSelected=[];renderDps()});
+ if($('dps-season'))$('dps-season').onchange=e=>{state.dpsSeason=e.target.value;renderDps()};
+ if($('dps-metric'))$('dps-metric').onchange=e=>{state.dpsMetric=e.target.value;renderDps()};
+ document.querySelectorAll('[data-dps-spec]').forEach(el=>el.onchange=()=>{
+  const chosen=Array.from(document.querySelectorAll('[data-dps-spec]:checked')).map(x=>x.dataset.dpsSpec);
+  if(chosen.length>6){el.checked=false;return;}
+  state.dpsSelected=chosen;renderDps();
+ });
 }
 function versionHistory(){
   const items=state.releases||[];
