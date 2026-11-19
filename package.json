@@ -1,6 +1,6 @@
 {
   "name": "wow-kr-radar",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "private": true,
   "scripts": {
     "dev": "python scripts/prebuild.py && vite --host 0.0.0.0",
