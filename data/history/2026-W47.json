@@ -4,6 +4,20 @@
   "week": "2026-W47",
   "items": [
     {
+      "id": "b8d8f863eea168cc",
+      "title_ko": "WoW 던전에서 이게 정상인가요? - Reddit",
+      "title_original": "Is this normal in WoW Dungeons? - Reddit",
+      "summary_ko": "WoW 던전에서 이게 정상인지에 관한 Reddit 기반 헤드라인 요약입니다.",
+      "source": "Reddit WoW (indexed)",
+      "region": "global",
+      "category": "쐐기·레이드",
+      "published_at": "2026-11-19T12:57:29+00:00",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPZ2RrS0o1Tm1jbllycGNVTWNyMjZNSVhLRGpycFVSbkYzU1U2aXdyWEJhTWpkSWh4RG9RckItcFd2MjZPblJyOF9sSmsweDV6S1phQ0JCUHM0R3RPTXo0UzFTTWYxOXdIMF9mRTRITS1nT2RJYWxJUkt4X2doRTliSFY2MA?oc=5",
+      "verified": false,
+      "translated": true,
+      "sample": false
+    },
+    {
       "id": "95a79a8c0643ac7a",
       "title_ko": "소매 시즌 2가 2-3개월 남은 가운데, 지난 3개 확장팩과 시즌 동안 미국 지역 m+ 통계 분석 - Reddit",
       "title_original": "With 2-3 months of Retail S2 left, a look at US region m+ stats over the past 3 expansions and seasons - Reddit",
@@ -243,16 +257,16 @@
     },
     {
       "id": "9a7bb3c4c6cefc6f",
-      "title_ko": "How’s the current player activity in Retail? - Reddit",
+      "title_ko": "리테일 현재 플레이어 활동은 어떤가요? - Reddit",
       "title_original": "How’s the current player activity in Retail? - Reddit",
-      "summary_ko": "해외 기사 · 한국어 요약 미생성 (OPENAI_API_KEY 설정 필요)",
+      "summary_ko": "리테일의 현재 플레이어 활동 상황에 관한 Reddit 기반 헤드라인 요약입니다.",
       "source": "Reddit WoW (indexed)",
       "region": "global",
       "category": "커뮤니티",
       "published_at": "2026-11-18T07:46:45+00:00",
       "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPYkx6R3JnVTc4WENKdUJKTmpmdURKRWo0Y2xlSGhfaV9BSDJVOUlBZDNXX2lNWDZZRTRuNXRkNERmRU5HSmQ4MVFLMmJXWFVBZ204WXVsQjN1c01sQkt1X04tWXRHcXl6UXcyN3NIVFdOdkV2VDlVbnAtNlR3eUwyam9iOEl1MjVpT1NjeEk1dGNQVTg?oc=5",
       "verified": false,
-      "translated": false,
+      "translated": true,
       "sample": false
     },
     {
@@ -349,6 +363,20 @@
       "category": "커뮤니티",
       "published_at": "2026-11-17T13:39:47+00:00",
       "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPN3hPWUhIUTBjQXJTWVRyWWRoZ0V2Sk5SUFNBaklrYUcxdTY2UHNKeE1YNG5yZEVxcWtvd0VCc2JvUEpwcGlyM2d1a1ZfcFVJamdCNUxvbU9Welc1RFctaUxKSnZiWU1uM1Z3cnNSS1ZjZF9ZczFSNTE2eXh3Z1lFQmtoYXE4S1BfY0RBMHZpRjFUQm00UkE?oc=5",
+      "verified": false,
+      "translated": true,
+      "sample": false
+    },
+    {
+      "id": "478e3b96724c1661",
+      "title_ko": "뉴스 - 월드 오브 워크래프트",
+      "title_original": "News - World of Warcraft",
+      "summary_ko": "월드 오브 워크래프트 뉴스에 관한 헤드라인 기반 요약입니다.",
+      "source": "Blizzard",
+      "region": "global",
+      "category": "커뮤니티",
+      "published_at": "2026-11-17T13:09:40+00:00",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5ZM0xia056ZWp1SXZsLWQzUEl5M3lwV0J0VUhTOTdERHoxUGxtZG12MmZBbk5KbWVPcUVNRVhKY2RqbWxTVXM1cTNOaTRzanVqYnROUWo4cmFsZw?oc=5",
       "verified": false,
       "translated": true,
       "sample": false
@@ -910,5 +938,5 @@
     "translated": false
   },
   "created_at": "2026-11-19T00:01:31.779743+09:00",
-  "updated_at": "2026-11-19T22:41:45.683800+09:00"
+  "updated_at": "2026-11-19T23:36:38.434624+09:00"
 }

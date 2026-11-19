@@ -1,8 +1,22 @@
 {
-  "generated_at": "2026-11-19T22:41:45.683800+09:00",
+  "generated_at": "2026-11-19T23:36:38.434624+09:00",
   "status": "live",
   "week": "2026-W47",
   "items": [
+    {
+      "id": "b8d8f863eea168cc",
+      "title_ko": "WoW 던전에서 이게 정상인가요? - Reddit",
+      "title_original": "Is this normal in WoW Dungeons? - Reddit",
+      "summary_ko": "WoW 던전에서 이게 정상인지에 관한 Reddit 기반 헤드라인 요약입니다.",
+      "source": "Reddit WoW (indexed)",
+      "region": "global",
+      "category": "쐐기·레이드",
+      "published_at": "2026-11-19T12:57:29+00:00",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPZ2RrS0o1Tm1jbllycGNVTWNyMjZNSVhLRGpycFVSbkYzU1U2aXdyWEJhTWpkSWh4RG9RckItcFd2MjZPblJyOF9sSmsweDV6S1phQ0JCUHM0R3RPTXo0UzFTTWYxOXdIMF9mRTRITS1nT2RJYWxJUkt4X2doRTliSFY2MA?oc=5",
+      "verified": false,
+      "translated": true,
+      "sample": false
+    },
     {
       "id": "95a79a8c0643ac7a",
       "title_ko": "소매 시즌 2가 2-3개월 남은 가운데, 지난 3개 확장팩과 시즌 동안 미국 지역 m+ 통계 분석 - Reddit",
@@ -144,15 +158,15 @@
       "sample": false
     },
     {
-      "id": "a1885b04c99d9e9a",
-      "title_ko": "리테일 와우는 현재 상태로 이와 같은 테마를 다시는 가지지 않을 것이다. 그 맛을 잃었고, 자정의 느낌이 들지 않는다. - Reddit",
-      "title_original": "retail wow will never have this type of theme again at its current state. it have lost its taste. it doesn't feels midnight. - Reddit",
-      "summary_ko": "이 요약은 제목을 기반으로 한 브리핑입니다. 리테일 와우가 현재 상태로는 자정 느낌의 테마를 다시는 가지지 못하며, 맛을 잃었다는 Reddit의 의견을 전하고 있습니다.",
+      "id": "9a7bb3c4c6cefc6f",
+      "title_ko": "리테일 현재 플레이어 활동은 어떤가요? - Reddit",
+      "title_original": "How’s the current player activity in Retail? - Reddit",
+      "summary_ko": "리테일의 현재 플레이어 활동 상황에 관한 Reddit 기반 헤드라인 요약입니다.",
       "source": "Reddit WoW (indexed)",
       "region": "global",
       "category": "커뮤니티",
-      "published_at": "2026-11-18T09:08:16+00:00",
-      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQMTEtbTNrTURDZXUxZ19HWVJwaHIxc2pHbGR6TTFUNzc5MUVVMFo5OFRzMC12VVFKd3JleC12SzBlcERudjVJenJVYlNydFF3Tk1qUTJQNlpDd2h3Qk9UQVF5U2NSR3REX3lFa2NUdnZMWmtEa05MeGRvLXZRaVY0U25Vb1JUVUNWV0ZwYldFSWhsM0VBd25F?oc=5",
+      "published_at": "2026-11-18T07:46:45+00:00",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPYkx6R3JnVTc4WENKdUJKTmpmdURKRWo0Y2xlSGhfaV9BSDJVOUlBZDNXX2lNWDZZRTRuNXRkNERmRU5HSmQ4MVFLMmJXWFVBZ204WXVsQjN1c01sQkt1X04tWXRHcXl6UXcyN3NIVFdOdkV2VDlVbnAtNlR3eUwyam9iOEl1MjVpT1NjeEk1dGNQVTg?oc=5",
       "verified": false,
       "translated": true,
       "sample": false
@@ -237,6 +251,20 @@
       "category": "커뮤니티",
       "published_at": "2026-11-17T13:39:47+00:00",
       "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPN3hPWUhIUTBjQXJTWVRyWWRoZ0V2Sk5SUFNBaklrYUcxdTY2UHNKeE1YNG5yZEVxcWtvd0VCc2JvUEpwcGlyM2d1a1ZfcFVJamdCNUxvbU9Welc1RFctaUxKSnZiWU1uM1Z3cnNSS1ZjZF9ZczFSNTE2eXh3Z1lFQmtoYXE4S1BfY0RBMHZpRjFUQm00UkE?oc=5",
+      "verified": false,
+      "translated": true,
+      "sample": false
+    },
+    {
+      "id": "478e3b96724c1661",
+      "title_ko": "뉴스 - 월드 오브 워크래프트",
+      "title_original": "News - World of Warcraft",
+      "summary_ko": "월드 오브 워크래프트 뉴스에 관한 헤드라인 기반 요약입니다.",
+      "source": "Blizzard",
+      "region": "global",
+      "category": "커뮤니티",
+      "published_at": "2026-11-17T13:09:40+00:00",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5ZM0xia056ZWp1SXZsLWQzUEl5M3lwV0J0VUhTOTdERHoxUGxtZG12MmZBbk5KbWVPcUVNRVhKY2RqbWxTVXM1cTNOaTRzanVqYnROUWo4cmFsZw?oc=5",
       "verified": false,
       "translated": true,
       "sample": false
@@ -377,20 +405,6 @@
       "category": "커뮤니티",
       "published_at": "2026-11-15T18:27:38+00:00",
       "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQUzNTbVN5MzJzU1ZGXzVYVERic1g0LVdvemx2Y1MxMVdyYmlVd0RVQmZHREJJSEVJaERiZUthSE16NUVjczhxYUhNOVVHcUxfLWMzQjl4VkFhMmp3eTd0X2JqbDZPa3YycVB0dTRZQ19KSFlqRXM2T2QtM05pcXFFSUtsVHFxeDlxa3JLSUhfZFFKTDZqSW84ZWRiYw?oc=5",
-      "verified": false,
-      "translated": true,
-      "sample": false
-    },
-    {
-      "id": "4f30e5addf3f2d9c",
-      "title_ko": "대륙 반대편에 있는데 던전 대기열에 들어가지 마세요 - Reddit",
-      "title_original": "Stop queuing for dungeons if you are a continent away - Reddit",
-      "summary_ko": "이 브리프는 Reddit에 올라온 '대륙 반대편에 있는데 던전 대기열에 들어가지 마세요'라는 제목의 게시물을 요약합니다.",
-      "source": "Reddit WoW (indexed)",
-      "region": "global",
-      "category": "쐐기·레이드",
-      "published_at": "2026-11-14T19:00:29+00:00",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPUUplcmtGRjhXVGtaSWVmaTJFSlRlQ2JkM3d2WlRNMVYyRVc4NmdxdV9OT2hSTEEySWJlczlhLWMyRktqM0ozOW1NNUloWmR5Si0xSHpSV1pGOUl0V2J3eTBfS01MMlRfU1ZPWkthR1RISlFvY2tVMFd4WlVRWjl0aUx0WHpsWlNqcnNGMlgwS0dIRU9hcHVMOE1BRQ?oc=5",
       "verified": false,
       "translated": true,
       "sample": false
@@ -709,14 +723,14 @@
     "success": 6,
     "errors": [],
     "translated": true,
-    "translated_count": 50,
-    "reused_translations": 50,
-    "new_translations": 0,
+    "translated_count": 51,
+    "reused_translations": 48,
+    "new_translations": 3,
     "feed_results": [
       {
         "source": "Blizzard",
         "status": "ok",
-        "count": 1
+        "count": 2
       },
       {
         "source": "Wowhead",
