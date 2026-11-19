@@ -44,6 +44,11 @@ jobs:
           assert kr.is_file(), 'Missing KR Mythic+ status data'
           krdata=json.loads(kr.read_text(encoding='utf-8'))
           assert krdata.get('status') in ('live','unavailable','not_collected'), 'Invalid KR Mythic+ state'
+          kr_runs=Path('dist/data/kr_runs.json')
+          assert kr_runs.is_file(), 'Missing KR run snapshots JSON'
+          run_data=json.loads(kr_runs.read_text(encoding='utf-8'))
+          assert run_data.get('status') in ('live','unavailable','not_collected'), 'Invalid KR run status'
+          assert isinstance(run_data.get('runs'),list), 'Invalid KR runs array'
           releases=Path('dist/data/releases.json')
           assert releases.is_file(), 'Missing release history index'
           records=json.loads(releases.read_text(encoding='utf-8'))['entries']
