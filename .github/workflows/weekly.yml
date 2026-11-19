@@ -37,11 +37,13 @@ jobs:
         run: python scripts/collect_kr_mplus.py
       - name: Collect KR Mythic+ runs
         run: python scripts/collect_kr_runs.py
+      - name: Collect Mythicstats weekly DPS archive
+        run: python scripts/collect_dps.py
       - name: Commit weekly archives
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/latest.json data/history/ data/kr_mplus.json data/kr_runs.json
+          git add data/latest.json data/history/ data/kr_mplus.json data/kr_runs.json data/dps/
           if ! git diff --cached --quiet; then
             git commit -m "data: weekly WoW retail news snapshot"
             for attempt in 1 2 3; do
