@@ -159,3 +159,7 @@
 .dps-wide-table table{min-width:1000px}
 .dps-wide-table th,.dps-wide-table td{font-size:11px;white-space:nowrap}
 @media(max-width:700px){.dps-extent{grid-template-columns:1fr}.dps-toolbar{align-items:flex-start;flex-direction:column}.dps-role-tabs button{padding:10px 17px}.dps-toolbar label{width:100%}.dps-toolbar select{flex:1}}
+
+
+.dps-export{background:#d3aa68;color:#142336;border:none;border-radius:7px;padding:10px 15px;font-size:12px;font-weight:800;margin:0 0 14px;cursor:pointer}
+.dps-export:hover{background:#e7bc78}
