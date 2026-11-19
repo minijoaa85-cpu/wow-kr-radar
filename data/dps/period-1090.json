@@ -1,7 +1,7 @@
 {
   "period": 1090,
   "season": "mid2",
-  "captured_at": "2026-11-19T23:36:45.939475+09:00",
+  "captured_at": "2026-11-19T23:39:22.063164+09:00",
   "source": "Mythicstats",
   "source_url": "https://mythicstats.com/dps?period=1090",
   "scope": "Mythic+ dungeon-wide DPS; all 3 roles from source",
@@ -36,8 +36,8 @@
       "role": "damage",
       "rank": 3,
       "tier": "C",
-      "avg_dps": 356000,
-      "top_dps": 470000,
+      "avg_dps": 355000,
+      "top_dps": 469000,
       "runs": 2300
     },
     {

@@ -523,9 +523,9 @@
     },
     {
       "id": "4f30e5addf3f2d9c",
-      "title_ko": "대륙 반대편에 있는데 던전 대기열에 들어가지 마세요 - Reddit",
+      "title_ko": "대륙이 떨어진 곳에 있다면 던전 대기열에 참여하지 마세요 - Reddit",
       "title_original": "Stop queuing for dungeons if you are a continent away - Reddit",
-      "summary_ko": "이 브리프는 Reddit에 올라온 '대륙 반대편에 있는데 던전 대기열에 들어가지 마세요'라는 제목의 게시물을 요약합니다.",
+      "summary_ko": "던전 대기열 참여를 중단하라는 Reddit의 제목 기반 요약입니다.",
       "source": "Reddit WoW (indexed)",
       "region": "global",
       "category": "쐐기·레이드",
@@ -938,5 +938,5 @@
     "translated": false
   },
   "created_at": "2026-11-19T00:01:31.779743+09:00",
-  "updated_at": "2026-11-19T23:36:38.434624+09:00"
+  "updated_at": "2026-11-19T23:39:14.579513+09:00"
 }

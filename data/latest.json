@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T23:36:38.434624+09:00",
+  "generated_at": "2026-11-19T23:39:14.579513+09:00",
   "status": "live",
   "week": "2026-W47",
   "items": [
@@ -256,20 +256,6 @@
       "sample": false
     },
     {
-      "id": "478e3b96724c1661",
-      "title_ko": "뉴스 - 월드 오브 워크래프트",
-      "title_original": "News - World of Warcraft",
-      "summary_ko": "월드 오브 워크래프트 뉴스에 관한 헤드라인 기반 요약입니다.",
-      "source": "Blizzard",
-      "region": "global",
-      "category": "커뮤니티",
-      "published_at": "2026-11-17T13:09:40+00:00",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5ZM0xia056ZWp1SXZsLWQzUEl5M3lwV0J0VUhTOTdERHoxUGxtZG12MmZBbk5KbWVPcUVNRVhKY2RqbWxTVXM1cTNOaTRzanVqYnROUWo4cmFsZw?oc=5",
-      "verified": false,
-      "translated": true,
-      "sample": false
-    },
-    {
       "id": "486e4b0b8c2263b7",
       "title_ko": "연결된 확장팩들(TWW, 미드나이트, 라스트 타이탄)은 실수다 - Reddit",
       "title_original": "Connected expansions (TWW, Midnight, Last Titan) are a mistake - Reddit",
@@ -410,6 +396,20 @@
       "sample": false
     },
     {
+      "id": "4f30e5addf3f2d9c",
+      "title_ko": "대륙이 떨어진 곳에 있다면 던전 대기열에 참여하지 마세요 - Reddit",
+      "title_original": "Stop queuing for dungeons if you are a continent away - Reddit",
+      "summary_ko": "던전 대기열 참여를 중단하라는 Reddit의 제목 기반 요약입니다.",
+      "source": "Reddit WoW (indexed)",
+      "region": "global",
+      "category": "쐐기·레이드",
+      "published_at": "2026-11-14T19:00:29+00:00",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPUUplcmtGRjhXVGtaSWVmaTJFSlRlQ2JkM3d2WlRNMVYyRVc4NmdxdV9OT2hSTEEySWJlczlhLWMyRktqM0ozOW1NNUloWmR5Si0xSHpSV1pGOUl0V2J3eTBfS01MMlRfU1ZPWkthR1RISlFvY2tVMFd4WlVRWjl0aUx0WHpsWlNqcnNGMlgwS0dIRU9hcHVMOE1BRQ?oc=5",
+      "verified": false,
+      "translated": true,
+      "sample": false
+    },
+    {
       "id": "d4d1fc47cb18dfd3",
       "title_ko": "레벨 90 달성 후 미드나잇 퀘스트 완료, 이제 무엇을 해야 할까요? - Reddit",
       "title_original": "so i reached levl 90 and finished midnight quests what now ? - Reddit",
@@ -517,20 +517,6 @@
       "category": "로드맵",
       "published_at": "2026-11-12T23:00:09+00:00",
       "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQTFrbmtEdnZuR0gwd2IwNnhrU29IbENmUlVtNDFxWVBNWFZIRnVtQ2Rid0VHWUNSY1dtUVJsUjU0UXJmYVRJNmcyMk4ydE91Z0hWRnk5X3VrcjB4LS11dFQ2MDBZMWF0ckMyelNjSi1xc3BKNEpfcU94RDcyb0xjOElwMnRzZDN6WmcwcXBBYmpHNUlsNEdN?oc=5",
-      "verified": false,
-      "translated": true,
-      "sample": false
-    },
-    {
-      "id": "3de28bbf605d53f0",
-      "title_ko": "이번 주 신화+ 던전 진행 수가 내가 예상한 만큼 크게 줄지 않았다 - Reddit",
-      "title_original": "Number of mythic+ run this week didn't fall as much as I expected - Reddit",
-      "summary_ko": "이 요약은 제목을 기반으로 한 브리핑입니다. Reddit 사용자가 이번 주 신화+ 던전 진행 횟수가 예상만큼 크게 떨어지지 않았다고 언급하고 있습니다.",
-      "source": "Reddit WoW (indexed)",
-      "region": "global",
-      "category": "쐐기·레이드",
-      "published_at": "2026-11-12T03:06:30+00:00",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNa3I5SnczaXZsN3Rma0dLNWkzZlN5RE1Zek1JLW1JcXlyMlZROFNVR1pxZmNObG1nYkkwMGF2aUQ2dlBwSTNReTVod093THVoVTRlNngxMzlGdFdSVGxBMV92QTJYX0RyN3RjRzBaWGQzTHBEMmZKVmx3Rmx0d0xYa2F5RVM1b2tBNlhHMGdKZk1OZjRCX3dwQzIzbVo?oc=5",
       "verified": false,
       "translated": true,
       "sample": false
@@ -723,14 +709,14 @@
     "success": 6,
     "errors": [],
     "translated": true,
-    "translated_count": 51,
-    "reused_translations": 48,
-    "new_translations": 3,
+    "translated_count": 50,
+    "reused_translations": 49,
+    "new_translations": 1,
     "feed_results": [
       {
         "source": "Blizzard",
         "status": "ok",
-        "count": 2
+        "count": 1
       },
       {
         "source": "Wowhead",

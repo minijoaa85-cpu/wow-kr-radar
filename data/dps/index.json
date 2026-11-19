@@ -3,7 +3,7 @@
   "source": "Mythicstats",
   "source_url": "https://mythicstats.com/dps",
   "period_source": "https://mythicstats.com/period",
-  "last_collected": "2026-11-19T23:36:45.939475+09:00",
+  "last_collected": "2026-11-19T23:39:22.063164+09:00",
   "metric": "Overall dungeon DPS from Warcraft Logs, including noncombat time",
   "keys": "source period-specific",
   "seasons": [
@@ -182,14 +182,14 @@
       "season": "mid2",
       "file": "period-1090.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T23:36:45.939475+09:00"
+      "captured_at": "2026-11-19T23:39:22.063164+09:00"
     },
     {
       "period": 1089,
       "season": "mid2",
       "file": "period-1089.json",
       "spec_count": 40,
-      "captured_at": "2026-11-19T23:36:45.939475+09:00"
+      "captured_at": "2026-11-19T23:39:22.063164+09:00"
     },
     {
       "period": 1088,
