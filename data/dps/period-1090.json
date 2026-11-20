@@ -1,7 +1,7 @@
 {
   "period": 1090,
   "season": "mid2",
-  "captured_at": "2026-11-19T23:39:22.063164+09:00",
+  "captured_at": "2026-11-20T10:59:10.929946+09:00",
   "source": "Mythicstats",
   "source_url": "https://mythicstats.com/dps?period=1090",
   "scope": "Mythic+ dungeon-wide DPS; all 3 roles from source",
@@ -14,9 +14,9 @@
       "role": "damage",
       "rank": 1,
       "tier": "S",
-      "avg_dps": 429000,
-      "top_dps": 591000,
-      "runs": 285
+      "avg_dps": 432000,
+      "top_dps": 593000,
+      "runs": 440
     },
     {
       "spec": "subtlety",
@@ -25,9 +25,9 @@
       "role": "damage",
       "rank": 2,
       "tier": "A",
-      "avg_dps": 389000,
-      "top_dps": 516000,
-      "runs": 2300
+      "avg_dps": 391000,
+      "top_dps": 519000,
+      "runs": 3700
     },
     {
       "spec": "elemental",
@@ -36,9 +36,9 @@
       "role": "damage",
       "rank": 3,
       "tier": "C",
-      "avg_dps": 355000,
-      "top_dps": 469000,
-      "runs": 2300
+      "avg_dps": 357000,
+      "top_dps": 470000,
+      "runs": 3500
     },
     {
       "spec": "arms",
@@ -49,7 +49,7 @@
       "tier": "C",
       "avg_dps": 354000,
       "top_dps": 470000,
-      "runs": 2600
+      "runs": 3900
     },
     {
       "spec": "devourer",
@@ -58,9 +58,9 @@
       "role": "damage",
       "rank": 5,
       "tier": "C",
-      "avg_dps": 352000,
-      "top_dps": 486000,
-      "runs": 586
+      "avg_dps": 353000,
+      "top_dps": 485000,
+      "runs": 887
     },
     {
       "spec": "demonology",
@@ -69,9 +69,9 @@
       "role": "damage",
       "rank": 6,
       "tier": "C",
-      "avg_dps": 347000,
-      "top_dps": 476000,
-      "runs": 998
+      "avg_dps": 350000,
+      "top_dps": 480000,
+      "runs": 1600
     },
     {
       "spec": "windwalker",
@@ -80,9 +80,9 @@
       "role": "damage",
       "rank": 7,
       "tier": "C",
-      "avg_dps": 345000,
-      "top_dps": 457000,
-      "runs": 209
+      "avg_dps": 346000,
+      "top_dps": 477000,
+      "runs": 346
     },
     {
       "spec": "frost",
@@ -91,31 +91,31 @@
       "role": "damage",
       "rank": 8,
       "tier": "C",
-      "avg_dps": 345000,
-      "top_dps": 475000,
-      "runs": 649
-    },
-    {
-      "spec": "arcane",
-      "class": "mage",
-      "name": "arcane mage",
-      "role": "damage",
-      "rank": 9,
-      "tier": "C",
-      "avg_dps": 338000,
-      "top_dps": 441000,
-      "runs": 2000
+      "avg_dps": 346000,
+      "top_dps": 476000,
+      "runs": 1000
     },
     {
       "spec": "unholy",
       "class": "death-knight",
       "name": "unholy death-knight",
       "role": "damage",
+      "rank": 9,
+      "tier": "C",
+      "avg_dps": 342000,
+      "top_dps": 457000,
+      "runs": 477
+    },
+    {
+      "spec": "arcane",
+      "class": "mage",
+      "name": "arcane mage",
+      "role": "damage",
       "rank": 10,
       "tier": "C",
-      "avg_dps": 336000,
-      "top_dps": 449000,
-      "runs": 327
+      "avg_dps": 341000,
+      "top_dps": 442000,
+      "runs": 3100
     },
     {
       "spec": "retribution",
@@ -124,20 +124,20 @@
       "role": "damage",
       "rank": 11,
       "tier": "C",
-      "avg_dps": 336000,
-      "top_dps": 455000,
-      "runs": 1800
+      "avg_dps": 335000,
+      "top_dps": 460000,
+      "runs": 2600
     },
     {
-      "spec": "marksmanship",
-      "class": "hunter",
-      "name": "marksmanship hunter",
+      "spec": "feral",
+      "class": "druid",
+      "name": "feral druid",
       "role": "damage",
       "rank": 12,
-      "tier": "C",
-      "avg_dps": 336000,
-      "top_dps": 413000,
-      "runs": 126
+      "tier": "D",
+      "avg_dps": 333000,
+      "top_dps": 483000,
+      "runs": 301
     },
     {
       "spec": "enhancement",
@@ -145,32 +145,32 @@
       "name": "enhancement shaman",
       "role": "damage",
       "rank": 13,
-      "tier": "C",
-      "avg_dps": 334000,
-      "top_dps": 433000,
-      "runs": 314
+      "tier": "D",
+      "avg_dps": 332000,
+      "top_dps": 436000,
+      "runs": 469
+    },
+    {
+      "spec": "marksmanship",
+      "class": "hunter",
+      "name": "marksmanship hunter",
+      "role": "damage",
+      "rank": 14,
+      "tier": "D",
+      "avg_dps": 330000,
+      "top_dps": 407000,
+      "runs": 189
     },
     {
       "spec": "fire",
       "class": "mage",
       "name": "fire mage",
       "role": "damage",
-      "rank": 14,
-      "tier": "D",
-      "avg_dps": 332000,
-      "top_dps": 392000,
-      "runs": 63
-    },
-    {
-      "spec": "feral",
-      "class": "druid",
-      "name": "feral druid",
-      "role": "damage",
       "rank": 15,
       "tier": "D",
-      "avg_dps": 330000,
-      "top_dps": 448000,
-      "runs": 186
+      "avg_dps": 329000,
+      "top_dps": 395000,
+      "runs": 94
     },
     {
       "spec": "survival",
@@ -179,31 +179,31 @@
       "role": "damage",
       "rank": 16,
       "tier": "D",
-      "avg_dps": 321000,
-      "top_dps": 430000,
-      "runs": 99
-    },
-    {
-      "spec": "outlaw",
-      "class": "rogue",
-      "name": "outlaw rogue",
-      "role": "damage",
-      "rank": 17,
-      "tier": "D",
-      "avg_dps": 320000,
-      "top_dps": 396000,
-      "runs": 28
+      "avg_dps": 325000,
+      "top_dps": 435000,
+      "runs": 149
     },
     {
       "spec": "beast-mastery",
       "class": "hunter",
       "name": "beast-mastery hunter",
       "role": "damage",
+      "rank": 17,
+      "tier": "D",
+      "avg_dps": 319000,
+      "top_dps": 432000,
+      "runs": 1800
+    },
+    {
+      "spec": "outlaw",
+      "class": "rogue",
+      "name": "outlaw rogue",
+      "role": "damage",
       "rank": 18,
       "tier": "D",
       "avg_dps": 318000,
-      "top_dps": 429000,
-      "runs": 1300
+      "top_dps": 401000,
+      "runs": 41
     },
     {
       "spec": "fury",
@@ -213,8 +213,8 @@
       "rank": 19,
       "tier": "F",
       "avg_dps": 309000,
-      "top_dps": 389000,
-      "runs": 180
+      "top_dps": 398000,
+      "runs": 250
     },
     {
       "spec": "shadow",
@@ -224,63 +224,63 @@
       "rank": 20,
       "tier": "F",
       "avg_dps": 308000,
-      "top_dps": 416000,
-      "runs": 245
-    },
-    {
-      "spec": "affliction",
-      "class": "warlock",
-      "name": "affliction warlock",
-      "role": "damage",
-      "rank": 21,
-      "tier": "F",
-      "avg_dps": 308000,
-      "top_dps": 381000,
-      "runs": 70
-    },
-    {
-      "spec": "devastation",
-      "class": "evoker",
-      "name": "devastation evoker",
-      "role": "damage",
-      "rank": 22,
-      "tier": "F",
-      "avg_dps": 307000,
-      "top_dps": 391000,
-      "runs": 58
-    },
-    {
-      "spec": "frost",
-      "class": "mage",
-      "name": "frost mage",
-      "role": "damage",
-      "rank": 23,
-      "tier": "F",
-      "avg_dps": 306000,
-      "top_dps": 416000,
-      "runs": 158
-    },
-    {
-      "spec": "havoc",
-      "class": "demon-hunter",
-      "name": "havoc demon-hunter",
-      "role": "damage",
-      "rank": 24,
-      "tier": "F",
-      "avg_dps": 304000,
-      "top_dps": 405000,
-      "runs": 469
+      "top_dps": 415000,
+      "runs": 372
     },
     {
       "spec": "destruction",
       "class": "warlock",
       "name": "destruction warlock",
       "role": "damage",
+      "rank": 21,
+      "tier": "F",
+      "avg_dps": 307000,
+      "top_dps": 396000,
+      "runs": 59
+    },
+    {
+      "spec": "frost",
+      "class": "mage",
+      "name": "frost mage",
+      "role": "damage",
+      "rank": 22,
+      "tier": "F",
+      "avg_dps": 307000,
+      "top_dps": 428000,
+      "runs": 220
+    },
+    {
+      "spec": "havoc",
+      "class": "demon-hunter",
+      "name": "havoc demon-hunter",
+      "role": "damage",
+      "rank": 23,
+      "tier": "F",
+      "avg_dps": 305000,
+      "top_dps": 402000,
+      "runs": 696
+    },
+    {
+      "spec": "affliction",
+      "class": "warlock",
+      "name": "affliction warlock",
+      "role": "damage",
+      "rank": 24,
+      "tier": "F",
+      "avg_dps": 305000,
+      "top_dps": 380000,
+      "runs": 91
+    },
+    {
+      "spec": "devastation",
+      "class": "evoker",
+      "name": "devastation evoker",
+      "role": "damage",
       "rank": 25,
       "tier": "F",
-      "avg_dps": 300000,
-      "top_dps": 374000,
-      "runs": 42
+      "avg_dps": 301000,
+      "top_dps": 385000,
+      "runs": 88
     },
     {
       "spec": "balance",
@@ -290,8 +290,8 @@
       "rank": 26,
       "tier": "F",
       "avg_dps": 298000,
-      "top_dps": 406000,
-      "runs": 235
+      "top_dps": 405000,
+      "runs": 330
     },
     {
       "spec": "augmentation",
@@ -300,9 +300,9 @@
       "role": "damage",
       "rank": 27,
       "tier": "F",
-      "avg_dps": 285000,
-      "top_dps": 356000,
-      "runs": 64
+      "avg_dps": 284000,
+      "top_dps": 373000,
+      "runs": 96
     },
     {
       "spec": "blood",
@@ -311,31 +311,31 @@
       "role": "tank",
       "rank": 1,
       "tier": "S",
-      "avg_dps": 219000,
-      "top_dps": 314000,
-      "runs": 2000
-    },
-    {
-      "spec": "vengeance",
-      "class": "demon-hunter",
-      "name": "vengeance demon-hunter",
-      "role": "tank",
-      "rank": 2,
-      "tier": "C",
-      "avg_dps": 180000,
-      "top_dps": 260000,
-      "runs": 284
+      "avg_dps": 220000,
+      "top_dps": 313000,
+      "runs": 3100
     },
     {
       "spec": "guardian",
       "class": "druid",
       "name": "guardian druid",
       "role": "tank",
-      "rank": 3,
+      "rank": 2,
       "tier": "C",
       "avg_dps": 179000,
       "top_dps": 262000,
-      "runs": 2000
+      "runs": 3000
+    },
+    {
+      "spec": "vengeance",
+      "class": "demon-hunter",
+      "name": "vengeance demon-hunter",
+      "role": "tank",
+      "rank": 3,
+      "tier": "C",
+      "avg_dps": 178000,
+      "top_dps": 258000,
+      "runs": 409
     },
     {
       "spec": "protection",
@@ -345,8 +345,8 @@
       "rank": 4,
       "tier": "C",
       "avg_dps": 177000,
-      "top_dps": 248000,
-      "runs": 364
+      "top_dps": 266000,
+      "runs": 548
     },
     {
       "spec": "protection",
@@ -355,9 +355,9 @@
       "role": "tank",
       "rank": 5,
       "tier": "D",
-      "avg_dps": 168000,
+      "avg_dps": 170000,
       "top_dps": 240000,
-      "runs": 947
+      "runs": 1400
     },
     {
       "spec": "brewmaster",
@@ -366,9 +366,9 @@
       "role": "tank",
       "rank": 6,
       "tier": "F",
-      "avg_dps": 153000,
-      "top_dps": 213000,
-      "runs": 139
+      "avg_dps": 152000,
+      "top_dps": 214000,
+      "runs": 206
     },
     {
       "spec": "preservation",
@@ -377,9 +377,9 @@
       "role": "healer",
       "rank": 1,
       "tier": "S",
-      "avg_dps": 70000,
-      "top_dps": 118000,
-      "runs": 120
+      "avg_dps": 69000,
+      "top_dps": 121000,
+      "runs": 185
     },
     {
       "spec": "mistweaver",
@@ -388,9 +388,9 @@
       "role": "healer",
       "rank": 2,
       "tier": "A",
-      "avg_dps": 57000,
-      "top_dps": 80000,
-      "runs": 193
+      "avg_dps": 59000,
+      "top_dps": 83000,
+      "runs": 285
     },
     {
       "spec": "holy",
@@ -400,8 +400,8 @@
       "rank": 3,
       "tier": "B",
       "avg_dps": 51000,
-      "top_dps": 93000,
-      "runs": 2600
+      "top_dps": 92000,
+      "runs": 4000
     },
     {
       "spec": "restoration",
@@ -411,8 +411,8 @@
       "rank": 4,
       "tier": "C",
       "avg_dps": 42000,
-      "top_dps": 61000,
-      "runs": 1200
+      "top_dps": 62000,
+      "runs": 2000
     },
     {
       "spec": "discipline",
@@ -422,8 +422,8 @@
       "rank": 5,
       "tier": "D",
       "avg_dps": 29000,
-      "top_dps": 41000,
-      "runs": 197
+      "top_dps": 49000,
+      "runs": 299
     },
     {
       "spec": "holy",
@@ -434,7 +434,7 @@
       "tier": "F",
       "avg_dps": 22000,
       "top_dps": 50000,
-      "runs": 1000
+      "runs": 1500
     },
     {
       "spec": "restoration",
@@ -444,8 +444,8 @@
       "rank": 7,
       "tier": "F",
       "avg_dps": 18000,
-      "top_dps": 61000,
-      "runs": 319
+      "top_dps": 64000,
+      "runs": 447
     }
   ],
   "status": "ok"
